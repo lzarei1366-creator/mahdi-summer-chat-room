@@ -2,58 +2,63 @@
 <html lang="fa" dir="rtl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>چت روم کلاس‌های تابستانی مسجد المهدی (عج)</title>
+<meta charset="UTF-8">
+<title>چت روم</title>
 
 <style>
 
 body{
-    margin:0;
-    background:#050505;
-    color:white;
-    font-family:tahoma;
+margin:0;
+background:#050505;
+color:white;
+font-family:tahoma;
 }
 
 .header{
-    background:#063b2b;
-    padding:15px;
-    text-align:center;
+background:#063b2b;
+padding:20px;
+text-align:center;
 }
 
 .chat{
-    height:65vh;
-    padding:20px;
-    overflow:auto;
+height:70vh;
+overflow:auto;
+padding:20px;
 }
 
 .message{
-    background:#151515;
-    padding:12px;
-    margin:10px;
-    border-radius:15px;
+background:#151515;
+padding:15px;
+margin:10px;
+border-radius:15px;
+box-shadow:0 0 10px #009b62;
+}
+
+.name{
+color:#00ff99;
+font-weight:bold;
 }
 
 .input{
-    display:flex;
-    padding:15px;
+display:flex;
+padding:15px;
 }
 
 input{
-    flex:1;
-    padding:15px;
-    border-radius:10px;
-    border:none;
+flex:1;
+padding:15px;
+border-radius:10px;
+border:0;
 }
 
 button{
-    margin-right:10px;
-    background:#009b62;
-    color:white;
-    border:0;
-    padding:15px 25px;
-    border-radius:10px;
+margin-right:10px;
+background:#009b62;
+color:white;
+border:0;
+padding:15px 25px;
+border-radius:10px;
 }
 
 </style>
@@ -63,8 +68,11 @@ button{
 
 <body>
 
+
 <div class="header">
-<h2>💬 کلاس‌های تابستانی مسجد المهدی (عج)</h2>
+
+<h2>💬 چت‌روم</h2>
+
 </div>
 
 
@@ -82,23 +90,35 @@ button{
 </div>
 
 
+
 <script type="module">
 
-import { initializeApp } from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+
+initializeApp
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
-import { 
+import {
+
 getFirestore,
 collection,
 addDoc,
 onSnapshot,
-serverTimestamp,
 query,
-orderBy
+orderBy,
+doc,
+getDoc,
+serverTimestamp
+
 }
-from 
-"https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
 
 
 const firebaseConfig = {
@@ -118,18 +138,57 @@ appId: "1:189185718526:web:497085957853202ebb4daf"
 };
 
 
-const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-
-
-const chat = document.getElementById("chat");
+const app =
+initializeApp(firebaseConfig);
 
 
-const q = query(
+const db =
+getFirestore(app);
+
+
+
+const username =
+localStorage.getItem("user");
+
+
+
+let myName = username;
+
+
+
+if(username){
+
+
+const userSnap =
+await getDoc(
+doc(db,"users",username)
+);
+
+
+if(userSnap.exists()){
+
+myName =
+userSnap.data().name;
+
+}
+
+
+}
+
+
+
+const chat =
+document.getElementById("chat");
+
+
+
+const q =
+query(
 collection(db,"messages"),
 orderBy("time")
 );
+
 
 
 onSnapshot(q,(snapshot)=>{
@@ -138,35 +197,40 @@ onSnapshot(q,(snapshot)=>{
 chat.innerHTML="";
 
 
-snapshot.forEach((doc)=>{
+snapshot.forEach((item)=>{
 
 
-let data = doc.data();
+const m =
+item.data();
 
 
 chat.innerHTML += `
 
 <div class="message">
 
-👤 ${data.user || "کاربر"}
+<div class="name">
+👤 ${m.user}
+</div>
 
 <br>
 
-${data.text}
+${m.text}
 
 </div>
 
 `;
 
-});
 
 
 });
 
 
-document
-.getElementById("send")
-.onclick = async ()=>{
+});
+
+
+
+
+document.getElementById("send").onclick = async()=>{
 
 
 let text =
@@ -176,17 +240,25 @@ document.getElementById("message").value;
 if(text=="") return;
 
 
+
 await addDoc(
+
 collection(db,"messages"),
+
 {
 
 text:text,
 
-user:"کاربر",
+user:myName,
+
+username:username,
 
 time:serverTimestamp()
 
-});
+}
+
+);
+
 
 
 document.getElementById("message").value="";
@@ -195,17 +267,10 @@ document.getElementById("message").value="";
 };
 
 
+
 </script>
 
 
-body{
-    margin:0;
-    background:
-    linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.85)),
-    url("https://images.unsplash.com/photo-1519608487953-e999c86e7455")
-    center/cover fixed;
+</body>
 
-    color:white;
-    font-family:tahoma;
-}
 </html>
