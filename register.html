@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +40,7 @@ button{
     border:0;
     border-radius:10px;
     font-size:17px;
+    cursor:pointer;
 }
 
 a{
@@ -54,15 +56,13 @@ a{
 
 <h2>ثبت‌نام کاربر جدید</h2>
 
-<input placeholder="نام و نام خانوادگی">
+<input id="email" placeholder="ایمیل">
 
-<input placeholder="نام کاربری">
-
-<input type="password" placeholder="رمز عبور">
+<input id="password" type="password" placeholder="رمز عبور">
 
 <br>
 
-<button>ثبت‌نام</button>
+<button id="register">ثبت‌نام</button>
 
 <p>
 قبلاً ثبت‌نام کرده‌اید؟
@@ -71,5 +71,56 @@ a{
 
 </div>
 
+
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import { 
+createUserWithEmailAndPassword 
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+document
+.getElementById("register")
+.addEventListener("click", async ()=>{
+
+const email =
+document.getElementById("email").value;
+
+const password =
+document.getElementById("password").value;
+
+
+try{
+
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+alert("ثبت‌نام موفق بود");
+
+window.location.href="login.html";
+
+
+}
+
+catch(error){
+
+alert(error.message);
+
+}
+
+
+});
+
+
+</script>
+
+
 </body>
+
 </html>
