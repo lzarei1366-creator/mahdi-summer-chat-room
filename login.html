@@ -2,14 +2,14 @@
 <html lang="fa" dir="rtl">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<meta charset="UTF-8">
 <title>ورود کاربران</title>
 
 <style>
+
 body{
-background:linear-gradient(135deg,#050505,#063b2b);
+background:#050505;
 color:white;
 font-family:tahoma;
 text-align:center;
@@ -39,15 +39,15 @@ background:#009b62;
 color:white;
 border:0;
 border-radius:10px;
-font-size:17px;
-cursor:pointer;
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <div class="box">
 
@@ -59,23 +59,49 @@ cursor:pointer;
 
 <br>
 
-<button id="login">ورود</button>
+<button id="login">
+ورود
+</button>
+
 
 </div>
 
 
+
 <script type="module">
+
 
 import { auth } from "./firebase-config.js";
 
+
 import {
+
 signInWithEmailAndPassword
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-document
-.getElementById("login")
-.addEventListener("click", async ()=>{
+import {
+
+getFirestore,
+
+doc,
+
+getDoc
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+const db = getFirestore();
+
+
+
+document.getElementById("login").onclick = async ()=>{
 
 
 const email =
@@ -86,14 +112,51 @@ const password =
 document.getElementById("password").value;
 
 
+
 try{
 
 
+const result =
 await signInWithEmailAndPassword(
 auth,
 email,
 password
 );
+
+
+
+const userRef =
+doc(db,"users",result.user.uid);
+
+
+
+const userSnap =
+await getDoc(userRef);
+
+
+
+if(userSnap.exists()){
+
+
+const data =
+userSnap.data();
+
+
+
+if(data.status=="blocked"){
+
+
+alert("حساب شما مسدود شده است");
+
+
+return;
+
+
+}
+
+
+}
+
 
 
 alert("ورود موفق بود");
@@ -104,14 +167,17 @@ window.location.href="chat.html";
 
 }
 
+
 catch(error){
 
+
 alert("ایمیل یا رمز اشتباه است");
+
 
 }
 
 
-});
+};
 
 
 </script>
