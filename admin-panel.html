@@ -4,6 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>پنل مدیریت</title>
 
 <style>
@@ -15,27 +17,48 @@ font-family:tahoma;
 padding:30px;
 }
 
-.card{
-background:#151515;
-padding:25px;
-margin:20px;
-border-radius:20px;
-box-shadow:0 0 20px #009b62;
+h1,h3{
 text-align:center;
 }
 
+.menu{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+
+background:#151515;
+width:250px;
+padding:25px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 20px #009b62;
+
+}
+
 button{
+
 background:#009b62;
 color:white;
 border:0;
 padding:12px;
-border-radius:10px;
 width:100%;
+border-radius:10px;
 cursor:pointer;
+
 }
 
 a{
 text-decoration:none;
+}
+
+.logout{
+
+background:#b30000;
+
 }
 
 </style>
@@ -51,14 +74,38 @@ text-decoration:none;
 <h3 id="role"></h3>
 
 
+<div class="menu">
+
+
+
 <div class="card">
 
 <h2>👥 کاربران</h2>
 
+<p>مدیریت کاربران</p>
+
 <a href="users.html">
 
 <button>
-مدیریت کاربران
+ورود
+</button>
+
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>➕ افزودن کاربر</h2>
+
+<p>ساخت حساب جدید</p>
+
+<a href="add-user.html">
+
+<button>
+افزودن کاربر
 </button>
 
 </a>
@@ -71,15 +118,35 @@ text-decoration:none;
 
 <h2>💬 چت</h2>
 
+<p>مدیریت پیام‌ها</p>
+
 <a href="chat-admin.html">
 
 <button>
-مدیریت چت
+ورود
 </button>
 
 </a>
 
 </div>
+
+
+
+</div>
+
+
+<br><br>
+
+
+<center>
+
+<button class="logout" id="logout">
+
+خروج از مدیریت
+
+</button>
+
+</center>
 
 
 
@@ -104,8 +171,22 @@ window.location.href="admin-login.html";
 
 
 document.getElementById("role").innerHTML =
-"سطح دسترسی: " + role;
+"سطح دسترسی: "+role;
 
+
+
+document.getElementById("logout").onclick=()=>{
+
+
+localStorage.removeItem("admin");
+
+localStorage.removeItem("role");
+
+
+window.location.href="admin-login.html";
+
+
+};
 
 
 </script>
@@ -114,5 +195,3 @@ document.getElementById("role").innerHTML =
 </body>
 
 </html>
-
-
