@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<title>مدیریت کاربران</title>
+
+<style>
+
+body{
+background:#080808;
+color:white;
+font-family:tahoma;
+padding:30px;
+}
+
+.box{
+background:#151515;
+padding:20px;
+border-radius:15px;
+margin:15px;
+box-shadow:0 0 15px #009b62;
+}
+
+button{
+background:#b30000;
+color:white;
+border:0;
+padding:10px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<h1>👥 مدیریت کاربران</h1>
+
+<div id="users"></div>
+
+
+
+<script type="module">
+
+import {
+getFirestore,
+collection,
+onSnapshot
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+
+authDomain: "mahdi-summer-chat.firebaseapp.com",
+
+projectId: "mahdi-summer-chat",
+
+storageBucket: "mahdi-summer-chat.firebasestorage.app",
+
+messagingSenderId: "189185718526",
+
+appId: "1:189185718526:web:497085957853202ebb4daf"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+
+const box =
+document.getElementById("users");
+
+
+
+onSnapshot(
+collection(db,"users"),
+(snapshot)=>{
+
+
+box.innerHTML="";
+
+
+snapshot.forEach((doc)=>{
+
+
+let user =
+doc.data();
+
+
+box.innerHTML += `
+
+<div class="box">
+
+<p>📧 ${user.email}</p>
+
+<p>وضعیت: ${user.status}</p>
+
+<button>
+مسدود کردن
+</button>
+
+</div>
+
+`;
+
+
+});
+
+
+});
+
+</script>
+
+
+</body>
+
+</html>
