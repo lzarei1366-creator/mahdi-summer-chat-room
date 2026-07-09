@@ -2,10 +2,14 @@
 <html lang="fa" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>پنل مدیریت</title>
 
 <style>
+
 body{
     margin:0;
     background:#080808;
@@ -29,11 +33,11 @@ body{
 
 .card{
     background:#151515;
-    width:220px;
+    width:230px;
     padding:25px;
     border-radius:20px;
-    box-shadow:0 0 20px #009b62;
     text-align:center;
+    box-shadow:0 0 20px #009b62;
 }
 
 button{
@@ -41,9 +45,15 @@ button{
     color:white;
     border:0;
     padding:12px;
-    border-radius:10px;
     width:100%;
+    border-radius:10px;
+    cursor:pointer;
 }
+
+a{
+    text-decoration:none;
+}
+
 </style>
 
 </head>
@@ -53,41 +63,66 @@ button{
 
 
 <div class="header">
+
 <h1>👑 پنل مدیریت</h1>
-<p id="role"></p>
+
+<p id="role">
+در حال بررسی دسترسی...
+</p>
+
 </div>
 
 
-<div class="menu" id="menu"></div>
+
+<div class="menu" id="menu">
+
+
+</div>
+
 
 
 
 <script type="module">
 
+
 import { auth } from "./firebase-config.js";
 
+
 import {
+
 onAuthStateChanged
+
 }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
+
 import {
+
 getFirestore,
+
 doc,
+
 getDoc
+
 }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
-const db = getFirestore();
+
+const db =
+getFirestore();
+
 
 
 const menu =
 document.getElementById("menu");
 
 
-onAuthStateChanged(auth, async(user)=>{
+
+onAuthStateChanged(auth,async(user)=>{
 
 
 if(!user){
@@ -100,29 +135,33 @@ return;
 
 
 
-const adminRef =
+const ref =
 doc(db,"admins",user.email);
 
 
-const adminSnap =
-await getDoc(adminRef);
+
+const snap =
+await getDoc(ref);
 
 
 
-if(!adminSnap.exists()){
+if(!snap.exists()){
 
-alert("شما ادمین نیستید");
+
+alert("شما دسترسی مدیریت ندارید");
 
 window.location.href="index.html";
 
 return;
+
 
 }
 
 
 
 const data =
-adminSnap.data();
+snap.data();
+
 
 
 document.getElementById("role").innerHTML =
@@ -130,63 +169,145 @@ document.getElementById("role").innerHTML =
 
 
 
+// مدیر کل
+
 if(data.role=="superadmin"){
 
+
 menu.innerHTML += `
-<div class="card">
-<h3>👥 کاربران</h3>
-<button>مدیریت</button>
-</div>
+
 
 <div class="card">
-<h3>💬 چت روم</h3>
-<button>مدیریت</button>
-</div>
 
-<div class="card">
 <h3>👥 کاربران</h3>
 
 <a href="users.html">
-<button>مدیریت کاربران</button>
+
+<button>
+مدیریت کاربران
+</button>
+
 </a>
 
 </div>
 
 
 
+<div class="card">
+
+<h3>💬 چت روم</h3>
+
+<a href="chat-admin.html">
+
+<button>
+مدیریت چت
+</button>
+
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>📚 کلاس‌ها</h3>
+
+<button>
+مدیریت کلاس‌ها
+</button>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>⚙️ تنظیمات</h3>
+
+<button>
+تنظیمات سایت
+</button>
+
+</div>
+
+`;
+
+}
+
+
+
+// مدیر چت
+
 if(data.role=="chat_admin"){
 
+
 menu.innerHTML += `
+
 <div class="card">
+
 <h3>💬 چت روم</h3>
-<button>مدیریت</button>
+
+<a href="chat-admin.html">
+
+<button>
+مدیریت چت
+</button>
+
+</a>
+
 </div>
+
 `;
 
 }
 
 
 
-if(data.role=="class_admin"){
-
-menu.innerHTML += `
-<div class="card">
-<h3>📚 کلاس‌ها</h3>
-<button>مدیریت</button>
-</div>
-`;
-
-}
-
-
+// مدیر کاربران
 
 if(data.role=="user_admin"){
 
+
 menu.innerHTML += `
+
 <div class="card">
+
 <h3>👥 کاربران</h3>
-<button>مدیریت</button>
+
+<a href="users.html">
+
+<button>
+مدیریت کاربران
+</button>
+
+</a>
+
 </div>
+
+`;
+
+}
+
+
+
+// مدیر کلاس
+
+if(data.role=="class_admin"){
+
+
+menu.innerHTML += `
+
+<div class="card">
+
+<h3>📚 کلاس‌ها</h3>
+
+<button>
+مدیریت کلاس‌ها
+</button>
+
+</div>
+
 `;
 
 }
@@ -196,9 +317,11 @@ menu.innerHTML += `
 });
 
 
+
 </script>
 
 
 </body>
 
 </html>
+
