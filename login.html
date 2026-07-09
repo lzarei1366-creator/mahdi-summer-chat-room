@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ورود کاربران</title>
 
 <style>
 body{
-background:#050505;
+background:linear-gradient(135deg,#050505,#063b2b);
 color:white;
 font-family:tahoma;
 text-align:center;
@@ -32,16 +35,14 @@ border:none;
 
 button{
 padding:12px 40px;
-border:0;
-border-radius:10px;
 background:#009b62;
 color:white;
+border:0;
+border-radius:10px;
 font-size:17px;
+cursor:pointer;
 }
 
-a{
-color:#00cc88;
-}
 </style>
 
 </head>
@@ -52,20 +53,70 @@ color:#00cc88;
 
 <h2>ورود کاربران</h2>
 
-<input placeholder="نام کاربری">
+<input id="email" placeholder="ایمیل">
 
-<input type="password" placeholder="رمز عبور">
+<input id="password" type="password" placeholder="رمز عبور">
 
 <br>
 
-<button>ورود</button>
-
-<p>
-حساب ندارید؟
-<a href="register.html">ثبت‌نام</a>
-</p>
+<button id="login">ورود</button>
 
 </div>
 
+
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+document
+.getElementById("login")
+.addEventListener("click", async ()=>{
+
+
+const email =
+document.getElementById("email").value;
+
+
+const password =
+document.getElementById("password").value;
+
+
+try{
+
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+alert("ورود موفق بود");
+
+
+window.location.href="chat.html";
+
+
+}
+
+catch(error){
+
+alert("ایمیل یا رمز اشتباه است");
+
+}
+
+
+});
+
+
+</script>
+
+
 </body>
+
 </html>
