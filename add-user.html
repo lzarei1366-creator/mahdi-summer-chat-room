@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>افزودن کاربر</title>
+
+<style>
+
+body{
+background:#080808;
+color:white;
+font-family:tahoma;
+text-align:center;
+padding-top:50px;
+}
+
+.box{
+
+background:#151515;
+width:350px;
+margin:auto;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 20px #009b62;
+
+}
+
+input{
+
+width:90%;
+padding:12px;
+margin:10px;
+border-radius:10px;
+border:0;
+
+}
+
+button{
+
+background:#009b62;
+color:white;
+border:0;
+padding:12px 30px;
+border-radius:10px;
+cursor:pointer;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<h2>➕ افزودن کاربر</h2>
+
+
+<input id="name" placeholder="نام کاربر">
+
+
+<input id="username" placeholder="نام کاربری">
+
+
+<input id="password" placeholder="رمز عبور">
+
+
+<button id="save">
+
+ساخت کاربر
+
+</button>
+
+
+</div>
+
+
+
+
+<script type="module">
+
+
+import { initializeApp }
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+
+getFirestore,
+doc,
+setDoc
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+
+authDomain: "mahdi-summer-chat.firebaseapp.com",
+
+projectId: "mahdi-summer-chat",
+
+storageBucket: "mahdi-summer-chat.firebasestorage.app",
+
+messagingSenderId: "189185718526",
+
+appId: "1:189185718526:web:497085957853202ebb4daf"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+
+document.getElementById("save").onclick = async()=>{
+
+
+const name =
+document.getElementById("name").value;
+
+
+const username =
+document.getElementById("username").value;
+
+
+const password =
+document.getElementById("password").value;
+
+
+
+if(!name || !username || !password){
+
+alert("همه فیلدها را پر کنید");
+
+return;
+
+}
+
+
+
+await setDoc(
+
+doc(db,"users",username),
+
+{
+
+name:name,
+
+username:username,
+
+password:password,
+
+status:"active"
+
+}
+
+);
+
+
+
+alert("کاربر ساخته شد");
+
+
+document.getElementById("name").value="";
+
+document.getElementById("username").value="";
+
+document.getElementById("password").value="";
+
+
+};
+
+
+
+</script>
+
+
+</body>
+
+</html>
