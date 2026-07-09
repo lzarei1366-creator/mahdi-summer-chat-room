@@ -1,72 +1,119 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>ورود ادمین</title>
 
 <style>
 body{
-    background:linear-gradient(135deg,#000,#1a0000);
-    color:white;
-    font-family:tahoma;
-    text-align:center;
-    padding-top:80px;
+background:#050505;
+color:white;
+font-family:tahoma;
+text-align:center;
+padding-top:80px;
 }
 
 .box{
-    background:#111;
-    width:350px;
-    margin:auto;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 0 30px #b30000;
-}
-
-h2{
-    color:#ff4444;
+background:#111;
+width:350px;
+margin:auto;
+padding:30px;
+border-radius:20px;
+box-shadow:0 0 30px #b30000;
 }
 
 input{
-    width:90%;
-    padding:12px;
-    margin:10px;
-    border-radius:10px;
-    border:none;
+width:90%;
+padding:12px;
+margin:10px;
+border-radius:10px;
+border:none;
 }
 
 button{
-    padding:12px 45px;
-    background:#b30000;
-    color:white;
-    border:0;
-    border-radius:10px;
-    font-size:17px;
-}
-
-button:hover{
-    background:#ff0000;
+padding:12px 40px;
+background:#b30000;
+color:white;
+border:0;
+border-radius:10px;
 }
 </style>
 
 </head>
 
+
 <body>
 
 <div class="box">
 
-<h2>ورود مدیریت</h2>
+<h2>👑 ورود مدیریت</h2>
 
-<input placeholder="نام کاربری ادمین">
+<input id="email" placeholder="ایمیل ادمین">
 
-<input type="password" placeholder="رمز عبور">
+<input id="password" type="password" placeholder="رمز عبور">
 
 <br>
 
-<button>ورود به پنل</button>
+<button id="login">
+ورود
+</button>
 
 </div>
 
+
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+signInWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+document.getElementById("login")
+.onclick = async ()=>{
+
+
+let email =
+document.getElementById("email").value;
+
+
+let password =
+document.getElementById("password").value;
+
+
+try{
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+alert("ورود ادمین موفق بود");
+
+
+window.location.href="admin-panel.html";
+
+
+}
+
+catch(e){
+
+alert("دسترسی غیرمجاز");
+
+}
+
+
+};
+
+
+</script>
+
+
 </body>
+
 </html>
