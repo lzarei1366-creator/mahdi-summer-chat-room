@@ -117,6 +117,9 @@ const db = getFirestore(app);
 document.getElementById("login").onclick = async()=>{
 
 
+alert("دکمه ورود کار کرد");
+
+
 const username =
 document.getElementById("username").value.trim();
 
@@ -127,6 +130,8 @@ document.getElementById("password").value.trim();
 
 
 if(!username || !password){
+
+alert("اطلاعات را کامل وارد کنید");
 
 return;
 
@@ -141,12 +146,15 @@ const adminRef =
 doc(db,"admins",username);
 
 
+
 const adminSnap =
 await getDoc(adminRef);
 
 
 
 if(!adminSnap.exists()){
+
+alert("ادمین پیدا نشد");
 
 return;
 
@@ -160,6 +168,8 @@ adminSnap.data();
 
 
 if(String(admin.password) !== String(password)){
+
+alert("رمز اشتباه است");
 
 return;
 
@@ -181,8 +191,7 @@ admin.role || "admin"
 
 
 
-window.location.href =
-"admin-panel.html";
+window.location.href="admin-panel.html";
 
 
 
@@ -190,7 +199,12 @@ window.location.href =
 
 catch(error){
 
+
+alert("خطا: "+error.message);
+
+
 console.log(error);
+
 
 }
 
