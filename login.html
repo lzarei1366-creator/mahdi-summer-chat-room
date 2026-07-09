@@ -4,6 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ورود کاربران</title>
 
 <style>
@@ -22,7 +24,7 @@ width:350px;
 margin:auto;
 padding:30px;
 border-radius:20px;
-box-shadow:0 0 25px #00aa66;
+box-shadow:0 0 25px #009b62;
 }
 
 input{
@@ -30,7 +32,7 @@ width:90%;
 padding:12px;
 margin:10px;
 border-radius:10px;
-border:none;
+border:0;
 }
 
 button{
@@ -39,6 +41,7 @@ background:#009b62;
 color:white;
 border:0;
 border-radius:10px;
+cursor:pointer;
 }
 
 </style>
@@ -48,12 +51,11 @@ border-radius:10px;
 
 <body>
 
-
 <div class="box">
 
-<h2>ورود کاربران</h2>
+<h2>👤 ورود کاربران</h2>
 
-<input id="email" placeholder="ایمیل">
+<input id="username" placeholder="نام کاربری">
 
 <input id="password" type="password" placeholder="رمز عبور">
 
@@ -63,7 +65,6 @@ border-radius:10px;
 ورود
 </button>
 
-
 </div>
 
 
@@ -71,24 +72,10 @@ border-radius:10px;
 <script type="module">
 
 
-import { auth } from "./firebase-config.js";
-
-
-import {
-
-signInWithEmailAndPassword
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-
 import {
 
 getFirestore,
-
 doc,
-
 getDoc
 
 }
@@ -96,37 +83,54 @@ getDoc
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
+import {
 
-const db = getFirestore();
+initializeApp
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+
+authDomain: "mahdi-summer-chat.firebaseapp.com",
+
+projectId: "mahdi-summer-chat",
+
+storageBucket: "mahdi-summer-chat.firebasestorage.app",
+
+messagingSenderId: "189185718526",
+
+appId: "1:189185718526:web:497085957853202ebb4daf"
+
+};
+
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
 
 
 
 document.getElementById("login").onclick = async ()=>{
 
 
-const email =
-document.getElementById("email").value;
+let username =
+document.getElementById("username").value;
 
 
-const password =
+let password =
 document.getElementById("password").value;
 
 
 
-try{
-
-
-const result =
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-
-
 const userRef =
-doc(db,"users",result.user.uid);
+doc(db,"users",username);
 
 
 
@@ -135,49 +139,54 @@ await getDoc(userRef);
 
 
 
-if(userSnap.exists()){
+if(!userSnap.exists()){
+
+alert("کاربر پیدا نشد");
+
+return;
+
+}
 
 
-const data =
+
+const user =
 userSnap.data();
 
 
 
-if(data.status=="blocked"){
+if(user.password != password){
 
-
-alert("حساب شما مسدود شده است");
-
+alert("رمز عبور اشتباه است");
 
 return;
 
-
-}
-
-
 }
 
 
 
-alert("ورود موفق بود");
+if(user.status=="blocked"){
+
+alert("حساب شما مسدود شده است");
+
+return;
+
+}
+
+
+
+localStorage.setItem(
+"user",
+username
+);
+
 
 
 window.location.href="chat.html";
 
 
-}
-
-
-catch(error){
-
-
-alert("ایمیل یا رمز اشتباه است");
-
-
-}
-
 
 };
+
 
 
 </script>
