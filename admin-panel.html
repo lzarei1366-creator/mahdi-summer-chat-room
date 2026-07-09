@@ -3,17 +3,14 @@
 
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>پنل مدیریت - کلاس‌های تابستانی مسجد المهدی (عج)</title>
+<title>پنل مدیریت</title>
 
 <style>
-
 body{
     margin:0;
-    font-family:tahoma;
     background:#080808;
     color:white;
+    font-family:tahoma;
 }
 
 .header{
@@ -35,8 +32,8 @@ body{
     width:220px;
     padding:25px;
     border-radius:20px;
-    text-align:center;
     box-shadow:0 0 20px #009b62;
+    text-align:center;
 }
 
 button{
@@ -47,50 +44,160 @@ button{
     border-radius:10px;
     width:100%;
 }
-
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="header">
-<h1>پنل مدیریت</h1>
-<p>کلاس‌های تابستانی مسجد المهدی (عج)</p>
+<h1>👑 پنل مدیریت</h1>
+<p id="role"></p>
 </div>
 
 
-<div class="menu">
+<div class="menu" id="menu"></div>
 
+
+
+<script type="module">
+
+import { auth } from "./firebase-config.js";
+
+import {
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+import {
+getFirestore,
+doc,
+getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const db = getFirestore();
+
+
+const menu =
+document.getElementById("menu");
+
+
+onAuthStateChanged(auth, async(user)=>{
+
+
+if(!user){
+
+window.location.href="admin-login.html";
+
+return;
+
+}
+
+
+
+const adminRef =
+doc(db,"admins",user.email);
+
+
+const adminSnap =
+await getDoc(adminRef);
+
+
+
+if(!adminSnap.exists()){
+
+alert("شما ادمین نیستید");
+
+window.location.href="index.html";
+
+return;
+
+}
+
+
+
+const data =
+adminSnap.data();
+
+
+document.getElementById("role").innerHTML =
+"سطح دسترسی: "+data.role;
+
+
+
+if(data.role=="superadmin"){
+
+menu.innerHTML += `
 <div class="card">
 <h3>👥 کاربران</h3>
-<p>مدیریت کاربران سایت</p>
-<button>ورود</button>
+<button>مدیریت</button>
 </div>
-
 
 <div class="card">
 <h3>💬 چت روم</h3>
-<p>مدیریت پیام‌ها</p>
-<button>ورود</button>
+<button>مدیریت</button>
 </div>
-
 
 <div class="card">
 <h3>📚 کلاس‌ها</h3>
-<p>مدیریت کلاس‌ها</p>
-<button>ورود</button>
+<button>مدیریت</button>
 </div>
+`;
+
+}
 
 
+
+if(data.role=="chat_admin"){
+
+menu.innerHTML += `
 <div class="card">
-<h3>👑 ادمین‌ها</h3>
-<p>مدیریت مدیران</p>
-<button>ورود</button>
+<h3>💬 چت روم</h3>
+<button>مدیریت</button>
 </div>
+`;
+
+}
 
 
+
+if(data.role=="class_admin"){
+
+menu.innerHTML += `
+<div class="card">
+<h3>📚 کلاس‌ها</h3>
+<button>مدیریت</button>
 </div>
+`;
+
+}
+
+
+
+if(data.role=="user_admin"){
+
+menu.innerHTML += `
+<div class="card">
+<h3>👥 کاربران</h3>
+<button>مدیریت</button>
+</div>
+`;
+
+}
+
+
+
+});
+
+
+</script>
+
 
 </body>
+
 </html>
