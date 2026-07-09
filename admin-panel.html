@@ -4,54 +4,38 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>پنل مدیریت</title>
 
 <style>
 
 body{
-    margin:0;
-    background:#080808;
-    color:white;
-    font-family:tahoma;
-}
-
-.header{
-    background:#063b2b;
-    padding:20px;
-    text-align:center;
-}
-
-.menu{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
-    padding:30px;
+background:#080808;
+color:white;
+font-family:tahoma;
+padding:30px;
 }
 
 .card{
-    background:#151515;
-    width:230px;
-    padding:25px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 0 20px #009b62;
+background:#151515;
+padding:25px;
+margin:20px;
+border-radius:20px;
+box-shadow:0 0 20px #009b62;
+text-align:center;
 }
 
 button{
-    background:#009b62;
-    color:white;
-    border:0;
-    padding:12px;
-    width:100%;
-    border-radius:10px;
-    cursor:pointer;
+background:#009b62;
+color:white;
+border:0;
+padding:12px;
+border-radius:10px;
+width:100%;
+cursor:pointer;
 }
 
 a{
-    text-decoration:none;
+text-decoration:none;
 }
 
 </style>
@@ -62,259 +46,65 @@ a{
 <body>
 
 
-<div class="header">
-
 <h1>👑 پنل مدیریت</h1>
 
-<p id="role">
-در حال بررسی دسترسی...
-</p>
+<h3 id="role"></h3>
+
+
+<div class="card">
+
+<h2>👥 کاربران</h2>
+
+<a href="users.html">
+
+<button>
+مدیریت کاربران
+</button>
+
+</a>
 
 </div>
 
 
 
-<div class="menu" id="menu">
+<div class="card">
 
+<h2>💬 چت</h2>
+
+<a href="chat-admin.html">
+
+<button>
+مدیریت چت
+</button>
+
+</a>
 
 </div>
 
 
 
-
-<script type="module">
-
-
-import { auth } from "./firebase-config.js";
+<script>
 
 
-import {
+const admin =
+localStorage.getItem("admin");
 
-onAuthStateChanged
 
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+const role =
+localStorage.getItem("role");
 
 
 
-import {
-
-getFirestore,
-
-doc,
-
-getDoc
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-
-const db =
-getFirestore();
-
-
-
-const menu =
-document.getElementById("menu");
-
-
-
-onAuthStateChanged(auth,async(user)=>{
-
-
-if(!user){
+if(!admin){
 
 window.location.href="admin-login.html";
 
-return;
-
 }
-
-
-
-const ref =
-doc(db,"admins",user.email);
-
-
-
-const snap =
-await getDoc(ref);
-
-
-
-if(!snap.exists()){
-
-
-alert("شما دسترسی مدیریت ندارید");
-
-window.location.href="index.html";
-
-return;
-
-
-}
-
-
-
-const data =
-snap.data();
 
 
 
 document.getElementById("role").innerHTML =
-"سطح دسترسی: "+data.role;
-
-
-
-// مدیر کل
-
-if(data.role=="superadmin"){
-
-
-menu.innerHTML += `
-
-
-<div class="card">
-
-<h3>👥 کاربران</h3>
-
-<a href="users.html">
-
-<button>
-مدیریت کاربران
-</button>
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>💬 چت روم</h3>
-
-<a href="chat-admin.html">
-
-<button>
-مدیریت چت
-</button>
-
-</a>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>📚 کلاس‌ها</h3>
-
-<button>
-مدیریت کلاس‌ها
-</button>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>⚙️ تنظیمات</h3>
-
-<button>
-تنظیمات سایت
-</button>
-
-</div>
-
-`;
-
-}
-
-
-
-// مدیر چت
-
-if(data.role=="chat_admin"){
-
-
-menu.innerHTML += `
-
-<div class="card">
-
-<h3>💬 چت روم</h3>
-
-<a href="chat-admin.html">
-
-<button>
-مدیریت چت
-</button>
-
-</a>
-
-</div>
-
-`;
-
-}
-
-
-
-// مدیر کاربران
-
-if(data.role=="user_admin"){
-
-
-menu.innerHTML += `
-
-<div class="card">
-
-<h3>👥 کاربران</h3>
-
-<a href="users.html">
-
-<button>
-مدیریت کاربران
-</button>
-
-</a>
-
-</div>
-
-`;
-
-}
-
-
-
-// مدیر کلاس
-
-if(data.role=="class_admin"){
-
-
-menu.innerHTML += `
-
-<div class="card">
-
-<h3>📚 کلاس‌ها</h3>
-
-<button>
-مدیریت کلاس‌ها
-</button>
-
-</div>
-
-`;
-
-}
-
-
-
-});
+"سطح دسترسی: " + role;
 
 
 
@@ -324,4 +114,5 @@ menu.innerHTML += `
 </body>
 
 </html>
+
 
