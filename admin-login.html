@@ -3,30 +3,25 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-
     // ادمین‌ها
     match /admins/{adminId} {
       allow read, write: true;
     }
-
 
     // کاربران
     match /users/{userId} {
       allow read, write: true;
     }
 
-
     // پیام‌های چت
     match /messages/{messageId} {
       allow read, write: true;
     }
 
-
-    // همه چیزهای دیگر (برای تست)
+    // همه چیزهای دیگر (تست)
     match /{document=**} {
       allow read, write: true;
     }
-
 
   }
 }
