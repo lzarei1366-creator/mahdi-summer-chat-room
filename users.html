@@ -4,31 +4,47 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>مدیریت کاربران</title>
 
 <style>
 
 body{
-background:#080808;
-color:white;
-font-family:tahoma;
-padding:30px;
+    background:#080808;
+    color:white;
+    font-family:tahoma;
+    padding:30px;
+}
+
+h1{
+    text-align:center;
 }
 
 .box{
-background:#151515;
-padding:20px;
-border-radius:15px;
-margin:15px;
-box-shadow:0 0 15px #009b62;
+    background:#151515;
+    padding:20px;
+    border-radius:15px;
+    margin:15px auto;
+    max-width:500px;
+    box-shadow:0 0 15px #009b62;
 }
 
 button{
-background:#b30000;
-color:white;
-border:0;
-padding:10px;
-border-radius:8px;
+    background:#b30000;
+    color:white;
+    border:0;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.active{
+    color:#00ff99;
+}
+
+.blocked{
+    color:red;
 }
 
 </style>
@@ -46,16 +62,27 @@ border-radius:8px;
 
 <script type="module">
 
+
+import { initializeApp } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
 import {
+
 getFirestore,
+
 collection,
-onSnapshot
+
+onSnapshot,
+
+doc,
+
+updateDoc
+
 }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
 const firebaseConfig = {
@@ -75,53 +102,107 @@ appId: "1:189185718526:web:497085957853202ebb4daf"
 };
 
 
+
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
 
 
-const box =
+const usersBox =
 document.getElementById("users");
 
 
 
 onSnapshot(
+
 collection(db,"users"),
+
 (snapshot)=>{
 
 
-box.innerHTML="";
+usersBox.innerHTML="";
 
 
-snapshot.forEach((doc)=>{
+snapshot.forEach((item)=>{
 
 
-let user =
-doc.data();
+const user =
+item.data();
 
 
-box.innerHTML += `
+let status =
+user.status || "active";
+
+
+
+usersBox.innerHTML += `
 
 <div class="box">
 
-<p>📧 ${user.email}</p>
+<p>📧 ایمیل:</p>
 
-<p>وضعیت: ${user.status}</p>
+<p>${user.email || "بدون ایمیل"}</p>
 
-<button>
+
+<p>
+
+وضعیت:
+
+<span class="${status}">
+
+${status}
+
+</span>
+
+</p>
+
+
+<button onclick="blockUser('${item.id}')">
+
 مسدود کردن
+
 </button>
+
 
 </div>
 
 `;
 
 
+
 });
 
 
-});
+}
+
+);
+
+
+
+
+window.blockUser = async function(id){
+
+
+await updateDoc(
+
+doc(db,"users",id),
+
+{
+
+status:"blocked"
+
+}
+
+);
+
+
+alert("کاربر مسدود شد");
+
+
+}
+
+
 
 </script>
 
