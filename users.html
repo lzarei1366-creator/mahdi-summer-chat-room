@@ -4,47 +4,49 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>مدیریت کاربران</title>
 
 <style>
 
 body{
-    background:#080808;
-    color:white;
-    font-family:tahoma;
-    padding:30px;
-}
-
-h1{
-    text-align:center;
+background:#080808;
+color:white;
+font-family:tahoma;
+padding:30px;
 }
 
 .box{
-    background:#151515;
-    padding:20px;
-    border-radius:15px;
-    margin:15px auto;
-    max-width:500px;
-    box-shadow:0 0 15px #009b62;
+
+background:#151515;
+padding:20px;
+margin:15px auto;
+max-width:500px;
+border-radius:15px;
+box-shadow:0 0 15px #009b62;
+
 }
 
 button{
-    background:#b30000;
-    color:white;
-    border:0;
-    padding:10px 20px;
-    border-radius:8px;
-    cursor:pointer;
+
+color:white;
+border:0;
+padding:10px;
+border-radius:8px;
+margin:5px;
+cursor:pointer;
+
+}
+
+.delete{
+background:#b30000;
+}
+
+.block{
+background:#996600;
 }
 
 .active{
-    color:#00ff99;
-}
-
-.blocked{
-    color:red;
+background:#009b62;
 }
 
 </style>
@@ -54,7 +56,9 @@ button{
 
 <body>
 
+
 <h1>👥 مدیریت کاربران</h1>
+
 
 <div id="users"></div>
 
@@ -63,21 +67,19 @@ button{
 <script type="module">
 
 
-import { initializeApp } 
+import { initializeApp }
+
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
 import {
 
 getFirestore,
-
 collection,
-
 onSnapshot,
-
 doc,
-
-updateDoc
+updateDoc,
+deleteDoc
 
 }
 
@@ -109,7 +111,7 @@ const db = getFirestore(app);
 
 
 
-const usersBox =
+const box =
 document.getElementById("users");
 
 
@@ -121,7 +123,7 @@ collection(db,"users"),
 (snapshot)=>{
 
 
-usersBox.innerHTML="";
+box.innerHTML="";
 
 
 snapshot.forEach((item)=>{
@@ -131,36 +133,38 @@ const user =
 item.data();
 
 
-let status =
-user.status || "active";
 
-
-
-usersBox.innerHTML += `
+box.innerHTML += `
 
 <div class="box">
 
-<p>📧 ایمیل:</p>
+<h3>👤 ${user.name}</h3>
 
-<p>${user.email || "بدون ایمیل"}</p>
+<p>یوزرنیم: ${user.username}</p>
 
-
-<p>
-
-وضعیت:
-
-<span class="${status}">
-
-${status}
-
-</span>
-
-</p>
+<p>وضعیت: ${user.status}</p>
 
 
-<button onclick="blockUser('${item.id}')">
+<button class="block"
+onclick="changeStatus('${item.id}','blocked')">
 
 مسدود کردن
+
+</button>
+
+
+<button class="active"
+onclick="changeStatus('${item.id}','active')">
+
+فعال کردن
+
+</button>
+
+
+<button class="delete"
+onclick="removeUser('${item.id}')">
+
+حذف کاربر
 
 </button>
 
@@ -168,7 +172,6 @@ ${status}
 </div>
 
 `;
-
 
 
 });
@@ -181,7 +184,7 @@ ${status}
 
 
 
-window.blockUser = async function(id){
+window.changeStatus = async(id,status)=>{
 
 
 await updateDoc(
@@ -190,17 +193,34 @@ doc(db,"users",id),
 
 {
 
-status:"blocked"
+status:status
 
 }
 
 );
 
 
-alert("کاربر مسدود شد");
+};
+
+
+
+window.removeUser = async(id)=>{
+
+
+if(confirm("حذف شود؟")){
+
+
+await deleteDoc(
+
+doc(db,"users",id)
+
+);
 
 
 }
+
+
+};
 
 
 
