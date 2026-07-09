@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<title>مدیریت چت روم</title>
+
+<style>
+
+body{
+background:#080808;
+color:white;
+font-family:tahoma;
+padding:30px;
+}
+
+.box{
+background:#151515;
+padding:20px;
+margin:15px auto;
+max-width:600px;
+border-radius:15px;
+box-shadow:0 0 15px #009b62;
+}
+
+button{
+background:#b30000;
+color:white;
+border:0;
+padding:10px;
+border-radius:8px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<h1>💬 مدیریت چت روم</h1>
+
+
+<div id="messages"></div>
+
+
+
+<script type="module">
+
+
+import {
+
+initializeApp
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+
+import {
+
+getFirestore,
+
+collection,
+
+onSnapshot,
+
+deleteDoc,
+
+doc,
+
+orderBy,
+
+query
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+
+authDomain: "mahdi-summer-chat.firebaseapp.com",
+
+projectId: "mahdi-summer-chat",
+
+storageBucket: "mahdi-summer-chat.firebasestorage.app",
+
+messagingSenderId: "189185718526",
+
+appId: "1:189185718526:web:497085957853202ebb4daf"
+
+};
+
+
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const db =
+getFirestore(app);
+
+
+
+const box =
+document.getElementById("messages");
+
+
+
+const q =
+query(
+collection(db,"messages"),
+orderBy("time")
+);
+
+
+
+onSnapshot(q,(snapshot)=>{
+
+
+box.innerHTML="";
+
+
+snapshot.forEach((item)=>{
+
+
+let m =
+item.data();
+
+
+box.innerHTML += `
+
+<div class="box">
+
+<p>👤 ${m.user}</p>
+
+<p>${m.text}</p>
+
+
+<button onclick="deleteMessage('${item.id}')">
+
+حذف پیام
+
+</button>
+
+
+</div>
+
+`;
+
+
+
+});
+
+
+});
+
+
+
+
+window.deleteMessage = async function(id){
+
+
+await deleteDoc(
+
+doc(db,"messages",id)
+
+);
+
+
+alert("پیام حذف شد");
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
