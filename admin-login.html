@@ -72,20 +72,15 @@ cursor:pointer;
 
 <script type="module">
 
-
 import { initializeApp }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
 import {
-
 getFirestore,
 doc,
 getDoc
-
 }
-
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 
@@ -117,9 +112,6 @@ const db = getFirestore(app);
 document.getElementById("login").onclick = async()=>{
 
 
-alert("دکمه ورود کار کرد");
-
-
 const username =
 document.getElementById("username").value.trim();
 
@@ -138,17 +130,13 @@ return;
 }
 
 
-
 try{
 
 
-const adminRef =
-doc(db,"admins",username);
+const adminRef = doc(db,"admins",username);
 
 
-
-const adminSnap =
-await getDoc(adminRef);
+const adminSnap = await getDoc(adminRef);
 
 
 
@@ -162,8 +150,7 @@ return;
 
 
 
-const admin =
-adminSnap.data();
+const admin = adminSnap.data();
 
 
 
@@ -177,12 +164,7 @@ return;
 
 
 
-localStorage.setItem(
-"admin",
-username
-);
-
-
+localStorage.setItem("admin", username);
 
 localStorage.setItem(
 "role",
@@ -192,7 +174,6 @@ admin.role || "admin"
 
 
 window.location.href="admin-panel.html";
-
 
 
 }
@@ -211,7 +192,6 @@ console.log(error);
 
 
 };
-
 
 
 </script>
