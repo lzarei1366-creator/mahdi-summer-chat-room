@@ -26,7 +26,6 @@ min-height:100vh;
 
 color:white;
 
-
 background:
 
 linear-gradient(
@@ -75,8 +74,27 @@ border:4px solid white;
 
 box-shadow:0 0 35px #00ff99;
 
+animation:float 3s infinite ease-in-out;
+
 }
 
+
+
+@keyframes float{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-15px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
 
 
 
@@ -118,6 +136,7 @@ padding:20px;
 
 
 
+
 .card{
 
 width:280px;
@@ -134,7 +153,9 @@ text-align:center;
 
 border:1px solid rgba(255,255,255,.25);
 
-box-shadow:0 0 30px rgba(0,255,150,.3);
+box-shadow:
+
+0 0 30px rgba(0,255,150,.3);
 
 transition:.4s;
 
@@ -146,7 +167,9 @@ transition:.4s;
 
 transform:translateY(-10px);
 
-box-shadow:0 0 45px #00ff99;
+box-shadow:
+
+0 0 45px #00ff99;
 
 }
 
@@ -155,14 +178,6 @@ box-shadow:0 0 45px #00ff99;
 .notice{
 
 border:2px solid #00ff99;
-
-}
-
-
-
-.notice p{
-
-line-height:2;
 
 }
 
@@ -181,6 +196,8 @@ font-size:25px;
 font-size:17px;
 
 color:#ddd;
+
+line-height:1.8;
 
 }
 
@@ -214,8 +231,9 @@ font-size:18px;
 
 cursor:pointer;
 
-}
+transition:.3s;
 
+}
 
 
 
@@ -250,9 +268,8 @@ color:#aaa;
 }
 
 
-
-
 </style>
+
 
 </head>
 
@@ -265,7 +282,6 @@ color:#aaa;
 
 
 <img src="1780787289090%20(1).jpg" class="logo">
-
 
 
 <h1>
@@ -284,19 +300,12 @@ color:#aaa;
 
 </header>
 
-
-
-
-
-
 <div class="container">
 
 
-
-
+<!-- اطلاعیه ها -->
 
 <div class="card notice">
-
 
 <h2>
 📢 اطلاعیه‌ها
@@ -316,42 +325,27 @@ color:#aaa;
 
 
 
-
+<!-- کلاس ها -->
 
 <div class="card">
 
 <h2>
-👤 کاربران
+🎓 کلاس‌های تابستانی
 </h2>
 
 
 <p>
 
-ثبت‌نام و ورود کاربران
+مشاهده کلاس‌ها و ثبت‌نام در کلاس مورد علاقه
 
 </p>
 
 
-
-<a href="register.html">
-
-<button>
-
-ثبت‌نام
-
-</button>
-
-</a>
-
-
-<br><br>
-
-
-<a href="login.html">
+<a href="classes.html">
 
 <button>
 
-ورود
+ورود به کلاس‌ها
 
 </button>
 
@@ -365,6 +359,7 @@ color:#aaa;
 
 
 
+<!-- چت -->
 
 <div class="card">
 
@@ -378,7 +373,6 @@ color:#aaa;
 گفتگو با اعضای کلاس
 
 </p>
-
 
 
 <a href="chat.html">
@@ -400,6 +394,8 @@ color:#aaa;
 
 
 
+<!-- مدیریت -->
+
 <div class="card">
 
 <h2>
@@ -412,7 +408,6 @@ color:#aaa;
 ورود مدیران سایت
 
 </p>
-
 
 
 <a href="admin-login.html">
@@ -430,7 +425,6 @@ color:#aaa;
 
 
 
-
 </div>
 
 
@@ -443,8 +437,6 @@ color:#aaa;
 کلاس‌های تابستانی مسجد المهدی (عج)
 
 </footer>
-
-
 
 
 
@@ -474,7 +466,6 @@ const box=document.getElementById("notices");
 
 
 
-
 async function loadNotices(){
 
 
@@ -490,7 +481,6 @@ const {data,error}=await supabase
 
 
 
-
 if(error){
 
 box.innerHTML="خطا در دریافت اطلاعیه‌ها";
@@ -501,9 +491,7 @@ return;
 
 
 
-
 box.innerHTML="";
-
 
 
 
@@ -517,26 +505,27 @@ return;
 
 
 
-
-
-data.forEach(item=>{
+data.forEach(n=>{
 
 
 box.innerHTML += `
 
 <p>
 
-<b>📌 ${item.title}</b>
+<b>
+📌 ${n.title}
+</b>
 
 <br><br>
 
-${item.content}
+${n.content}
 
 </p>
 
 <hr>
 
 `;
+
 
 });
 
