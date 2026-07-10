@@ -30,8 +30,8 @@ color:white;
 background:
 
 linear-gradient(
-rgba(0,0,0,.7),
-rgba(0,0,0,.9)
+rgba(0,0,0,.75),
+rgba(0,0,0,.92)
 ),
 
 url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
@@ -46,6 +46,8 @@ background-attachment:fixed;
 }
 
 
+
+/* هدر */
 
 header{
 
@@ -73,9 +75,41 @@ margin:auto;
 
 border:4px solid white;
 
-box-shadow:0 0 35px #00ff99;
+box-shadow:
+
+0 0 35px #00ff99;
+
+animation:float 3s infinite ease-in-out;
 
 }
+
+
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+
 
 
 
@@ -84,6 +118,31 @@ h1{
 font-size:38px;
 
 margin:25px 0;
+
+animation:titleShow 1s;
+
+}
+
+
+
+@keyframes titleShow{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
 
 }
 
@@ -98,6 +157,10 @@ color:#ddd;
 }
 
 
+
+
+
+/* کارت ها */
 
 
 .container{
@@ -121,37 +184,82 @@ padding:20px;
 
 width:280px;
 
-background:rgba(255,255,255,.12);
+background:
+
+rgba(255,255,255,.16);
+
 
 backdrop-filter:blur(15px);
 
+
 padding:35px 25px;
+
 
 border-radius:30px;
 
+
 text-align:center;
 
-border:1px solid rgba(255,255,255,.2);
 
-box-shadow:0 0 30px rgba(0,255,150,.3);
+border:1px solid rgba(255,255,255,.25);
 
-transition:.3s;
+
+box-shadow:
+
+0 0 30px rgba(0,255,150,.35);
+
+
+transition:.4s;
+
+
+animation:cardShow .8s;
 
 }
+
+
+
+@keyframes cardShow{
+
+from{
+
+opacity:0;
+
+transform:scale(.8);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:scale(1);
+
+}
+
+}
+
 
 
 
 .card:hover{
 
-transform:translateY(-10px);
+transform:translateY(-12px) scale(1.03);
+
+
+box-shadow:
+
+0 0 45px rgba(0,255,150,.7);
 
 }
 
 
 
+
+
 .card h2{
 
-font-size:25px;
+font-size:26px;
 
 }
 
@@ -168,6 +276,10 @@ color:#ddd;
 
 
 
+
+/* دکمه ها */
+
+
 button{
 
 width:100%;
@@ -178,19 +290,44 @@ border:0;
 
 border-radius:15px;
 
+
 background:
 
 linear-gradient(
 90deg,
 #009b62,
-#00d98b
+#00e899
 );
+
 
 color:white;
 
+
 font-size:18px;
 
+
 cursor:pointer;
+
+
+box-shadow:
+
+0 0 15px rgba(0,255,150,.5);
+
+
+transition:.3s;
+
+}
+
+
+
+button:hover{
+
+transform:scale(1.08);
+
+
+box-shadow:
+
+0 0 30px #00ff99;
 
 }
 
@@ -250,6 +387,7 @@ width:90%;
 }
 
 
+
 </style>
 
 
@@ -263,24 +401,27 @@ width:90%;
 <header>
 
 
-
-<img src="1780787289090%20(1).jpg" class="logo">
+<img src="logo.jpg" class="logo">
 
 
 
 <h1>
+
 کلاس‌های تابستانی مسجد المهدی (عج)
+
 </h1>
 
 
 
 <p>
+
 به سامانه آنلاین کلاس‌ها و چت‌روم خوش آمدید
+
 </p>
 
 
-
 </header>
+
 
 
 
@@ -290,19 +431,29 @@ width:90%;
 
 
 
+
+
 <div class="card">
 
-<h2>👤 کاربران</h2>
+<h2>
+👤 کاربران
+</h2>
+
 
 <p>
+
 ثبت‌نام و ورود کاربران
+
 </p>
+
 
 
 <a href="register.html">
 
 <button>
+
 ثبت‌نام
+
 </button>
 
 </a>
@@ -311,10 +462,13 @@ width:90%;
 <br><br>
 
 
+
 <a href="login.html">
 
 <button>
+
 ورود
+
 </button>
 
 </a>
@@ -326,25 +480,41 @@ width:90%;
 
 
 
+
+
+
 <div class="card">
 
-<h2>💬 چت‌روم</h2>
+<h2>
+
+💬 چت‌روم
+
+</h2>
+
 
 <p>
+
 گفتگو با اعضای کلاس
+
 </p>
+
 
 
 <a href="chat.html">
 
 <button>
+
 ورود به چت
+
 </button>
 
 </a>
 
 
 </div>
+
+
+
 
 
 
@@ -352,17 +522,27 @@ width:90%;
 
 <div class="card">
 
-<h2>👑 مدیریت</h2>
+<h2>
+
+👑 مدیریت
+
+</h2>
+
 
 <p>
+
 ورود مدیران سایت
+
 </p>
+
 
 
 <a href="admin-login.html">
 
 <button>
+
 ورود ادمین
+
 </button>
 
 </a>
@@ -372,7 +552,12 @@ width:90%;
 
 
 
+
+
 </div>
+
+
+
 
 
 
@@ -383,6 +568,7 @@ width:90%;
 کلاس‌های تابستانی مسجد المهدی (عج)
 
 </footer>
+
 
 
 
