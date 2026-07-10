@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ورود ادمین</title>
+<title>ورود مدیریت</title>
 
 <style>
 
@@ -32,7 +32,7 @@ width:90%;
 padding:12px;
 margin:10px;
 border-radius:10px;
-border:none;
+border:0;
 }
 
 button{
@@ -54,72 +54,61 @@ cursor:pointer;
 
 <div class="box">
 
-<h2>👑 ورود مدیریت</h2>
+<h2>👑 ورود مدیر</h2>
+
 
 <input id="username" placeholder="نام کاربری">
 
+
 <input id="password" type="password" placeholder="رمز عبور">
 
+
 <br>
+
 
 <button id="login">
 ورود
 </button>
 
+
 </div>
 
 
 
-<script type="module">
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-import {
-getFirestore,
-doc,
-getDoc
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<script>
 
 
-const firebaseConfig = {
-
-apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
-
-authDomain: "mahdi-summer-chat.firebaseapp.com",
-
-projectId: "mahdi-summer-chat",
-
-storageBucket: "mahdi-summer-chat.firebasestorage.app",
-
-messagingSenderId: "189185718526",
-
-appId: "1:189185718526:web:497085957853202ebb4daf"
-
-};
+const SUPABASE_URL = 
+"https://ezrvqpnxswpzaygbjeio.supabase.co";
 
 
-const app = initializeApp(firebaseConfig);
+const SUPABASE_KEY =
+"sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246";
 
-const db = getFirestore(app);
+
+const supabaseClient = supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 
 
-document.getElementById("login").onclick = async function(){
+document.getElementById("login").onclick = async()=>{
 
 
-let username =
+const username =
 document.getElementById("username").value.trim();
 
 
-let password =
+const password =
 document.getElementById("password").value.trim();
 
 
 
-if(username==="" || password===""){
+if(!username || !password){
 
 alert("نام کاربری و رمز را وارد کنید");
 
@@ -129,33 +118,23 @@ return;
 
 
 
-try{
+const { data, error } = await supabaseClient
 
+.from("admins")
 
-let ref = doc(db,"admins",username);
+.select("*")
 
+.eq("username", username)
 
-let snap = await getDoc(ref);
+.eq("password", password)
 
-
-
-if(!snap.exists()){
-
-alert("ادمین وجود ندارد");
-
-return;
-
-}
+.single();
 
 
 
-let data = snap.data();
+if(error || !data){
 
-
-
-if(String(data.password) !== String(password)){
-
-alert("رمز اشتباه است");
+alert("نام کاربری یا رمز اشتباه است");
 
 return;
 
@@ -163,32 +142,24 @@ return;
 
 
 
-localStorage.setItem("admin", username);
+localStorage.setItem(
+"admin",
+data.username
+);
+
 
 localStorage.setItem(
 "role",
-data.role || "admin"
+data.role
 );
 
 
 
-window.location.replace("admin-panel.html");
-
-
-
-}
-
-catch(e){
-
-alert("خطای Firebase: " + e.message);
-
-console.log(e);
-
-}
-
+window.location.href="admin-panel.html";
 
 
 };
+
 
 
 </script>
@@ -197,3 +168,4 @@ console.log(e);
 </body>
 
 </html>
+
