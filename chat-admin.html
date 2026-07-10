@@ -6,13 +6,15 @@
 <meta charset="UTF-8">
 <title>مدیریت چت روم</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 
 body{
 background:#080808;
 color:white;
 font-family:tahoma;
-padding:30px;
+padding:20px;
 }
 
 .box{
@@ -30,6 +32,7 @@ color:white;
 border:0;
 padding:10px;
 border-radius:8px;
+cursor:pointer;
 }
 
 </style>
@@ -50,61 +53,20 @@ border-radius:8px;
 <script type="module">
 
 
-import {
+import { createClient }
 
-initializeApp
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
-import {
-
-getFirestore,
-
-collection,
-
-onSnapshot,
-
-deleteDoc,
-
-doc,
-
-orderBy,
-
-query
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
-const firebaseConfig = {
+const supabase = createClient(
 
-apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-authDomain: "mahdi-summer-chat.firebaseapp.com",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
 
-projectId: "mahdi-summer-chat",
+);
 
-storageBucket: "mahdi-summer-chat.firebasestorage.app",
-
-messagingSenderId: "189185718526",
-
-appId: "1:189185718526:web:497085957853202ebb4daf"
-
-};
-
-
-
-const app =
-initializeApp(firebaseConfig);
-
-
-const db =
-getFirestore(app);
 
 
 
@@ -113,37 +75,47 @@ document.getElementById("messages");
 
 
 
-const q =
-query(
-collection(db,"messages"),
-orderBy("time")
-);
+
+async function loadMessages(){
+
+
+const {data,error}=await supabase
+
+.from("messages")
+
+.select("*")
+
+.order("created_at");
 
 
 
-onSnapshot(q,(snapshot)=>{
+if(error){
+
+console.log(error);
+
+return;
+
+}
+
 
 
 box.innerHTML="";
 
 
-snapshot.forEach((item)=>{
 
-
-let m =
-item.data();
+data.forEach(m=>{
 
 
 box.innerHTML += `
 
 <div class="box">
 
-<p>👤 ${m.user}</p>
+<p>👤 ${m.username}</p>
 
-<p>${m.text}</p>
+<p>${m.message}</p>
 
 
-<button onclick="deleteMessage('${item.id}')">
+<button onclick="deleteMessage('${m.id}')">
 
 حذف پیام
 
@@ -155,11 +127,51 @@ box.innerHTML += `
 `;
 
 
-
 });
 
 
-});
+}
+
+
+
+loadMessages();
+
+
+
+
+// دریافت پیام‌های جدید لحظه‌ای
+
+
+supabase
+
+.channel("admin-messages")
+
+.on(
+
+"postgres_changes",
+
+{
+
+event:"INSERT",
+
+schema:"public",
+
+table:"messages"
+
+},
+
+()=>{
+
+loadMessages();
+
+}
+
+)
+
+.subscribe();
+
+
+
 
 
 
@@ -167,14 +179,31 @@ box.innerHTML += `
 window.deleteMessage = async function(id){
 
 
-await deleteDoc(
 
-doc(db,"messages",id)
+const {error}=await supabase
 
-);
+.from("messages")
+
+.delete()
+
+.eq("id",id);
+
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
 
 
 alert("پیام حذف شد");
+
+
+loadMessages();
 
 
 }
