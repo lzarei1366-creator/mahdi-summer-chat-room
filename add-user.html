@@ -8,68 +8,270 @@
 
 <title>افزودن کاربر</title>
 
+
 <style>
 
-body{
-background:#080808;
-color:white;
-font-family:tahoma;
-text-align:center;
-padding-top:50px;
+*{
+box-sizing:border-box;
 }
+
+
+body{
+
+margin:0;
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+
+font-family:tahoma;
+
+color:white;
+
+
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.7),
+rgba(0,0,0,.9)
+),
+
+
+url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
+
+
+
+background-size:cover;
+
+background-position:center;
+
+background-attachment:fixed;
+
+}
+
+
+
+
 
 .box{
-background:#151515;
-width:350px;
-margin:auto;
-padding:30px;
-border-radius:20px;
-box-shadow:0 0 20px #009b62;
+
+
+width:360px;
+
+
+padding:35px;
+
+
+
+background:
+
+rgba(255,255,255,.12);
+
+
+
+backdrop-filter:blur(15px);
+
+
+
+border-radius:30px;
+
+
+
+border:1px solid rgba(255,255,255,.2);
+
+
+
+box-shadow:
+
+0 0 35px rgba(0,255,150,.4);
+
+
+
+text-align:center;
+
+
+
 }
+
+
+
+.logo{
+
+font-size:70px;
+
+}
+
+
+
+h2{
+
+margin-bottom:25px;
+
+}
+
+
+
 
 input{
-width:90%;
-padding:12px;
-margin:10px;
-border-radius:10px;
+
+
+width:100%;
+
+
+
+padding:15px;
+
+
+
+margin:10px 0;
+
+
+
+border-radius:15px;
+
+
+
 border:0;
+
+
+
+outline:none;
+
+
+
+font-size:16px;
+
+
+
 }
 
+
+
+
 button{
-background:#009b62;
+
+
+width:100%;
+
+
+
+padding:15px;
+
+
+
+margin-top:15px;
+
+
+
+background:
+
+linear-gradient(
+90deg,
+#009b62,
+#00d98b
+);
+
+
+
 color:white;
+
+
+
 border:0;
-padding:12px 30px;
-border-radius:10px;
+
+
+
+border-radius:15px;
+
+
+
+font-size:17px;
+
+
+
 cursor:pointer;
+
+
+
 }
+
+
+
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+
 
 </style>
 
 </head>
 
 
+
 <body>
+
+
 
 
 <div class="box">
 
-<h2>➕ افزودن کاربر</h2>
+
+<div class="logo">
+
+➕
+
+</div>
+
+
+
+<h2>
+
+افزودن کاربر
+
+</h2>
+
+
 
 
 <input id="name" placeholder="نام کاربر">
 
+
+
 <input id="username" placeholder="نام کاربری">
+
+
 
 <input id="password" type="password" placeholder="رمز عبور">
 
 
+
+
+
 <button id="save">
+
 ساخت کاربر
+
 </button>
 
 
+
 </div>
+
+
+
+
+
 
 
 
@@ -82,13 +284,19 @@ from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
+
 const supabase = createClient(
+
 
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 
+
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
 
+
 );
+
+
 
 
 
@@ -97,26 +305,36 @@ const supabase = createClient(
 document.getElementById("save").onclick = async()=>{
 
 
-const name =
-document.getElementById("name").value.trim();
+
+const name = document.getElementById("name").value.trim();
 
 
-const username =
-document.getElementById("username").value.trim();
+
+const username = document.getElementById("username").value.trim();
 
 
-const password =
-document.getElementById("password").value.trim();
+
+const password = document.getElementById("password").value.trim();
+
+
+
 
 
 
 if(!name || !username || !password){
 
+
 alert("همه فیلدها را پر کنید");
+
 
 return;
 
+
 }
+
+
+
+
 
 
 
@@ -126,6 +344,7 @@ const {error}=await supabase
 
 .insert({
 
+
 name:name,
 
 username:username,
@@ -134,22 +353,35 @@ password:password,
 
 status:"active"
 
+
 });
+
+
+
 
 
 
 
 if(error){
 
+
 alert(error.message);
 
+
 return;
+
 
 }
 
 
 
+
+
+
+
 alert("کاربر ساخته شد");
+
+
 
 
 
@@ -161,11 +393,16 @@ document.getElementById("password").value="";
 
 
 
+
+
 };
 
 
 
+
 </script>
+
+
 
 
 </body>
