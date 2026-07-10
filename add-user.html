@@ -19,35 +19,29 @@ padding-top:50px;
 }
 
 .box{
-
 background:#151515;
 width:350px;
 margin:auto;
 padding:30px;
 border-radius:20px;
 box-shadow:0 0 20px #009b62;
-
 }
 
 input{
-
 width:90%;
 padding:12px;
 margin:10px;
 border-radius:10px;
 border:0;
-
 }
 
 button{
-
 background:#009b62;
 color:white;
 border:0;
 padding:12px 30px;
 border-radius:10px;
 cursor:pointer;
-
 }
 
 </style>
@@ -60,23 +54,18 @@ cursor:pointer;
 
 <div class="box">
 
-
 <h2>➕ افزودن کاربر</h2>
 
 
 <input id="name" placeholder="نام کاربر">
 
-
 <input id="username" placeholder="نام کاربری">
 
-
-<input id="password" placeholder="رمز عبور">
+<input id="password" type="password" placeholder="رمز عبور">
 
 
 <button id="save">
-
 ساخت کاربر
-
 </button>
 
 
@@ -84,48 +73,24 @@ cursor:pointer;
 
 
 
-
 <script type="module">
 
 
-import { initializeApp }
+import { createClient }
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
-import {
-
-getFirestore,
-doc,
-setDoc
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
-const firebaseConfig = {
+const supabase = createClient(
 
-apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-authDomain: "mahdi-summer-chat.firebaseapp.com",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
 
-projectId: "mahdi-summer-chat",
-
-storageBucket: "mahdi-summer-chat.firebasestorage.app",
-
-messagingSenderId: "189185718526",
-
-appId: "1:189185718526:web:497085957853202ebb4daf"
-
-};
+);
 
 
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
 
 
 
@@ -133,15 +98,15 @@ document.getElementById("save").onclick = async()=>{
 
 
 const name =
-document.getElementById("name").value;
+document.getElementById("name").value.trim();
 
 
 const username =
-document.getElementById("username").value;
+document.getElementById("username").value.trim();
 
 
 const password =
-document.getElementById("password").value;
+document.getElementById("password").value.trim();
 
 
 
@@ -155,11 +120,11 @@ return;
 
 
 
-await setDoc(
+const {error}=await supabase
 
-doc(db,"users",username),
+.from("users")
 
-{
+.insert({
 
 name:name,
 
@@ -169,13 +134,23 @@ password:password,
 
 status:"active"
 
-}
+});
 
-);
+
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
 
 
 
 alert("کاربر ساخته شد");
+
 
 
 document.getElementById("name").value="";
@@ -183,6 +158,7 @@ document.getElementById("name").value="";
 document.getElementById("username").value="";
 
 document.getElementById("password").value="";
+
 
 
 };
