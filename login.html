@@ -54,7 +54,6 @@ cursor:pointer;
 
 <div class="box">
 
-
 <h2>👤 ورود کاربران</h2>
 
 
@@ -90,7 +89,7 @@ const supabase = createClient(
 
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-"کلید Supabase خودت را اینجا بگذار"
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
 
 );
 
@@ -101,26 +100,32 @@ const supabase = createClient(
 document.getElementById("login").onclick = async()=>{
 
 
-
 const username =
-document.getElementById("username").value.trim();
+
+document.getElementById("username")
+.value
+.trim();
 
 
 
 const password =
-document.getElementById("password").value.trim();
+
+document.getElementById("password")
+.value
+.trim();
 
 
 
 
 
-if(!username || !password){
+if(username==="" || password===""){
 
-alert("نام کاربری و رمز را وارد کنید");
+alert("نام کاربری و رمز عبور را وارد کنید");
 
 return;
 
 }
+
 
 
 
@@ -137,6 +142,7 @@ const {data,error}=await supabase
 .eq("password",password)
 
 .single();
+
 
 
 
@@ -167,9 +173,24 @@ return;
 
 
 localStorage.setItem(
+
 "user",
+
 data.username
+
 );
+
+
+
+localStorage.setItem(
+
+"name",
+
+data.name
+
+);
+
+
 
 
 
