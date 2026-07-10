@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مدیریت اطلاعیه‌ها</title>
+
+
+<style>
+
+body{
+background:#080808;
+color:white;
+font-family:tahoma;
+padding:30px;
+}
+
+
+.box{
+
+background:#151515;
+
+padding:20px;
+
+margin:15px auto;
+
+max-width:600px;
+
+border-radius:20px;
+
+box-shadow:0 0 20px #009b62;
+
+}
+
+
+input,textarea{
+
+width:100%;
+
+padding:12px;
+
+margin:10px 0;
+
+border-radius:10px;
+
+border:0;
+
+font-family:tahoma;
+
+}
+
+
+textarea{
+
+height:120px;
+
+}
+
+
+
+button{
+
+background:#009b62;
+
+color:white;
+
+border:0;
+
+padding:12px 25px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+
+
+.delete{
+
+background:#b30000;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+<h1>
+📢 مدیریت اطلاعیه‌ها
+</h1>
+
+
+
+<div class="box">
+
+
+<input id="title" placeholder="عنوان اطلاعیه">
+
+
+<textarea id="content" placeholder="متن اطلاعیه"></textarea>
+
+
+<button id="save">
+
+ثبت اطلاعیه
+
+</button>
+
+
+</div>
+
+
+
+
+<div id="list"></div>
+
+
+
+
+
+
+<script type="module">
+
+
+import { createClient }
+
+from "https://esm.sh/@supabase/supabase-js@2";
+
+
+
+const supabase=createClient(
+
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXgskuUYRlfZ8w8OQIs"
+
+);
+
+
+
+const list=document.getElementById("list");
+
+
+
+
+async function load(){
+
+
+const {data}=await supabase
+
+.from("notices")
+
+.select("*")
+
+.order("id",{ascending:false});
+
+
+
+list.innerHTML="";
+
+
+
+data.forEach(n=>{
+
+
+list.innerHTML+=`
+
+<div class="box">
+
+<h2>${n.title}</h2>
+
+<p>${n.content}</p>
+
+
+<button class="delete" onclick="remove(${n.id})">
+
+حذف
+
+</button>
+
+
+</div>
+
+`;
+
+});
+
+
+}
+
+
+
+load();
+
+
+
+
+
+document.getElementById("save").onclick=async()=>{
+
+
+let title=document.getElementById("title").value;
+
+let content=document.getElementById("content").value;
+
+
+
+if(!title || !content){
+
+alert("همه فیلدها را پر کنید");
+
+return;
+
+}
+
+
+
+await supabase
+
+.from("notices")
+
+.insert({
+
+title:title,
+
+content:content
+
+});
+
+
+
+document.getElementById("title").value="";
+
+document.getElementById("content").value="";
+
+
+load();
+
+
+};
+
+
+
+
+
+window.remove=async(id)=>{
+
+
+await supabase
+
+.from("notices")
+
+.delete()
+
+.eq("id",id);
+
+
+load();
+
+
+};
+
+
+
+</script>
+
+
+
+</body>
+
+</html>
