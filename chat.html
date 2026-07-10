@@ -2,6 +2,7 @@
 <html lang="fa" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -88,7 +89,9 @@ background:#b30000;
 </div>
 
 
+
 <div id="chat" class="chat"></div>
+
 
 
 <div class="input">
@@ -106,53 +109,31 @@ background:#b30000;
 <script type="module">
 
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
-import {
-
-getFirestore,
-collection,
-addDoc,
-onSnapshot,
-query,
-orderBy,
-doc,
-getDoc,
-serverTimestamp
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 
 
-const firebaseConfig = {
-
-apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
-
-authDomain: "mahdi-summer-chat.firebaseapp.com",
-
-projectId: "mahdi-summer-chat",
-
-storageBucket: "mahdi-summer-chat.firebasestorage.app",
-
-messagingSenderId: "189185718526",
-
-appId: "1:189185718526:web:497085957853202ebb4daf"
-
-};
+const supabaseUrl =
+"https://ezrvqpnxswpzaygbjeio.supabase.co";
 
 
 
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
+const supabaseKey =
+"کلید anon خودت را اینجا قرار بده";
 
 
-const username = localStorage.getItem("user");
+
+const supabase =
+createClient(
+supabaseUrl,
+supabaseKey
+);
+
+
+
+const username =
+localStorage.getItem("user");
 
 
 
@@ -166,26 +147,8 @@ window.location.href="login.html";
 
 
 
-let myName = username;
-
-
-
-const userSnap = await getDoc(
-doc(db,"users",username)
-);
-
-
-
-if(userSnap.exists()){
-
-myName = userSnap.data().name || username;
-
-}
-
-
-
 document.getElementById("welcome").innerHTML =
-"خوش آمدی "+myName;
+"خوش آمدی " + username;
 
 
 
@@ -194,23 +157,34 @@ document.getElementById("chat");
 
 
 
-const q = query(
-collection(db,"messages"),
-orderBy("time")
-);
+// نمایش پیام‌های قبلی
+
+async function loadMessages(){
 
 
+const {data,error}=await supabase
 
-onSnapshot(q,(snapshot)=>{
+.from("messages")
+
+.select("*")
+
+.order("created_at");
+
+
+if(error){
+
+console.log(error);
+
+return;
+
+}
+
 
 
 chat.innerHTML="";
 
 
-snapshot.forEach((item)=>{
-
-
-const m = item.data();
+data.forEach(m=>{
 
 
 chat.innerHTML += `
@@ -218,12 +192,70 @@ chat.innerHTML += `
 <div class="message">
 
 <div class="name">
-👤 ${m.user || "کاربر"}
+👤 ${m.username}
 </div>
 
 <br>
 
-${m.text}
+${m.message}
+
+</div>
+
+`;
+
+});
+
+
+chat.scrollTop=chat.scrollHeight;
+
+
+}
+
+
+
+loadMessages();
+
+
+
+
+// پیام‌های جدید لحظه‌ای
+
+supabase
+
+.channel("messages")
+
+.on(
+
+"postgres_changes",
+
+{
+
+event:"INSERT",
+
+schema:"public",
+
+table:"messages"
+
+},
+
+(payload)=>{
+
+
+const m=payload.new;
+
+
+
+chat.innerHTML += `
+
+<div class="message">
+
+<div class="name">
+👤 ${m.username}
+</div>
+
+<br>
+
+${m.message}
 
 </div>
 
@@ -231,17 +263,22 @@ ${m.text}
 
 
 
-});
+}
+
+)
+
+.subscribe();
 
 
-});
 
 
 
-document.getElementById("send").onclick = async()=>{
+
+// ارسال پیام
 
 
-console.log("send clicked");
+document.getElementById("send").onclick =
+async()=>{
 
 
 let text =
@@ -249,7 +286,7 @@ document.getElementById("message").value.trim();
 
 
 
-if(text==""){
+if(text===""){
 
 alert("پیام خالی است");
 
@@ -259,52 +296,40 @@ return;
 
 
 
-try{
+const {error}=await supabase
 
+.from("messages")
 
-await addDoc(
-
-collection(db,"messages"),
-
-{
-
-text:text,
-
-user:myName,
+.insert({
 
 username:username,
 
-time:serverTimestamp()
+message:text
 
-}
-
-);
+});
 
 
 
-document.getElementById("message").value="";
-
-
-alert("پیام ارسال شد");
-
-
-}
-
-catch(error){
-
-
-console.log(error);
+if(error){
 
 alert(error.message);
 
-
 }
 
+else{
+
+document.getElementById("message").value="";
+
+}
 
 
 };
 
 
+
+
+
+// خروج
 
 document.getElementById("logout").onclick=()=>{
 
