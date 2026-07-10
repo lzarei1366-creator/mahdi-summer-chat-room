@@ -4,9 +4,9 @@
 <head>
 
 <meta charset="UTF-8">
-<title>مدیریت چت روم</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>مدیریت چت روم</title>
 
 <style>
 
@@ -26,13 +26,31 @@ border-radius:15px;
 box-shadow:0 0 15px #009b62;
 }
 
+.input{
+display:flex;
+max-width:600px;
+margin:auto;
+gap:10px;
+}
+
+input{
+flex:1;
+padding:12px;
+border-radius:10px;
+border:0;
+}
+
 button{
-background:#b30000;
+background:#009b62;
 color:white;
 border:0;
 padding:10px;
 border-radius:8px;
 cursor:pointer;
+}
+
+.delete{
+background:#b30000;
 }
 
 </style>
@@ -43,10 +61,22 @@ cursor:pointer;
 <body>
 
 
-<h1>💬 مدیریت چت روم</h1>
+<h1>👑 مدیریت چت روم</h1>
+
+
+<div class="input">
+
+<input id="message" placeholder="پیام ادمین">
+
+<button id="send">
+ارسال
+</button>
+
+</div>
 
 
 <div id="messages"></div>
+
 
 
 
@@ -59,7 +89,7 @@ from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
-const supabase = createClient(
+const supabase=createClient(
 
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 
@@ -70,9 +100,7 @@ const supabase = createClient(
 
 
 
-const box =
-document.getElementById("messages");
-
+const box=document.getElementById("messages");
 
 
 
@@ -90,11 +118,8 @@ const {data,error}=await supabase
 
 
 if(error){
-
 console.log(error);
-
 return;
-
 }
 
 
@@ -110,14 +135,14 @@ box.innerHTML += `
 
 <div class="box">
 
-<p>👤 ${m.username}</p>
+<b>👤 ${m.username}</b>
 
 <p>${m.message}</p>
 
 
-<button onclick="deleteMessage('${m.id}')">
+<button class="delete" onclick="deleteMessage(${m.id})">
 
-حذف پیام
+حذف
 
 </button>
 
@@ -139,12 +164,12 @@ loadMessages();
 
 
 
-// دریافت پیام‌های جدید لحظه‌ای
 
+// دریافت لحظه‌ای پیام‌ها
 
 supabase
 
-.channel("admin-messages")
+.channel("admin-chat")
 
 .on(
 
@@ -176,8 +201,63 @@ loadMessages();
 
 
 
-window.deleteMessage = async function(id){
+// ارسال پیام ادمین
 
+
+document.getElementById("send").onclick=async()=>{
+
+
+const text=document
+.getElementById("message")
+.value
+.trim();
+
+
+
+if(!text){
+
+return;
+
+}
+
+
+
+const {error}=await supabase
+
+.from("messages")
+
+.insert({
+
+username:"admin",
+
+message:text
+
+});
+
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+
+document.getElementById("message").value="";
+
+
+};
+
+
+
+
+
+
+
+window.deleteMessage=async(id)=>{
 
 
 const {error}=await supabase
@@ -199,14 +279,10 @@ return;
 }
 
 
-
-alert("پیام حذف شد");
-
-
 loadMessages();
 
 
-}
+};
 
 
 
