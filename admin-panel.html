@@ -8,39 +8,16 @@
 
 <title>پنل مدیریت</title>
 
+
 <style>
-
-*{
-box-sizing:border-box;
-}
-
 
 body{
 
-margin:0;
-
-min-height:100vh;
-
-font-family:tahoma;
+background:#080808;
 
 color:white;
 
-
-background:
-
-linear-gradient(
-rgba(0,0,0,.7),
-rgba(0,0,0,.9)
-),
-
-url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
-
-
-background-size:cover;
-
-background-position:center;
-
-background-attachment:fixed;
+font-family:tahoma;
 
 padding:30px;
 
@@ -48,24 +25,11 @@ padding:30px;
 
 
 
-h1{
+h1,h3{
 
 text-align:center;
 
-font-size:38px;
-
 }
-
-
-
-h3{
-
-text-align:center;
-
-color:#00ff99;
-
-}
-
 
 
 
@@ -73,59 +37,31 @@ color:#00ff99;
 
 display:flex;
 
-justify-content:center;
-
 flex-wrap:wrap;
 
-gap:25px;
+justify-content:center;
 
-margin-top:40px;
+gap:20px;
 
 }
 
 
 
-
 .card{
 
+background:#151515;
 
-width:270px;
+width:250px;
 
+padding:25px;
 
-
-padding:30px;
-
-
-
-background:rgba(255,255,255,.12);
-
-
-
-backdrop-filter:blur(15px);
-
-
-
-border-radius:30px;
-
-
+border-radius:20px;
 
 text-align:center;
 
-
-
-border:1px solid rgba(255,255,255,.2);
-
-
-
-box-shadow:
-
-0 0 30px rgba(0,255,150,.3);
-
-
+box-shadow:0 0 20px #009b62;
 
 transition:.3s;
-
-
 
 }
 
@@ -133,88 +69,33 @@ transition:.3s;
 
 .card:hover{
 
-transform:translateY(-10px);
+transform:translateY(-8px);
 
-box-shadow:
-
-0 0 45px rgba(0,255,150,.6);
+box-shadow:0 0 35px #00ff99;
 
 }
-
-
-
-
-.card h2{
-
-font-size:25px;
-
-}
-
-
-
-.card p{
-
-color:#ddd;
-
-font-size:18px;
-
-}
-
 
 
 
 button{
 
-
-background:
-
-linear-gradient(
-90deg,
-#009b62,
-#00d98b
-);
-
-
+background:#009b62;
 
 color:white;
 
-
-
 border:0;
 
-
-
-padding:14px;
-
-
+padding:12px;
 
 width:100%;
 
-
-
-border-radius:15px;
-
-
+border-radius:10px;
 
 cursor:pointer;
 
-
-
-font-size:17px;
-
-
+font-size:16px;
 
 }
-
-
-
-
-button:hover{
-
-transform:scale(1.05);
-
-}
-
 
 
 
@@ -228,46 +109,30 @@ text-decoration:none;
 
 .logout{
 
-
-display:block;
-
-max-width:300px;
-
-margin:40px auto 0;
-
-
-
 background:#b30000;
 
-
+width:250px;
 
 }
 
 
 
-
 </style>
 
-
 </head>
-
 
 
 <body>
 
 
 
-
 <h1>
-
 👑 پنل مدیریت
-
 </h1>
 
 
 
 <h3 id="role"></h3>
-
 
 
 
@@ -280,7 +145,6 @@ background:#b30000;
 
 
 <div class="card">
-
 
 <h2>
 👥 کاربران
@@ -310,8 +174,9 @@ background:#b30000;
 
 
 
-<div class="card">
 
+
+<div class="card">
 
 <h2>
 ➕ افزودن کاربر
@@ -341,8 +206,9 @@ background:#b30000;
 
 
 
-<div class="card">
 
+
+<div class="card">
 
 <h2>
 💬 چت
@@ -372,6 +238,31 @@ background:#b30000;
 
 
 
+
+
+<div class="card">
+
+<h2>
+📢 اطلاعیه‌ها
+</h2>
+
+
+<p>
+مدیریت اخبار و پیام‌ها
+</p>
+
+
+<a href="notices-admin.html">
+
+<button>
+
+ورود
+
+</button>
+
+</a>
+
+
 </div>
 
 
@@ -379,13 +270,25 @@ background:#b30000;
 
 
 
+</div>
+
+
+
+
+
+<br><br>
+
+
+
+<center>
 
 <button class="logout" id="logout">
 
-🚪 خروج از مدیریت
+خروج از مدیریت
 
 </button>
 
+</center>
 
 
 
@@ -396,15 +299,11 @@ background:#b30000;
 
 
 const admin =
-
 localStorage.getItem("admin");
 
 
-
 const role =
-
 localStorage.getItem("role");
-
 
 
 
@@ -421,7 +320,9 @@ window.location.href="admin-login.html";
 
 document.getElementById("role").innerHTML=
 
-"👤 "+admin+" | سطح دسترسی: "+(role || "admin");
+"ادمین: "+admin+
+" | سطح دسترسی: "+
+(role || "admin");
 
 
 
@@ -436,7 +337,6 @@ localStorage.removeItem("admin");
 localStorage.removeItem("role");
 
 
-
 window.location.href="admin-login.html";
 
 
@@ -444,8 +344,8 @@ window.location.href="admin-login.html";
 
 
 
-
 </script>
+
 
 
 
