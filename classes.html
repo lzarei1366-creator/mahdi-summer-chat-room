@@ -11,45 +11,24 @@
 
 <style>
 
-*{
-box-sizing:border-box;
-}
-
-
 body{
 
 margin:0;
 
 font-family:tahoma;
 
-min-height:100vh;
+background:#080808;
 
 color:white;
 
-
-background:
-
-linear-gradient(
-rgba(0,0,0,.75),
-rgba(0,0,0,.9)
-),
-
-url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
-
-
-background-size:cover;
-
-background-position:center;
-
 }
-
 
 
 header{
 
 text-align:center;
 
-padding:50px 20px;
+padding:40px;
 
 }
 
@@ -65,21 +44,9 @@ border-radius:50%;
 
 object-fit:cover;
 
-border:3px solid white;
-
 box-shadow:0 0 30px #00ff99;
 
 }
-
-
-
-h1{
-
-font-size:35px;
-
-}
-
-
 
 
 
@@ -99,14 +66,11 @@ padding:20px;
 
 
 
-
 .card{
 
 width:280px;
 
-background:rgba(255,255,255,.15);
-
-backdrop-filter:blur(15px);
+background:#151515;
 
 padding:25px;
 
@@ -114,18 +78,17 @@ border-radius:25px;
 
 text-align:center;
 
-box-shadow:0 0 25px rgba(0,255,150,.3);
+box-shadow:0 0 20px #009b62;
 
 }
 
 
 
-.card h2{
+h2{
 
 color:#00ff99;
 
 }
-
 
 
 
@@ -135,17 +98,17 @@ width:100%;
 
 padding:15px;
 
-border:0;
-
-border-radius:15px;
-
 background:#009b62;
 
 color:white;
 
-font-size:17px;
+border:0;
+
+border-radius:12px;
 
 cursor:pointer;
+
+font-size:17px;
 
 }
 
@@ -158,17 +121,8 @@ background:#00d98b;
 }
 
 
-
-a{
-
-text-decoration:none;
-
-}
-
-
-
-
 </style>
+
 
 </head>
 
@@ -189,12 +143,11 @@ text-decoration:none;
 
 
 <p>
-کلاس مورد نظر خود را انتخاب کنید
+کلاس مورد نظر را انتخاب کنید
 </p>
 
 
 </header>
-
 
 
 
@@ -206,126 +159,100 @@ text-decoration:none;
 
 <div class="card">
 
-<h2>
-📖 قرآن و احکام
-</h2>
+<h2>📖 قرآن و احکام</h2>
 
-
-<p>
-آموزش قرآن، احکام و معارف اسلامی
-</p>
-
+<p>آموزش قرآن و معارف</p>
 
 <button onclick="registerClass('قرآن و احکام')">
-
 ثبت‌نام
-
 </button>
-
 
 </div>
 
 
 
 
-
-
 <div class="card">
 
-<h2>
-🎨 هنر و خلاقیت
-</h2>
+<h2>🎨 هنر و خلاقیت</h2>
 
-
-<p>
-نقاشی، کاردستی و فعالیت هنری
-</p>
-
+<p>نقاشی و کارهای هنری</p>
 
 <button onclick="registerClass('هنر و خلاقیت')">
-
 ثبت‌نام
-
 </button>
-
 
 </div>
 
 
 
 
-
-
-
 <div class="card">
 
-<h2>
-💻 آموزش کامپیوتر
-</h2>
+<h2>💻 آموزش کامپیوتر</h2>
 
-
-<p>
-آشنایی با کامپیوتر و فناوری
-</p>
-
+<p>آشنایی با فناوری</p>
 
 <button onclick="registerClass('آموزش کامپیوتر')">
-
 ثبت‌نام
-
 </button>
 
-
 </div>
-
-
-
 
 
 
 
 <div class="card">
 
-<h2>
-⚽ ورزش و سرگرمی
-</h2>
+<h2>⚽ ورزش و سرگرمی</h2>
 
-
-<p>
-فعالیت ورزشی و تفریحی
-</p>
-
+<p>فعالیت ورزشی</p>
 
 <button onclick="registerClass('ورزش و سرگرمی')">
-
 ثبت‌نام
-
 </button>
 
+</div>
+
+
 
 </div>
 
 
 
 
-</div>
+
+
+<script type="module">
+
+
+import { createClient }
+
+from "https://esm.sh/@supabase/supabase-js@2";
+
+
+
+const supabase=createClient(
+
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXgskuUYRlfZ8w8OQIs"
+
+);
 
 
 
 
 
-
-<script>
-
-
-function registerClass(name){
-
-
-let user=localStorage.getItem("user");
+window.registerClass = async function(className){
 
 
 
-if(!user){
+const username = localStorage.getItem("user");
+
+
+
+if(!username){
 
 alert("ابتدا وارد حساب شوید");
 
@@ -337,8 +264,39 @@ return;
 
 
 
+
+
+const {error}=await supabase
+
+.from("class_register")
+
+.insert({
+
+username:username,
+
+class_name:className
+
+});
+
+
+
+
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+
 alert(
-"ثبت‌نام شما در کلاس «"+name+"» انجام شد"
+
+"ثبت‌نام شما در کلاس «"+className+"» انجام شد ✅"
+
 );
 
 
