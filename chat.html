@@ -2,7 +2,6 @@
 <html lang="fa" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -89,9 +88,7 @@ background:#b30000;
 </div>
 
 
-
 <div id="chat" class="chat"></div>
-
 
 
 <div class="input">
@@ -108,20 +105,16 @@ background:#b30000;
 
 <script type="module">
 
-
 import { createClient }
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
-
 
 
 const supabaseUrl =
 "https://ezrvqpnxswpzaygbjeio.supabase.co";
 
 
-
 const supabaseKey =
-"کلید anon خودت را اینجا قرار بده";
-
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs";
 
 
 const supabase =
@@ -157,8 +150,6 @@ document.getElementById("chat");
 
 
 
-// نمایش پیام‌های قبلی
-
 async function loadMessages(){
 
 
@@ -169,6 +160,7 @@ const {data,error}=await supabase
 .select("*")
 
 .order("created_at");
+
 
 
 if(error){
@@ -218,7 +210,6 @@ loadMessages();
 
 
 
-// پیام‌های جدید لحظه‌ای
 
 supabase
 
@@ -244,7 +235,6 @@ table:"messages"
 const m=payload.new;
 
 
-
 chat.innerHTML += `
 
 <div class="message">
@@ -261,8 +251,6 @@ ${m.message}
 
 `;
 
-
-
 }
 
 )
@@ -272,9 +260,6 @@ ${m.message}
 
 
 
-
-
-// ارسال پیام
 
 
 document.getElementById("send").onclick =
@@ -329,7 +314,6 @@ document.getElementById("message").value="";
 
 
 
-// خروج
 
 document.getElementById("logout").onclick=()=>{
 
@@ -340,7 +324,6 @@ window.location.href="login.html";
 
 
 };
-
 
 
 </script>
