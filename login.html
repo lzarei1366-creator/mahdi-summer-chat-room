@@ -51,97 +51,72 @@ cursor:pointer;
 
 <body>
 
+
 <div class="box">
+
 
 <h2>👤 ورود کاربران</h2>
 
+
 <input id="username" placeholder="نام کاربری">
+
 
 <input id="password" type="password" placeholder="رمز عبور">
 
+
 <br>
+
 
 <button id="login">
 ورود
 </button>
 
+
 </div>
+
 
 
 
 <script type="module">
 
 
-import {
+import { createClient }
 
-getFirestore,
-doc,
-getDoc
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-import {
-
-initializeApp
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
-const firebaseConfig = {
+const supabase = createClient(
 
-apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-authDomain: "mahdi-summer-chat.firebaseapp.com",
+"کلید Supabase خودت را اینجا بگذار"
 
-projectId: "mahdi-summer-chat",
-
-storageBucket: "mahdi-summer-chat.firebasestorage.app",
-
-messagingSenderId: "189185718526",
-
-appId: "1:189185718526:web:497085957853202ebb4daf"
-
-};
+);
 
 
 
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
 
 
-
-document.getElementById("login").onclick = async ()=>{
-
-
-let username =
-document.getElementById("username").value;
-
-
-let password =
-document.getElementById("password").value;
+document.getElementById("login").onclick = async()=>{
 
 
 
-const userRef =
-doc(db,"users",username);
+const username =
+document.getElementById("username").value.trim();
 
 
 
-const userSnap =
-await getDoc(userRef);
+const password =
+document.getElementById("password").value.trim();
 
 
 
-if(!userSnap.exists()){
 
-alert("کاربر پیدا نشد");
+
+if(!username || !password){
+
+alert("نام کاربری و رمز را وارد کنید");
 
 return;
 
@@ -149,14 +124,27 @@ return;
 
 
 
-const user =
-userSnap.data();
+
+
+const {data,error}=await supabase
+
+.from("users")
+
+.select("*")
+
+.eq("username",username)
+
+.eq("password",password)
+
+.single();
 
 
 
-if(user.password != password){
 
-alert("رمز عبور اشتباه است");
+
+if(error || !data){
+
+alert("نام کاربری یا رمز عبور اشتباه است");
 
 return;
 
@@ -164,7 +152,9 @@ return;
 
 
 
-if(user.status=="blocked"){
+
+
+if(data.status==="blocked"){
 
 alert("حساب شما مسدود شده است");
 
@@ -174,9 +164,11 @@ return;
 
 
 
+
+
 localStorage.setItem(
 "user",
-username
+data.username
 );
 
 
