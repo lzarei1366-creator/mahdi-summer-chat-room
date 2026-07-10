@@ -16,43 +16,36 @@ box-sizing:border-box;
 }
 
 
-
 body{
 
 margin:0;
 
 min-height:100vh;
 
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-
 font-family:tahoma;
 
 color:white;
 
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 
 background:
 
 linear-gradient(
-rgba(0,0,0,.7),
+rgba(0,0,0,.75),
 rgba(0,0,0,.9)
 ),
 
-
 url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
-
 
 
 background-size:cover;
 
 background-position:center;
-
-background-attachment:fixed;
 
 }
 
@@ -61,49 +54,82 @@ background-attachment:fixed;
 
 .box{
 
-
-width:360px;
-
-
+width:380px;
 
 padding:35px;
 
 
+background:
 
-background:rgba(255,255,255,.12);
-
+rgba(255,255,255,.12);
 
 
 backdrop-filter:blur(15px);
 
 
-
 border-radius:30px;
 
 
-
-border:1px solid rgba(255,255,255,.2);
-
+border:1px solid rgba(255,255,255,.25);
 
 
 box-shadow:
 
-0 0 35px rgba(0,255,150,.4);
-
+0 0 40px rgba(0,255,150,.4);
 
 
 text-align:center;
 
 
+animation:show .8s;
 
 }
 
 
 
 
+
+@keyframes show{
+
+from{
+
+opacity:0;
+
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+
+
+
 .logo{
 
-font-size:70px;
+width:130px;
+
+height:130px;
+
+object-fit:cover;
+
+border-radius:50%;
+
+border:3px solid white;
+
+box-shadow:
+
+0 0 30px #00ff99;
+
+margin-bottom:20px;
 
 }
 
@@ -112,6 +138,8 @@ font-size:70px;
 
 
 h2{
+
+font-size:28px;
 
 margin-bottom:25px;
 
@@ -122,34 +150,23 @@ margin-bottom:25px;
 
 input{
 
-
 width:100%;
-
-
 
 padding:15px;
 
-
-
 margin:10px 0;
-
 
 
 border-radius:15px;
 
 
-
 border:0;
-
 
 
 outline:none;
 
 
-
 font-size:16px;
-
-
 
 }
 
@@ -158,21 +175,16 @@ font-size:16px;
 
 button{
 
-
 width:100%;
-
 
 
 padding:15px;
 
 
-
 margin-top:15px;
 
 
-
 border:0;
-
 
 
 border-radius:15px;
@@ -181,11 +193,10 @@ border-radius:15px;
 
 background:
 
-
 linear-gradient(
 90deg,
 #009b62,
-#00d98b
+#00e899
 );
 
 
@@ -193,18 +204,18 @@ linear-gradient(
 color:white;
 
 
-
 font-size:18px;
-
 
 
 cursor:pointer;
 
 
+box-shadow:
+
+0 0 20px rgba(0,255,150,.5);
+
 
 transition:.3s;
-
-
 
 }
 
@@ -220,56 +231,39 @@ transform:scale(1.05);
 
 </style>
 
-
 </head>
-
-
 
 
 <body>
 
 
 
-
 <div class="box">
 
 
-<div class="logo">
 
-👤
-
-</div>
+<img 
+src="1780787289090%20(1).jpg" 
+class="logo">
 
 
 
 <h2>
-
-ورود کاربران
-
+👤 ورود کاربران
 </h2>
 
 
 
-
 <input 
-
-id="username"
-
+id="username" 
 placeholder="نام کاربری">
 
 
 
-
-
 <input 
-
-id="password"
-
-type="password"
-
+id="password" 
+type="password" 
 placeholder="رمز عبور">
-
-
 
 
 
@@ -281,9 +275,7 @@ placeholder="رمز عبور">
 
 
 
-
 </div>
-
 
 
 
@@ -299,18 +291,13 @@ from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
-
-const supabase = createClient(
-
+const supabase=createClient(
 
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
-
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXgskuUYRlfZ8w8OQIs"
 
 );
-
 
 
 
@@ -320,13 +307,17 @@ const supabase = createClient(
 document.getElementById("login").onclick = async()=>{
 
 
+const username = document
+.getElementById("username")
+.value
+.trim();
 
-const username = document.getElementById("username").value.trim();
 
 
-
-const password = document.getElementById("password").value.trim();
-
+const password = document
+.getElementById("password")
+.value
+.trim();
 
 
 
@@ -339,7 +330,6 @@ alert("نام کاربری و رمز عبور را وارد کنید");
 return;
 
 }
-
 
 
 
@@ -361,8 +351,6 @@ const {data,error}=await supabase
 
 
 
-
-
 if(error || !data){
 
 alert("نام کاربری یا رمز عبور اشتباه است");
@@ -370,7 +358,6 @@ alert("نام کاربری یا رمز عبور اشتباه است");
 return;
 
 }
-
 
 
 
@@ -388,12 +375,10 @@ return;
 
 
 
-
 localStorage.setItem(
 "user",
 data.username
 );
-
 
 
 
@@ -404,16 +389,11 @@ data.name
 
 
 
-
-
-
 window.location.href="chat.html";
 
 
 
 };
-
-
 
 
 
