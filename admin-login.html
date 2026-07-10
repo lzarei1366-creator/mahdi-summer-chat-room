@@ -55,68 +55,159 @@ background:#00b874;
 
 </head>
 
+
 <body>
+
 
 <div class="box">
 
 <h2>👑 ورود مدیریت</h2>
 
-<input id="username" type="text" placeholder="نام کاربری">
 
-<input id="password" type="password" placeholder="رمز عبور">
+<input 
+id="username" 
+type="text" 
+placeholder="نام کاربری">
 
-<button id="login">ورود</button>
+
+
+<input 
+id="password" 
+type="password" 
+placeholder="رمز عبور">
+
+
+
+<button id="login">
+ورود
+</button>
+
 
 </div>
 
+
+
 <script type="module">
 
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+import { createClient } 
+from "https://esm.sh/@supabase/supabase-js@2";
+
+
 
 const supabase = createClient(
+
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
-"sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246"
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
+
 );
 
-document.getElementById("login").addEventListener("click", async ()=>{
+
+
+
+
+document
+.getElementById("login")
+.addEventListener("click", async ()=>{
+
+
 
 const username =
-document.getElementById("username").value.trim();
+
+document
+.getElementById("username")
+.value
+.trim();
+
+
 
 const password =
-document.getElementById("password").value.trim();
+
+document
+.getElementById("password")
+.value
+.trim();
+
+
+
+
 
 if(username==="" || password===""){
+
 alert("نام کاربری و رمز عبور را وارد کنید");
+
 return;
+
 }
 
-const { data, error } = await supabase
+
+
+
+
+const {data,error}=await supabase
+
 .from("admins")
+
 .select("*")
-.eq("username", username)
-.eq("password", password)
+
+.eq("username",username)
+
+.eq("password",password)
+
 .single();
 
+
+
+
+
 if(error){
-alert(error.message);
+
 console.log(error);
-return;
-}
 
-if(!data){
 alert("نام کاربری یا رمز عبور اشتباه است");
+
 return;
+
 }
 
-localStorage.setItem("admin", data.username);
-localStorage.setItem("role", data.role);
+
+
+
+
+if(data){
+
+
+
+localStorage.setItem(
+"admin",
+data.username
+);
+
+
+
+localStorage.setItem(
+"role",
+data.role || "admin"
+);
+
+
 
 window.location.href="admin-panel.html";
 
+
+
+}
+
+
+
 });
 
+
+
 </script>
+
+
 
 </body>
 
