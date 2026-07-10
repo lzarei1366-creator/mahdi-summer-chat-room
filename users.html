@@ -4,6 +4,8 @@
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>مدیریت کاربران</title>
 
 <style>
@@ -13,6 +15,10 @@ background:#080808;
 color:white;
 font-family:tahoma;
 padding:30px;
+}
+
+h1{
+text-align:center;
 }
 
 .box{
@@ -64,50 +70,25 @@ background:#009b62;
 
 
 
+
 <script type="module">
 
 
-import { initializeApp }
+import { createClient }
 
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-
-import {
-
-getFirestore,
-collection,
-onSnapshot,
-doc,
-updateDoc,
-deleteDoc
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
-const firebaseConfig = {
 
-apiKey: "AIzaSyB2oPTrdqG6HWVLIPoh_HOmXHb98sHEQKg",
+const supabase = createClient(
 
-authDomain: "mahdi-summer-chat.firebaseapp.com",
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-projectId: "mahdi-summer-chat",
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
 
-storageBucket: "mahdi-summer-chat.firebasestorage.app",
+);
 
-messagingSenderId: "189185718526",
-
-appId: "1:189185718526:web:497085957853202ebb4daf"
-
-};
-
-
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
 
 
 
@@ -116,70 +97,121 @@ document.getElementById("users");
 
 
 
-onSnapshot(
 
-collection(db,"users"),
 
-(snapshot)=>{
+
+async function loadUsers(){
+
+
+
+const {data,error}=await supabase
+
+.from("users")
+
+.select("*")
+
+.order("id");
+
+
+
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+
 
 
 box.innerHTML="";
 
 
-snapshot.forEach((item)=>{
 
 
-const user =
-item.data();
+
+data.forEach(user=>{
 
 
 
 box.innerHTML += `
 
+
 <div class="box">
 
-<h3>👤 ${user.name}</h3>
 
-<p>یوزرنیم: ${user.username}</p>
+<h3>
+👤 ${user.name}
+</h3>
 
-<p>وضعیت: ${user.status}</p>
+
+<p>
+یوزرنیم: ${user.username}
+</p>
+
+
+<p>
+وضعیت: ${user.status}
+</p>
+
+
 
 
 <button class="block"
-onclick="changeStatus('${item.id}','blocked')">
 
-مسدود کردن
+onclick="changeStatus('${user.id}','blocked')">
+
+🚫 مسدود کردن
 
 </button>
+
+
+
 
 
 <button class="active"
-onclick="changeStatus('${item.id}','active')">
 
-فعال کردن
+onclick="changeStatus('${user.id}','active')">
+
+✅ فعال کردن
 
 </button>
+
+
+
 
 
 <button class="delete"
-onclick="removeUser('${item.id}')">
 
-حذف کاربر
+onclick="removeUser('${user.id}')">
+
+🗑 حذف کاربر
 
 </button>
+
 
 
 </div>
 
+
+
 `;
+
 
 
 });
 
 
+
 }
 
-);
+
+
+
 
 
 
@@ -187,44 +219,109 @@ onclick="removeUser('${item.id}')">
 window.changeStatus = async(id,status)=>{
 
 
-await updateDoc(
 
-doc(db,"users",id),
+const {error}=await supabase
 
-{
+.from("users")
+
+.update({
 
 status:status
 
+})
+
+.eq("id",id);
+
+
+
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
 }
 
-);
+
+
+
+alert("وضعیت تغییر کرد");
+
+loadUsers();
+
 
 
 };
+
+
+
+
+
+
 
 
 
 window.removeUser = async(id)=>{
 
 
-if(confirm("حذف شود؟")){
 
+if(!confirm("کاربر حذف شود؟")){
 
-await deleteDoc(
-
-doc(db,"users",id)
-
-);
-
+return;
 
 }
+
+
+
+
+
+const {error}=await supabase
+
+.from("users")
+
+.delete()
+
+.eq("id",id);
+
+
+
+
+
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+
+
+
+alert("کاربر حذف شد");
+
+
+loadUsers();
+
 
 
 };
 
 
 
+
+
+
+
+loadUsers();
+
+
+
 </script>
+
 
 
 </body>
