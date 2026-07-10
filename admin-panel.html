@@ -10,68 +10,266 @@
 
 <style>
 
-body{
-background:#080808;
-color:white;
-font-family:tahoma;
-padding:30px;
+*{
+box-sizing:border-box;
 }
 
-h1,h3{
-text-align:center;
+
+body{
+
+margin:0;
+
+min-height:100vh;
+
+font-family:tahoma;
+
+color:white;
+
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.7),
+rgba(0,0,0,.9)
+),
+
+url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
+
+
+background-size:cover;
+
+background-position:center;
+
+background-attachment:fixed;
+
+padding:30px;
+
 }
+
+
+
+h1{
+
+text-align:center;
+
+font-size:38px;
+
+}
+
+
+
+h3{
+
+text-align:center;
+
+color:#00ff99;
+
+}
+
+
+
 
 .menu{
+
 display:flex;
-flex-wrap:wrap;
+
 justify-content:center;
-gap:20px;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+margin-top:40px;
+
 }
+
+
+
 
 .card{
 
-background:#151515;
-width:250px;
-padding:25px;
-border-radius:20px;
+
+width:270px;
+
+
+
+padding:30px;
+
+
+
+background:rgba(255,255,255,.12);
+
+
+
+backdrop-filter:blur(15px);
+
+
+
+border-radius:30px;
+
+
+
 text-align:center;
-box-shadow:0 0 20px #009b62;
+
+
+
+border:1px solid rgba(255,255,255,.2);
+
+
+
+box-shadow:
+
+0 0 30px rgba(0,255,150,.3);
+
+
+
+transition:.3s;
+
+
 
 }
+
+
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+
+0 0 45px rgba(0,255,150,.6);
+
+}
+
+
+
+
+.card h2{
+
+font-size:25px;
+
+}
+
+
+
+.card p{
+
+color:#ddd;
+
+font-size:18px;
+
+}
+
+
+
 
 button{
 
-background:#009b62;
+
+background:
+
+linear-gradient(
+90deg,
+#009b62,
+#00d98b
+);
+
+
+
 color:white;
+
+
+
 border:0;
-padding:12px;
+
+
+
+padding:14px;
+
+
+
 width:100%;
-border-radius:10px;
+
+
+
+border-radius:15px;
+
+
+
 cursor:pointer;
 
+
+
+font-size:17px;
+
+
+
 }
 
-a{
-text-decoration:none;
+
+
+
+button:hover{
+
+transform:scale(1.05);
+
 }
+
+
+
+
+a{
+
+text-decoration:none;
+
+}
+
+
 
 .logout{
 
+
+display:block;
+
+max-width:300px;
+
+margin:40px auto 0;
+
+
+
 background:#b30000;
+
+
 
 }
 
+
+
+
 </style>
 
+
 </head>
+
 
 
 <body>
 
 
-<h1>👑 پنل مدیریت</h1>
+
+
+<h1>
+
+👑 پنل مدیریت
+
+</h1>
+
+
 
 <h3 id="role"></h3>
+
+
+
 
 
 
@@ -79,79 +277,118 @@ background:#b30000;
 
 
 
+
+
 <div class="card">
 
-<h2>👥 کاربران</h2>
 
-<p>مدیریت کاربران</p>
+<h2>
+👥 کاربران
+</h2>
+
+
+<p>
+مدیریت کاربران
+</p>
+
 
 <a href="users.html">
 
 <button>
+
 ورود
+
 </button>
 
 </a>
+
 
 </div>
 
 
 
 
+
+
 <div class="card">
 
-<h2>➕ افزودن کاربر</h2>
 
-<p>ساخت حساب جدید</p>
+<h2>
+➕ افزودن کاربر
+</h2>
+
+
+<p>
+ساخت حساب جدید
+</p>
+
 
 <a href="add-user.html">
 
 <button>
+
 افزودن
+
 </button>
 
 </a>
 
+
 </div>
+
+
 
 
 
 
 <div class="card">
 
-<h2>💬 چت</h2>
 
-<p>مدیریت پیام‌ها</p>
+<h2>
+💬 چت
+</h2>
+
+
+<p>
+مدیریت پیام‌ها
+</p>
+
 
 <a href="chat-admin.html">
 
 <button>
+
 ورود
+
 </button>
 
 </a>
 
-</div>
-
-
-
 
 </div>
 
 
 
-<br><br>
 
 
-<center>
+
+</div>
+
+
+
+
+
+
 
 <button class="logout" id="logout">
 
-خروج از مدیریت
+🚪 خروج از مدیریت
 
 </button>
 
-</center>
+
+
+
 
 
 
@@ -159,11 +396,16 @@ background:#b30000;
 
 
 const admin =
+
 localStorage.getItem("admin");
 
 
+
 const role =
+
 localStorage.getItem("role");
+
+
 
 
 
@@ -175,9 +417,12 @@ window.location.href="admin-login.html";
 
 
 
-document.getElementById("role").innerHTML =
 
-"ادمین: "+admin+" | سطح دسترسی: "+(role || "admin");
+
+document.getElementById("role").innerHTML=
+
+"👤 "+admin+" | سطح دسترسی: "+(role || "admin");
+
 
 
 
@@ -191,6 +436,7 @@ localStorage.removeItem("admin");
 localStorage.removeItem("role");
 
 
+
 window.location.href="admin-login.html";
 
 
@@ -198,7 +444,9 @@ window.location.href="admin-login.html";
 
 
 
+
 </script>
+
 
 
 </body>
