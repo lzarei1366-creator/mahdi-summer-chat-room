@@ -8,115 +8,242 @@
 
 <title>کلاس‌های تابستانی مسجد المهدی (عج)</title>
 
+
 <style>
 
 *{
 box-sizing:border-box;
 }
 
+
 body{
 
 margin:0;
+
 font-family:tahoma;
 
-background:
-linear-gradient(
-rgba(0,0,0,.75),
-rgba(0,0,0,.9)
-),
-url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
-
-background-size:cover;
-background-position:center;
 min-height:100vh;
 
 color:white;
 
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.9)
+),
+
+url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
+
+
+background-size:cover;
+
+background-position:center;
+
+background-attachment:fixed;
+
 }
+
+
 
 
 header{
 
 text-align:center;
-padding:60px 20px;
+
+padding:70px 20px 40px;
 
 }
+
 
 
 .logo{
 
-font-size:70px;
+font-size:90px;
+
+filter:drop-shadow(0 0 20px #00ff99);
 
 }
+
 
 
 h1{
 
 font-size:38px;
-margin:20px;
+
+margin:20px 0;
 
 }
 
 
-p{
+
+header p{
 
 font-size:20px;
 
+color:#ddd;
+
 }
+
 
 
 
 .container{
 
 display:flex;
+
 justify-content:center;
+
 flex-wrap:wrap;
-gap:25px;
+
+gap:30px;
+
+padding:20px;
 
 }
+
 
 
 
 .card{
 
-width:260px;
+
+width:280px;
+
 
 background:
-rgba(255,255,255,.1);
 
-backdrop-filter:blur(10px);
+rgba(255,255,255,.12);
 
-padding:30px;
 
-border-radius:25px;
+
+backdrop-filter:blur(15px);
+
+
+
+padding:35px 25px;
+
+
+
+border-radius:30px;
+
+
 
 text-align:center;
 
+
+
+border:1px solid rgba(255,255,255,.2);
+
+
+
 box-shadow:
-0 0 30px rgba(0,255,150,.3);
+
+0 0 30px rgba(0,255,150,.25);
+
+
+
+transition:.3s;
+
+
 
 }
+
+
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+
+0 0 40px rgba(0,255,150,.5);
+
+}
+
+
+
+
+
+.card h2{
+
+font-size:25px;
+
+}
+
+
+
+
+
+.card p{
+
+font-size:18px;
+
+color:#ddd;
+
+}
+
+
+
 
 
 button{
 
+
 width:100%;
+
 
 padding:15px;
 
+
+
 border:0;
+
+
 
 border-radius:15px;
 
-background:#009b62;
+
+
+background:
+
+linear-gradient(
+90deg,
+#009b62,
+#00d98b
+);
+
+
 
 color:white;
 
+
+
 font-size:18px;
+
+
 
 cursor:pointer;
 
+
+
+transition:.3s;
+
+
+
 }
+
+
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+
+
 
 
 a{
@@ -126,15 +253,47 @@ text-decoration:none;
 }
 
 
+
+
 footer{
+
 
 text-align:center;
 
+
 margin-top:60px;
+
+
+padding:20px;
+
 
 color:#aaa;
 
+
 }
+
+
+
+
+@media(max-width:600px){
+
+
+h1{
+
+font-size:28px;
+
+}
+
+
+.card{
+
+width:90%;
+
+}
+
+
+}
+
 
 
 </style>
@@ -143,24 +302,34 @@ color:#aaa;
 </head>
 
 
+
 <body>
+
+
 
 
 <header>
 
 
 <div class="logo">
+
 🕌
+
 </div>
 
 
 <h1>
+
 کلاس‌های تابستانی مسجد المهدی (عج)
+
 </h1>
 
 
+
 <p>
+
 به سامانه آنلاین کلاس‌ها و چت‌روم خوش آمدید
+
 </p>
 
 
@@ -168,33 +337,50 @@ color:#aaa;
 
 
 
+
+
 <div class="container">
+
+
 
 
 
 <div class="card">
 
-<h2>👤 کاربران</h2>
+
+<h2>
+👤 کاربران
+</h2>
+
 
 <p>
-ثبت‌نام و ورود
+ثبت‌نام و ورود کاربران
 </p>
+
+
 
 <a href="register.html">
 
 <button>
+
 ثبت‌نام
+
 </button>
 
 </a>
 
+
+
 <br><br>
+
 
 
 <a href="login.html">
 
 <button>
+
 ورود
+
 </button>
 
 </a>
@@ -204,41 +390,65 @@ color:#aaa;
 
 
 
+
+
+
 <div class="card">
 
-<h2>💬 چت‌روم</h2>
+
+<h2>
+💬 چت‌روم
+</h2>
+
 
 <p>
+
 گفتگو با اعضای کلاس
+
 </p>
+
 
 
 <a href="chat.html">
 
 <button>
+
 ورود به چت
+
 </button>
 
 </a>
 
 
 </div>
+
+
+
 
 
 
 <div class="card">
 
-<h2>👑 مدیریت</h2>
+
+<h2>
+👑 مدیریت
+</h2>
+
 
 <p>
+
 ورود مدیران سایت
+
 </p>
+
 
 
 <a href="admin-login.html">
 
 <button>
+
 ورود ادمین
+
 </button>
 
 </a>
@@ -248,7 +458,10 @@ color:#aaa;
 
 
 
+
+
 </div>
+
 
 
 
@@ -261,6 +474,8 @@ color:#aaa;
 
 
 
+
 </body>
 
 </html>
+
