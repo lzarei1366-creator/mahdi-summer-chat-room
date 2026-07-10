@@ -2,131 +2,295 @@
 <html lang="fa" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>چت روم</title>
 
+
 <style>
 
-body{
-margin:0;
-background:#050505;
-color:white;
-font-family:tahoma;
+*{
+box-sizing:border-box;
 }
+
+
+body{
+
+margin:0;
+
+font-family:tahoma;
+
+color:white;
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+
+url("horror-bg.png");
+
+background-size:cover;
+
+background-position:center;
+
+background-attachment:fixed;
+
+min-height:100vh;
+
+}
+
+
+
 
 .header{
-background:#063b2b;
+
+background:rgba(0,0,0,.55);
+
+backdrop-filter:blur(10px);
+
 padding:15px;
+
 text-align:center;
+
+border-bottom:1px solid rgba(255,255,255,.1);
+
 }
+
+
+
+.header h2{
+
+margin:5px;
+
+font-size:28px;
+
+}
+
+
+
+#welcome{
+
+color:#00ff99;
+
+}
+
+
+
+
 
 .chat{
+
 height:65vh;
+
 overflow:auto;
+
 padding:20px;
+
 }
+
+
+
+
 
 .message{
-background:#151515;
+
+background:rgba(20,20,20,.75);
+
+backdrop-filter:blur(8px);
+
 padding:15px;
-margin:10px;
-border-radius:15px;
-box-shadow:0 0 10px #009b62;
+
+margin:15px 0;
+
+border-radius:20px;
+
+box-shadow:
+
+0 0 15px rgba(0,255,150,.35);
+
+border:1px solid rgba(255,255,255,.1);
+
 }
+
+
 
 .name{
+
 color:#00ff99;
+
 font-weight:bold;
+
+font-size:17px;
+
+margin-bottom:10px;
+
 }
+
+
+
+.text{
+
+font-size:16px;
+
+line-height:1.8;
+
+}
+
+
+
+
 
 .input{
+
 display:flex;
+
 padding:15px;
+
+gap:10px;
+
+background:rgba(0,0,0,.5);
+
 }
+
+
 
 input{
+
 flex:1;
+
 padding:15px;
-border-radius:10px;
+
+border-radius:15px;
+
 border:0;
+
+outline:none;
+
+font-size:16px;
+
 }
+
+
 
 button{
-margin-right:10px;
+
 background:#009b62;
+
 color:white;
+
 border:0;
+
 padding:15px 25px;
-border-radius:10px;
+
+border-radius:15px;
+
 cursor:pointer;
+
 }
 
+
+
 .logout{
+
 background:#b30000;
+
 }
+
+
 
 </style>
 
+
 </head>
+
+
 
 
 <body>
 
 
+
 <div class="header">
 
-<h2>💬 چت‌روم</h2>
+
+<h2>
+👻 💬 چت‌روم ترسناک
+</h2>
+
 
 <p id="welcome"></p>
 
+
+
 <button class="logout" id="logout">
+
 خروج
+
 </button>
 
+
 </div>
+
+
+
 
 
 <div id="chat" class="chat"></div>
 
 
+
+
+
 <div class="input">
 
-<input id="message" placeholder="پیام بنویسید">
+
+<input 
+id="message"
+placeholder="پیام بنویسید...">
+
 
 <button id="send">
+
 ارسال
+
 </button>
+
 
 </div>
 
 
 
+
+
+
+
 <script type="module">
 
+
 import { createClient }
+
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 
-const supabaseUrl =
-"https://ezrvqpnxswpzaygbjeio.supabase.co";
 
+const supabase=createClient(
 
-const supabaseKey =
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs";
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
 
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
 
-const supabase =
-createClient(
-supabaseUrl,
-supabaseKey
 );
 
 
 
-const username =
+
+const username=
 localStorage.getItem("user");
+
 
 
 
@@ -140,13 +304,19 @@ window.location.href="login.html";
 
 
 
-document.getElementById("welcome").innerHTML =
-"خوش آمدی " + username;
+
+
+document.getElementById("welcome").innerHTML=
+
+"خوش آمدی 👤 "+username;
 
 
 
-const chat =
-document.getElementById("chat");
+
+
+const chat=document.getElementById("chat");
+
+
 
 
 
@@ -176,26 +346,36 @@ return;
 chat.innerHTML="";
 
 
+
 data.forEach(m=>{
 
 
-chat.innerHTML += `
+chat.innerHTML+=`
 
 <div class="message">
 
 <div class="name">
+
 👤 ${m.username}
+
 </div>
 
-<br>
+
+<div class="text">
 
 ${m.message}
 
 </div>
 
+
+</div>
+
 `;
 
+
+
 });
+
 
 
 chat.scrollTop=chat.scrollHeight;
@@ -229,27 +409,9 @@ table:"messages"
 
 },
 
-(payload)=>{
+()=>{
 
-
-const m=payload.new;
-
-
-chat.innerHTML += `
-
-<div class="message">
-
-<div class="name">
-👤 ${m.username}
-</div>
-
-<br>
-
-${m.message}
-
-</div>
-
-`;
+loadMessages();
 
 }
 
@@ -262,22 +424,27 @@ ${m.message}
 
 
 
-document.getElementById("send").onclick =
-async()=>{
+
+document.getElementById("send").onclick=async()=>{
 
 
-let text =
-document.getElementById("message").value.trim();
+const text=
+
+document.getElementById("message")
+
+.value.trim();
 
 
 
-if(text===""){
 
-alert("پیام خالی است");
+
+if(!text){
 
 return;
 
 }
+
+
 
 
 
@@ -295,6 +462,8 @@ message:text
 
 
 
+
+
 if(error){
 
 alert(error.message);
@@ -308,7 +477,9 @@ document.getElementById("message").value="";
 }
 
 
+
 };
+
 
 
 
@@ -326,9 +497,11 @@ window.location.href="login.html";
 };
 
 
+
 </script>
 
 
 </body>
 
 </html>
+
