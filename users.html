@@ -8,65 +8,213 @@
 
 <title>مدیریت کاربران</title>
 
+
 <style>
 
-body{
-background:#080808;
-color:white;
-font-family:tahoma;
-padding:30px;
+*{
+box-sizing:border-box;
 }
+
+
+body{
+
+margin:0;
+
+min-height:100vh;
+
+font-family:tahoma;
+
+color:white;
+
+
+background:
+
+linear-gradient(
+rgba(0,0,0,.7),
+rgba(0,0,0,.9)
+),
+
+url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
+
+
+background-size:cover;
+
+background-position:center;
+
+background-attachment:fixed;
+
+padding:25px;
+
+}
+
+
 
 h1{
+
 text-align:center;
-}
 
-.box{
-
-background:#151515;
-padding:20px;
-margin:15px auto;
-max-width:500px;
-border-radius:15px;
-box-shadow:0 0 15px #009b62;
+margin-bottom:30px;
 
 }
+
+
+
+
+.users{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:20px;
+
+}
+
+
+
+
+.card{
+
+
+width:300px;
+
+
+
+background:
+
+rgba(255,255,255,.12);
+
+
+
+backdrop-filter:blur(15px);
+
+
+
+padding:25px;
+
+
+
+border-radius:25px;
+
+
+
+border:1px solid rgba(255,255,255,.2);
+
+
+
+box-shadow:
+
+0 0 25px rgba(0,255,150,.3);
+
+
+
+text-align:center;
+
+
+
+}
+
+
+
+
+.card h2{
+
+color:#00ff99;
+
+}
+
+
+
 
 button{
 
-color:white;
+
+width:100%;
+
+
+
+padding:12px;
+
+
+
+margin-top:10px;
+
+
+
 border:0;
-padding:10px;
-border-radius:8px;
-margin:5px;
+
+
+
+border-radius:12px;
+
+
+
 cursor:pointer;
 
+
+
+color:white;
+
+
+
+font-size:16px;
+
+
+
 }
 
-.delete{
-background:#b30000;
-}
+
 
 .block{
+
 background:#996600;
+
 }
 
+
+
 .active{
+
 background:#009b62;
+
 }
+
+
+
+.delete{
+
+background:#b30000;
+
+}
+
+
+
 
 </style>
 
 </head>
 
 
+
 <body>
 
 
-<h1>👥 مدیریت کاربران</h1>
+
+<h1>
+
+👥 مدیریت کاربران
+
+</h1>
 
 
-<div id="users"></div>
+
+<div id="users" class="users"></div>
+
+
+
+
 
 
 
@@ -81,20 +229,23 @@ from "https://esm.sh/@supabase/supabase-js@2";
 
 
 
-const supabase = createClient(
+const supabase=createClient(
+
 
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
+
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZXIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
+
 
 );
 
 
 
 
-const box =
-document.getElementById("users");
 
+
+const box=document.getElementById("users");
 
 
 
@@ -138,32 +289,41 @@ data.forEach(user=>{
 
 
 
-box.innerHTML += `
+box.innerHTML+=`
 
 
-<div class="box">
+<div class="card">
 
 
-<h3>
+<h2>
+
 👤 ${user.name}
-</h3>
+
+</h2>
+
 
 
 <p>
-یوزرنیم: ${user.username}
+
+نام کاربری: ${user.username}
+
 </p>
 
 
+
 <p>
+
 وضعیت: ${user.status}
+
 </p>
+
 
 
 
 
 <button class="block"
 
-onclick="changeStatus('${user.id}','blocked')">
+onclick="changeStatus(${user.id},'blocked')">
 
 🚫 مسدود کردن
 
@@ -173,9 +333,10 @@ onclick="changeStatus('${user.id}','blocked')">
 
 
 
+
 <button class="active"
 
-onclick="changeStatus('${user.id}','active')">
+onclick="changeStatus(${user.id},'active')">
 
 ✅ فعال کردن
 
@@ -185,9 +346,10 @@ onclick="changeStatus('${user.id}','active')">
 
 
 
+
 <button class="delete"
 
-onclick="removeUser('${user.id}')">
+onclick="deleteUser(${user.id})">
 
 🗑 حذف کاربر
 
@@ -196,7 +358,6 @@ onclick="removeUser('${user.id}')">
 
 
 </div>
-
 
 
 `;
@@ -216,11 +377,10 @@ onclick="removeUser('${user.id}')">
 
 
 
-window.changeStatus = async(id,status)=>{
+window.changeStatus=async(id,status)=>{
 
 
-
-const {error}=await supabase
+await supabase
 
 .from("users")
 
@@ -234,23 +394,7 @@ status:status
 
 
 
-
-
-if(error){
-
-alert(error.message);
-
-return;
-
-}
-
-
-
-
-alert("وضعیت تغییر کرد");
-
 loadUsers();
-
 
 
 };
@@ -263,21 +407,18 @@ loadUsers();
 
 
 
-window.removeUser = async(id)=>{
+window.deleteUser=async(id)=>{
 
 
-
-if(!confirm("کاربر حذف شود؟")){
+if(!confirm("کاربر حذف شود؟"))
 
 return;
 
-}
 
 
 
 
-
-const {error}=await supabase
+await supabase
 
 .from("users")
 
@@ -287,23 +428,6 @@ const {error}=await supabase
 
 
 
-
-
-
-if(error){
-
-alert(error.message);
-
-return;
-
-}
-
-
-
-
-alert("کاربر حذف شد");
-
-
 loadUsers();
 
 
@@ -320,8 +444,8 @@ loadUsers();
 
 
 
-</script>
 
+</script>
 
 
 </body>
