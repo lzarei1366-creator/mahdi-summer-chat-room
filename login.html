@@ -8,13 +8,11 @@
 
 <title>ورود کاربران</title>
 
-
 <style>
 
 *{
 box-sizing:border-box;
 }
-
 
 body{
 
@@ -32,7 +30,6 @@ justify-content:center;
 
 align-items:center;
 
-
 background:
 
 linear-gradient(
@@ -42,15 +39,11 @@ rgba(0,0,0,.9)
 
 url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
 
-
 background-size:cover;
 
 background-position:center;
 
 }
-
-
-
 
 .box{
 
@@ -58,60 +51,37 @@ width:380px;
 
 padding:35px;
 
-
 background:
-
 rgba(255,255,255,.12);
-
 
 backdrop-filter:blur(15px);
 
-
 border-radius:30px;
-
 
 border:1px solid rgba(255,255,255,.25);
 
-
 box-shadow:
-
 0 0 40px rgba(0,255,150,.4);
 
-
 text-align:center;
-
 
 animation:show .8s;
 
 }
 
-
-
-
-
 @keyframes show{
 
 from{
-
 opacity:0;
-
 transform:translateY(40px);
-
 }
 
 to{
-
 opacity:1;
-
 transform:translateY(0);
-
 }
 
 }
-
-
-
-
 
 .logo{
 
@@ -126,16 +96,11 @@ border-radius:50%;
 border:3px solid white;
 
 box-shadow:
-
 0 0 30px #00ff99;
 
 margin-bottom:20px;
 
 }
-
-
-
-
 
 h2{
 
@@ -145,9 +110,6 @@ margin-bottom:25px;
 
 }
 
-
-
-
 input{
 
 width:100%;
@@ -156,70 +118,47 @@ padding:15px;
 
 margin:10px 0;
 
-
 border-radius:15px;
-
 
 border:0;
 
-
 outline:none;
-
 
 font-size:16px;
 
 }
 
-
-
-
 button{
 
 width:100%;
 
-
 padding:15px;
-
 
 margin-top:15px;
 
-
 border:0;
-
 
 border-radius:15px;
 
-
-
 background:
-
 linear-gradient(
 90deg,
 #009b62,
 #00e899
 );
 
-
-
 color:white;
-
 
 font-size:18px;
 
-
 cursor:pointer;
 
-
 box-shadow:
-
 0 0 20px rgba(0,255,150,.5);
-
 
 transition:.3s;
 
 }
-
-
 
 button:hover{
 
@@ -227,180 +166,92 @@ transform:scale(1.05);
 
 }
 
-
-
 </style>
 
 </head>
 
-
 <body>
-
-
 
 <div class="box">
 
+<img src="1780787289090%20(1).jpg" class="logo">
 
+<h2>👤 ورود کاربران</h2>
 
-<img 
-src="1780787289090%20(1).jpg" 
-class="logo">
+<input id="username" placeholder="نام کاربری">
 
+<input id="password" type="password" placeholder="رمز عبور">
 
-
-<h2>
-👤 ورود کاربران
-</h2>
-
-
-
-<input 
-id="username" 
-placeholder="نام کاربری">
-
-
-
-<input 
-id="password" 
-type="password" 
-placeholder="رمز عبور">
-
-
-
-<button id="login">
-
-ورود
-
-</button>
-
-
+<button id="login">ورود</button>
 
 </div>
 
-
-
-
-
-
 <script type="module">
 
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-import { createClient }
-
-from "https://esm.sh/@supabase/supabase-js@2";
-
-
-
-const supabase=createClient(
-
-"https://ezrvqpnxswpzaygbjeio.supabase.co",
-
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXgskuUYRlfZ8w8OQIs"
-
+const supabase = createClient(
+  "https://ezrvqpnxswpzaygbjeio.supabase.co",
+  "YOUR_SUPABASE_ANON_KEY"
 );
 
+document.getElementById("login").addEventListener("click", async () => {
 
+  const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim();
 
+  if (!username || !password) {
+    alert("نام کاربری و رمز عبور را وارد کنید");
+    return;
+  }
 
+  try {
 
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("username", username)
+      .maybeSingle();
 
-document.getElementById("login").onclick = async()=>{
+    console.log("User:", data);
+    console.log("Error:", error);
 
+    if (error) {
+      alert("خطای پایگاه داده:\n" + error.message);
+      return;
+    }
 
-const username = document
-.getElementById("username")
-.value
-.trim();
+    if (!data) {
+      alert("نام کاربری پیدا نشد");
+      return;
+    }
 
+    if (data.password !== password) {
+      alert("رمز عبور اشتباه است");
+      return;
+    }
 
+    if (data.status === "blocked") {
+      alert("حساب شما توسط مدیر مسدود شده است");
+      return;
+    }
 
-const password = document
-.getElementById("password")
-.value
-.trim();
+    localStorage.setItem("user", data.username);
+    localStorage.setItem("name", data.name);
 
+    window.location.href = "chat.html";
 
+  } catch (err) {
 
+    console.error(err);
+    alert("خطای غیرمنتظره:\n" + err.message);
 
+  }
 
-if(!username || !password){
-
-alert("نام کاربری و رمز عبور را وارد کنید");
-
-return;
-
-}
-
-
-
-
-
-const {data,error}=await supabase
-
-.from("users")
-
-.select("*")
-
-.eq("username",username)
-
-.eq("password",password)
-
-.single();
-
-
-
-
-
-if(error || !data){
-
-alert("نام کاربری یا رمز عبور اشتباه است");
-
-return;
-
-}
-
-
-
-
-
-if(data.status==="blocked"){
-
-alert("حساب شما مسدود شده است");
-
-return;
-
-}
-
-
-
-
-
-localStorage.setItem(
-"user",
-data.username
-);
-
-
-
-localStorage.setItem(
-"name",
-data.name
-);
-
-
-
-window.location.href="chat.html";
-
-
-
-};
-
-
+});
 
 </script>
 
-
-
 </body>
-
 </html>
+
