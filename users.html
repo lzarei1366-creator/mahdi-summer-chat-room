@@ -8,264 +8,115 @@
 
 <title>مدیریت کاربران</title>
 
-
 <style>
 
-*{
+{
 box-sizing:border-box;
 }
 
-
 body{
-
 margin:0;
-
-min-height:100vh;
-
-font-family:tahoma;
-
-color:white;
-
-
-background:
-
-linear-gradient(
-rgba(0,0,0,.7),
-rgba(0,0,0,.9)
-),
-
-url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
-
-
-background-size:cover;
-
-background-position:center;
-
-background-attachment:fixed;
-
 padding:25px;
-
+font-family:tahoma;
+color:white;
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.9)),
+url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
 }
-
-
 
 h1{
-
 text-align:center;
-
 margin-bottom:30px;
-
 }
-
-
-
 
 .users{
-
 display:flex;
-
 flex-wrap:wrap;
-
 justify-content:center;
-
 gap:20px;
-
 }
-
-
-
 
 .card{
-
-
 width:300px;
-
-
-
-background:
-
-rgba(255,255,255,.12);
-
-
-
+background:rgba(255,255,255,.12);
 backdrop-filter:blur(15px);
-
-
-
 padding:25px;
-
-
-
 border-radius:25px;
-
-
-
 border:1px solid rgba(255,255,255,.2);
-
-
-
-box-shadow:
-
-0 0 25px rgba(0,255,150,.3);
-
-
-
+box-shadow:0 0 25px rgba(0,255,150,.3);
 text-align:center;
-
-
-
 }
-
-
-
 
 .card h2{
-
 color:#00ff99;
-
 }
 
-
-
+.card p{
+line-height:2;
+}
 
 button{
-
-
 width:100%;
-
-
-
 padding:12px;
-
-
-
 margin-top:10px;
-
-
-
 border:0;
-
-
-
 border-radius:12px;
-
-
-
 cursor:pointer;
-
-
-
-color:white;
-
-
-
 font-size:16px;
-
-
-
+color:white;
 }
-
-
 
 .block{
-
 background:#996600;
-
 }
-
-
 
 .active{
-
 background:#009b62;
-
 }
-
-
 
 .delete{
-
 background:#b30000;
-
 }
-
-
-
 
 </style>
 
 </head>
 
-
-
 <body>
 
-
-
-<h1>
-
-👥 مدیریت کاربران
-
-</h1>
-
-
+<h1>👥 مدیریت کاربران</h1>
 
 <div id="users" class="users"></div>
 
-
-
-
-
-
-
-
 <script type="module">
-
 
 import { createClient }
 
 from "https://esm.sh/@supabase/supabase-js@2";
 
-
-
-
 const supabase=createClient(
-
 
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 
-
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZXIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
-
+"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
 
 );
 
-
-
-
-
-
 const box=document.getElementById("users");
 
-
-
-
-
 async function loadUsers(){
-
-
 
 const {data,error}=await supabase
 
 .from("users")
 
-.select("*")
+.select("")
 
 .order("id");
-
-
-
-
 
 if(error){
 
@@ -275,51 +126,32 @@ return;
 
 }
 
-
-
-
-
 box.innerHTML="";
-
-
-
-
 
 data.forEach(user=>{
 
-
-
-box.innerHTML+=`
-
+box.innerHTML += `
 
 <div class="card">
 
-
 <h2>
-
 👤 ${user.name}
-
 </h2>
 
-
-
 <p>
 
-نام کاربری: ${user.username}
+نام کاربری:
+<br>
+${user.username}
 
 </p>
 
-
-
 <p>
 
-وضعیت: ${user.status}
+وضعیت:
+<b>${user.status}</b>
 
 </p>
-
-
-
-
 
 <button class="block"
 
@@ -329,11 +161,6 @@ onclick="changeStatus(${user.id},'blocked')">
 
 </button>
 
-
-
-
-
-
 <button class="active"
 
 onclick="changeStatus(${user.id},'active')">
@@ -342,45 +169,25 @@ onclick="changeStatus(${user.id},'active')">
 
 </button>
 
-
-
-
-
-
 <button class="delete"
 
 onclick="deleteUser(${user.id})">
 
-🗑 حذف کاربر
+🗑️ حذف کاربر
 
 </button>
 
-
-
 </div>
-
 
 `;
 
-
-
 });
-
-
 
 }
 
+window.changeStatus = async(id,status)=>{
 
-
-
-
-
-
-
-window.changeStatus=async(id,status)=>{
-
-
-await supabase
+const {error}=await supabase
 
 .from("users")
 
@@ -392,33 +199,27 @@ status:status
 
 .eq("id",id);
 
+if(error){
 
-
-loadUsers();
-
-
-};
-
-
-
-
-
-
-
-
-
-window.deleteUser=async(id)=>{
-
-
-if(!confirm("کاربر حذف شود؟"))
+alert(error.message);
 
 return;
 
+}
 
+loadUsers();
 
+};
 
+window.deleteUser = async(id)=>{
 
-await supabase
+if(!confirm("آیا از حذف این کاربر مطمئن هستید؟")){
+
+return;
+
+}
+
+const {error}=await supabase
 
 .from("users")
 
@@ -426,27 +227,21 @@ await supabase
 
 .eq("id",id);
 
+if(error){
 
+alert(error.message);
+
+return;
+
+}
 
 loadUsers();
-
-
 
 };
 
-
-
-
-
-
-
 loadUsers();
 
-
-
-
 </script>
-
 
 </body>
 
