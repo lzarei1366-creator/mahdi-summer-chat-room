@@ -45,6 +45,66 @@ footer{text-align:center;padding:25px;color:#ccc}
 <footer>کلاس‌های تابستانی مسجد المهدی (عج)</footer>
 
 <!-- اسکریپت Supabase نسخه فعلی خودت را اینجا قرار بده -->
+<script type="module">
 
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const supabase = createClient(
+  "https://ezrvqpnxswpzaygbjeio.supabase.co",
+  "sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246"
+);
+
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabaseUrl = "آدرس پروژه Supabase";
+const supabaseKey = "کلید Publishable";
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+
+// بارگذاری اطلاعیه‌ها
+
+const box = document.getElementById("notices");
+
+async function loadNotices() {
+
+  const { data, error } = await supabase
+    .from("notices")
+    .select("*")
+    .order("id", { ascending: false })
+    .limit(5);
+
+  if (error) {
+    box.innerHTML = "خطا در دریافت اطلاعیه‌ها";
+    console.log(error);
+    return;
+  }
+
+  box.innerHTML = "";
+
+  if (!data || data.length === 0) {
+    box.innerHTML = "اطلاعیه‌ای وجود ندارد";
+    return;
+  }
+
+  data.forEach(n => {
+    box.innerHTML += `
+      <p>
+        <b>📌 ${n.title}</b><br><br>
+        ${n.content}
+      </p>
+      <hr>
+    `;
+  });
+
+}
+
+loadNotices();
+
+</script>
+
+</script>
 </body>
 </html>
