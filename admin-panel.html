@@ -1,400 +1,156 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>پنل مدیریت</title>
-
 
 <style>
 
 body{
-
 background:#080808;
-
 color:white;
-
 font-family:tahoma;
-
 padding:30px;
-
 }
-
-
 
 h1,h3{
-
 text-align:center;
-
 }
-
-
 
 .menu{
-
 display:flex;
-
 flex-wrap:wrap;
-
 justify-content:center;
-
 gap:20px;
-
 }
-
-
 
 .card{
-
 background:#151515;
-
 width:250px;
-
 padding:25px;
-
 border-radius:20px;
-
 text-align:center;
-
 box-shadow:0 0 20px #009b62;
-
 transition:.3s;
-
 }
-
-
 
 .card:hover{
-
 transform:translateY(-8px);
-
 box-shadow:0 0 35px #00ff99;
-
 }
-
-
 
 button{
-
 background:#009b62;
-
 color:white;
-
 border:0;
-
 padding:12px;
-
 width:100%;
-
 border-radius:10px;
-
 cursor:pointer;
-
 font-size:16px;
-
 }
-
-
 
 a{
-
 text-decoration:none;
-
 }
-
-
 
 .logout{
-
 background:#b30000;
-
 width:250px;
-
 }
-
-
 
 </style>
 
 </head>
 
-
 <body>
 
-
-
-<h1>
-👑 پنل مدیریت
-</h1>
-
-
+<h1>👑 پنل مدیریت</h1>
 
 <h3 id="role"></h3>
 
-
-
-
-
 <div class="menu">
-  
-  <div class="card">
 
+<div class="card">
 <h2>👑 مدیریت ادمین‌ها</h2>
-
 <p>افزودن و مدیریت مدیران سایت</p>
-
 <a href="admins.html">
-
-<button>
-ورود
-</button>
-
+<button>ورود</button>
 </a>
-
 </div>
 
 <div class="card">
-
 <h2>⚙️ تنظیمات سایت</h2>
-
 <p>مدیریت اطلاعات سایت</p>
-
 <a href="settings-admin.html">
-
-<button>
-ورود
-</button>
-
+<button>ورود</button>
 </a>
-
 </div>
-
-<p>
-مدیریت اطلاعات سایت
-</p>
-
-<a href="settings-admin.html">
-
-<button>
-ورود
-</button>
-
-</a>
-
-</div>
-
-
-
-
 
 <div class="card">
-
-<h2>
-👥 کاربران
-</h2>
-
-
-<p>
-مدیریت کاربران
-</p>
-
-
+<h2>👥 کاربران</h2>
+<p>مدیریت کاربران</p>
 <a href="users.html">
-
-<button>
-
-ورود
-
-</button>
-
+<button>ورود</button>
 </a>
-
-
 </div>
 
-
-
-
-
-
-
-
 <div class="card">
-
-<h2>
-➕ افزودن کاربر
-</h2>
-
-
-<p>
-ساخت حساب جدید
-</p>
-
-
+<h2>➕ افزودن کاربر</h2>
+<p>ساخت حساب جدید</p>
 <a href="add-user.html">
-
-<button>
-
-افزودن
-
-</button>
-
+<button>افزودن</button>
 </a>
-
-
 </div>
 
-
-
-
-
-
-
-
 <div class="card">
-
-<h2>
-💬 چت
-</h2>
-
-
-<p>
-مدیریت پیام‌ها
-</p>
-
-
+<h2>💬 چت</h2>
+<p>مدیریت پیام‌ها</p>
 <a href="chat-admin.html">
-
-<button>
-
-ورود
-
-</button>
-
+<button>ورود</button>
 </a>
-
-
 </div>
-
-
-
-
-
-
-
 
 <div class="card">
-
-<h2>
-📢 اطلاعیه‌ها
-</h2>
-
-
-<p>
-مدیریت اخبار و پیام‌ها
-</p>
-
-
+<h2>📢 اطلاعیه‌ها</h2>
+<p>مدیریت اخبار و پیام‌ها</p>
 <a href="notices-admin.html">
-
-<button>
-
-ورود
-
-</button>
-
+<button>ورود</button>
 </a>
-
-
 </div>
 
-
-
-
-
-
 </div>
-
-
-
-
 
 <br><br>
 
-
-
 <center>
-
 <button class="logout" id="logout">
-
 خروج از مدیریت
-
 </button>
-
 </center>
-
-
-
-
-
 
 <script>
 
-
-const admin =
-localStorage.getItem("admin");
-
-
-const role =
-localStorage.getItem("role");
-
-
-
+const admin = localStorage.getItem("admin");
+const role = localStorage.getItem("role");
 
 if(!admin){
-
-window.location.href="admin-login.html";
-
+    window.location.href="admin-login.html";
 }
 
-
-
-
-
-document.getElementById("role").innerHTML=
-
-"ادمین: "+admin+
-" | سطح دسترسی: "+
+document.getElementById("role").innerHTML =
+"ادمین: " + admin +
+" | سطح دسترسی: " +
 (role || "admin");
 
-
-
-
-
-
-document.getElementById("logout").onclick=()=>{
-
-
-localStorage.removeItem("admin");
-
-localStorage.removeItem("role");
-
-
-window.location.href="admin-login.html";
-
-
+document.getElementById("logout").onclick = () => {
+    localStorage.removeItem("admin");
+    localStorage.removeItem("role");
+    window.location.href="admin-login.html";
 };
-
-
 
 </script>
 
-
-
-
 </body>
-
 </html>
