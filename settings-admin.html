@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تنظیمات سایت</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+font-family:tahoma;
+}
+
+body{
+
+margin:0;
+background:#080808;
+color:white;
+padding:30px;
+
+}
+
+
+.box{
+
+max-width:500px;
+margin:auto;
+background:#151515;
+padding:30px;
+border-radius:25px;
+box-shadow:0 0 25px #009b62;
+
+}
+
+
+h1{
+
+text-align:center;
+
+}
+
+
+input,textarea{
+
+width:100%;
+padding:14px;
+margin:10px 0;
+border-radius:12px;
+border:0;
+font-size:16px;
+
+}
+
+
+textarea{
+
+height:130px;
+
+}
+
+
+button{
+
+width:100%;
+padding:15px;
+border:0;
+border-radius:12px;
+background:#009b62;
+color:white;
+font-size:18px;
+cursor:pointer;
+
+}
+
+
+.back{
+
+margin-top:15px;
+background:#444;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+
+<h1>
+⚙️ تنظیمات سایت
+</h1>
+
+
+<input id="title" placeholder="عنوان سایت">
+
+
+<input id="phone" placeholder="شماره تماس">
+
+
+<input id="address" placeholder="آدرس">
+
+
+<textarea id="about" placeholder="درباره سایت"></textarea>
+
+
+<button onclick="saveSettings()">
+
+💾 ذخیره تنظیمات
+
+</button>
+
+
+<button class="back" onclick="history.back()">
+
+↩ بازگشت
+
+</button>
+
+
+</div>
+
+
+
+
+<script type="module">
+
+
+import { createClient }
+
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+
+
+const supabase = createClient(
+
+"https://ezrvqpnxswpzaygbjeio.supabase.co",
+
+"sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246"
+
+);
+
+
+
+
+// دریافت تنظیمات قبلی
+
+
+async function loadSettings(){
+
+
+const {data,error}=await supabase
+
+.from("settings")
+
+.select("*")
+
+.eq("id",1)
+
+.single();
+
+
+
+if(data){
+
+title.value=data.title || "";
+
+phone.value=data.phone || "";
+
+address.value=data.address || "";
+
+about.value=data.about || "";
+
+}
+
+
+}
+
+
+
+window.saveSettings=async function(){
+
+
+const {error}=await supabase
+
+.from("settings")
+
+.upsert({
+
+id:1,
+
+title:title.value,
+
+phone:phone.value,
+
+address:address.value,
+
+about:about.value
+
+});
+
+
+
+if(error){
+
+alert("خطا در ذخیره تنظیمات");
+
+console.log(error);
+
+return;
+
+}
+
+
+alert("تنظیمات ذخیره شد ✅");
+
+
+}
+
+
+
+loadSettings();
+
+
+
+</script>
+
+
+</body>
+
+</html>
