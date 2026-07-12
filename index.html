@@ -11,7 +11,7 @@
 <style>
 
 *{
-box-sizing:border-box
+box-sizing:border-box;
 }
 
 body{
@@ -30,64 +30,28 @@ background-attachment:fixed;
 }
 
 
-body:before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-
-background:
-radial-gradient(circle at 20% 20%,rgba(0,255,170,.12),transparent 35%),
-radial-gradient(circle at 80% 30%,rgba(0,255,120,.10),transparent 35%);
-
-animation:lights 10s infinite alternate;
-}
-
-
-@keyframes lights{
-from{transform:translate(0,0)}
-to{transform:translate(30px,-20px)}
-}
-
-
 header{
-
-min-height:70vh;
+min-height:60vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding:30px;
-
 }
 
 
 .logo{
-
 width:190px;
 height:190px;
 border-radius:50%;
-border:4px solid #fff;
+border:4px solid white;
 box-shadow:0 0 40px #00ff99;
-animation:float 4s ease-in-out infinite;
-
-}
-
-
-@keyframes float{
-
-50%{
-transform:translateY(-12px)
-}
-
 }
 
 
 h1{
-
 text-shadow:0 0 20px #00ff99;
-
 }
 
 
@@ -96,8 +60,8 @@ text-shadow:0 0 20px #00ff99;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:28px;
-padding:20px 30px 60px;
+gap:25px;
+padding:20px 30px 50px;
 
 }
 
@@ -111,11 +75,11 @@ background:rgba(255,255,255,.12);
 
 backdrop-filter:blur(15px);
 
-border:1px solid rgba(255,255,255,.2);
+border-radius:25px;
 
-border-radius:26px;
+padding:25px;
 
-padding:30px;
+text-align:center;
 
 box-shadow:0 0 25px rgba(0,255,150,.25);
 
@@ -135,7 +99,7 @@ border-radius:14px;
 
 background:linear-gradient(90deg,#009b62,#00e899);
 
-color:#fff;
+color:white;
 
 font-size:18px;
 
@@ -145,20 +109,18 @@ cursor:pointer;
 
 
 a{
-text-decoration:none
+text-decoration:none;
 }
+
 
 
 footer{
 
 text-align:center;
-
 padding:25px;
-
 color:#ccc;
 
 }
-
 
 </style>
 
@@ -187,7 +149,9 @@ color:#ccc;
 
 
 
+
 <div class="container">
+
 
 
 <div class="card">
@@ -199,6 +163,7 @@ color:#ccc;
 </div>
 
 </div>
+
 
 
 
@@ -218,6 +183,8 @@ color:#ccc;
 
 
 
+
+
 <div class="card">
 
 <h2>💬 چت‌روم</h2>
@@ -234,34 +201,44 @@ color:#ccc;
 
 
 
+
+
 <div class="card">
 
 <h2>👑 مدیریت</h2>
 
-<a href="admin.html">
-<button>ورود ادمین</button>
+<p>
+ورود مدیر سایت
+</p>
+
+<a href="admin-login.html">
+
+<button>
+ورود ادمین
+</button>
+
 </a>
 
 </div>
 
 
+
 </div>
+
+
 
 
 
 <footer>
 
-<p id="contact">
-
-</p>
-
+<p id="contact"></p>
 
 <p>
 کلاس‌های تابستانی مسجد المهدی (عج)
 </p>
 
-
 </footer>
+
 
 
 
@@ -270,7 +247,8 @@ color:#ccc;
 <script type="module">
 
 
-import { createClient } 
+import { createClient }
+
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 
@@ -290,6 +268,7 @@ const supabase = createClient(
 
 
 const box=document.getElementById("notices");
+
 
 
 async function loadNotices(){
@@ -316,9 +295,7 @@ return;
 }
 
 
-
 box.innerHTML="";
-
 
 
 if(!data || data.length===0){
@@ -349,7 +326,6 @@ ${n.content}
 <hr>
 
 `;
-
 
 });
 
@@ -394,10 +370,8 @@ document.getElementById("siteTitle").innerText =
 data.title || "کلاس‌های تابستانی مسجد المهدی (عج)";
 
 
-
 document.getElementById("about").innerText =
 data.about || "";
-
 
 
 document.getElementById("contact").innerHTML =
@@ -416,7 +390,6 @@ document.getElementById("contact").innerHTML =
 loadNotices();
 
 loadSettings();
-
 
 
 </script>
