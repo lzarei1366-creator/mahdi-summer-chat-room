@@ -44,8 +44,14 @@ animation:show .8s;
 }
 
 @keyframes show{
-from{opacity:0;transform:translateY(40px);}
-to{opacity:1;transform:translateY(0);}
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 .logo{
@@ -117,7 +123,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const supabase = createClient(
   "https://ezrvqpnxswpzaygbjeio.supabase.co",
-  "PASTE_YOUR_ANON_KEY_HERE"
+  "sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246"
 );
 
 document.getElementById("login").addEventListener("click", async () => {
@@ -130,39 +136,48 @@ document.getElementById("login").addEventListener("click", async () => {
     return;
   }
 
-  const { data, error } = await supabase
-    .from("users")
-    .select("*")
-    .eq("username", username)
-    .maybeSingle();
+  try {
 
-  console.log("DATA:", data);
-  console.log("ERROR:", error);
+    const { data, error } = await supabase
+      .from("users")
+      .select("*")
+      .eq("username", username)
+      .maybeSingle();
 
-  if (error) {
-    alert(error.message);
-    return;
+    console.log("DATA:", data);
+    console.log("ERROR:", error);
+
+    if (error) {
+      alert("خطای پایگاه داده: " + error.message);
+      return;
+    }
+
+    if (!data) {
+      alert("نام کاربری پیدا نشد");
+      return;
+    }
+
+    if (data.password !== password) {
+      alert("رمز عبور اشتباه است");
+      return;
+    }
+
+    if (data.status === "blocked") {
+      alert("حساب شما توسط مدیر مسدود شده است");
+      return;
+    }
+
+    localStorage.setItem("user", data.username);
+    localStorage.setItem("name", data.name);
+
+    window.location.href = "chat.html";
+
+  } catch (err) {
+
+    console.error(err);
+    alert("خطای غیرمنتظره: " + err.message);
+
   }
-
-  if (!data) {
-    alert("نام کاربری پیدا نشد");
-    return;
-  }
-
-  if (data.password !== password) {
-    alert("رمز عبور اشتباه است");
-    return;
-  }
-
-  if (data.status === "blocked") {
-    alert("حساب شما مسدود شده است");
-    return;
-  }
-
-  localStorage.setItem("user", data.username);
-  localStorage.setItem("name", data.name);
-
-  window.location.href = "chat.html";
 
 });
 
@@ -170,3 +185,5 @@ document.getElementById("login").addEventListener("click", async () => {
 
 </body>
 </html>
+
+
