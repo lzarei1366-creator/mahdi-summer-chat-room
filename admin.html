@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>پنل مدیریت سایت</title>
+<title>پنل مدیریت</title>
 
 <style>
 
@@ -17,42 +17,51 @@ font-family:tahoma;
 
 body{
 margin:0;
-background:#f3f3f3;
+background:#f1f3f6;
 }
 
 .header{
+
 background:#1565c0;
 color:white;
-padding:20px;
+padding:25px;
 text-align:center;
+
 }
 
 .container{
+
 padding:20px;
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:20px;
+
 }
 
+
 .card{
+
 background:white;
+border-radius:20px;
 padding:20px;
-border-radius:15px;
-box-shadow:0 3px 10px #ccc;
+box-shadow:0 5px 15px #ccc;
+
 }
+
 
 input,textarea{
 
 width:100%;
 padding:12px;
-margin-top:8px;
+margin:8px 0;
+border-radius:10px;
 border:1px solid #ccc;
-border-radius:8px;
 
 }
 
+
 textarea{
-height:100px;
+height:120px;
 }
 
 
@@ -61,10 +70,10 @@ button{
 background:#1565c0;
 color:white;
 border:0;
-padding:10px 15px;
-border-radius:8px;
+padding:12px;
+border-radius:10px;
 cursor:pointer;
-margin-top:10px;
+width:100%;
 
 }
 
@@ -72,11 +81,13 @@ margin-top:10px;
 .notice{
 
 background:#eee;
-padding:10px;
-border-radius:10px;
+padding:15px;
+border-radius:12px;
 margin-top:10px;
 
 }
+
+
 
 </style>
 
@@ -88,9 +99,9 @@ margin-top:10px;
 
 <div class="header">
 
-<h1>⚙️ پنل مدیریت</h1>
+<h1>👑 پنل مدیریت</h1>
 
-<p>کلاس‌های مسجد المهدی (عج)</p>
+<p>کلاس‌های تابستانی مسجد المهدی (عج)</p>
 
 </div>
 
@@ -104,11 +115,10 @@ margin-top:10px;
 
 <h2>📊 داشبورد</h2>
 
-<p>مدیریت سایت</p>
-
-<p>وضعیت: فعال ✅</p>
+<p>وضعیت سایت: فعال ✅</p>
 
 </div>
+
 
 
 
@@ -142,6 +152,7 @@ margin-top:10px;
 
 
 
+
 <div class="card">
 
 <h2>⚙️ تنظیمات سایت</h2>
@@ -164,12 +175,12 @@ margin-top:10px;
 </button>
 
 
-
 </div>
 
 
 
 </div>
+
 
 
 
@@ -183,22 +194,30 @@ from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 
 
-const supabaseUrl="sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246";
+const supabaseUrl =
+"https://ezrvqpnxswpzaygbjeio.supabase.co";
 
-const supabaseKey="https://ezrvqpnxswpzaygbjeio.supabase.co/rest/v1/";
+
+const supabaseKey =
+"sb_publishable_Jr0xXzuVDA9Q9zEFize_dvA_ueYO-246";
 
 
 
 const supabase=createClient(
+
 supabaseUrl,
+
 supabaseKey
+
 );
 
 
 
 
-
+// =================
 // اطلاعیه ها
+// =================
+
 
 
 async function loadNotices(){
@@ -216,22 +235,20 @@ const {data,error}=await supabase
 
 if(error){
 
-noticeList.innerHTML="خطا در دریافت";
+noticeList.innerHTML="خطا در دریافت اطلاعیه‌ها";
 
 return;
 
 }
 
 
-
 noticeList.innerHTML="";
-
 
 
 data.forEach(n=>{
 
 
-noticeList.innerHTML+=`
+noticeList.innerHTML += `
 
 <div class="notice">
 
@@ -252,10 +269,12 @@ noticeList.innerHTML+=`
 `;
 
 
+
 });
 
 
 }
+
 
 
 
@@ -289,7 +308,6 @@ loadNotices();
 
 
 
-
 window.deleteNotice=async function(id){
 
 
@@ -312,16 +330,16 @@ loadNotices();
 
 
 
-
-
+// =================
 // تنظیمات سایت
+// =================
 
 
 
 async function loadSettings(){
 
 
-const {data}=await supabase
+const {data,error}=await supabase
 
 .from("settings")
 
@@ -335,6 +353,7 @@ const {data}=await supabase
 
 if(data){
 
+
 siteTitle.value=data.title || "";
 
 phone.value=data.phone || "";
@@ -343,16 +362,15 @@ address.value=data.address || "";
 
 about.value=data.about || "";
 
-}
-
 
 }
 
+
+}
 
 
 
 window.saveSettings=async function(){
-
 
 
 await supabase
@@ -379,7 +397,6 @@ alert("تنظیمات ذخیره شد ✅");
 
 
 }
-
 
 
 
