@@ -31,16 +31,55 @@ const supabase=createClient(
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 "sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246"
 );
+document.getElementById("save").onclick = async () => {
 
-document.getElementById("save").onclick=async()=>{
- const username=document.getElementById("username").value.trim();
- const password=document.getElementById("password").value.trim();
- const role=document.getElementById("role").value;
- const msg=document.getElementById("msg");
- if(!username||!password){msg.textContent="همه فیلدها را پر کنید";return;}
- const {error}=await supabase.from("admins").insert({username,password,role});
- msg.textContent=error?("خطا: "+error.message):"✅ ادمین با موفقیت اضافه شد.";
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const role = document.getElementById("role").value;
+    const msg = document.getElementById("msg");
+
+    if (!username || !password) {
+        msg.innerHTML = "❌ همه فیلدها را پر کنید";
+        return;
+    }
+
+    // بررسی تکراری نبودن نام کاربری
+    const { data: user } = await supabase
+        .from("admins")
+        .select("id")
+        .eq("username", username)
+        .maybeSingle();
+
+    if (user) {
+        msg.innerHTML = "❌ این نام کاربری قبلاً ثبت شده است.";
+        return;
+    }
+
+    const { error } = await supabase
+        .from("admins")
+        .insert({
+            username,
+            password,
+            role
+        });
+
+    if (error) {
+        msg.innerHTML = "❌ " + error.message;
+        return;
+    }
+
+    msg.innerHTML = "✅ ادمین با موفقیت اضافه شد.";
+
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("role").value = "admin";
+
+    setTimeout(() => {
+        window.location.href = "admin-panel.html";
+    }, 1500);
+
 };
+
 </script>
 </body>
 </html>
