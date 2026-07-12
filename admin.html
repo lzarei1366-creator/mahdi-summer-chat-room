@@ -1,141 +1,256 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>پنل مدیریت</title>
+<title>پنل مدیریت سایت</title>
 
 <style>
+
+*{
+box-sizing:border-box;
+font-family:tahoma;
+}
+
 body{
-    font-family:tahoma;
-    background:#f2f2f2;
-    margin:0;
+margin:0;
+background:#f3f3f3;
 }
 
 .header{
-    background:#1565c0;
-    color:white;
-    padding:20px;
-    text-align:center;
+background:#1565c0;
+color:white;
+padding:20px;
+text-align:center;
 }
 
-.menu{
-    display:flex;
-    gap:15px;
-    padding:20px;
-    flex-wrap:wrap;
+.container{
+padding:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
 }
 
 .card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    flex:1;
-    min-width:200px;
-    box-shadow:0 3px 10px #ccc;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px #ccc;
 }
 
-button{
-    background:#1565c0;
-    color:white;
-    border:0;
-    padding:10px 20px;
-    border-radius:8px;
-    cursor:pointer;
+input,textarea{
+
+width:100%;
+padding:12px;
+margin-top:8px;
+border:1px solid #ccc;
+border-radius:8px;
+
 }
+
+textarea{
+height:100px;
+}
+
+
+button{
+
+background:#1565c0;
+color:white;
+border:0;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+margin-top:10px;
+
+}
+
+
+.notice{
+
+background:#eee;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+
+}
+
 </style>
 
 </head>
 
+
 <body>
 
+
 <div class="header">
-<h1>پنل مدیریت سایت</h1>
+
+<h1>⚙️ پنل مدیریت</h1>
+
 <p>کلاس‌های مسجد المهدی (عج)</p>
+
 </div>
 
 
-<div class="menu">
+
+<div class="container">
+
+
 
 <div class="card">
-<h3>📢 مدیریت اطلاعیه‌ها</h3>
 
-<input id="title" placeholder="عنوان اطلاعیه">
+<h2>📊 داشبورد</h2>
 
-<br><br>
+<p>مدیریت سایت</p>
 
-<textarea id="content" placeholder="متن اطلاعیه"></textarea>
+<p>وضعیت: فعال ✅</p>
 
-<br><br>
+</div>
 
-<button onclick="addNotice()">➕ افزودن اطلاعیه</button>
+
+
+<div class="card">
+
+<h2>📢 مدیریت اطلاعیه‌ها</h2>
+
+
+<input id="noticeTitle" placeholder="عنوان اطلاعیه">
+
+
+<textarea id="noticeContent" placeholder="متن اطلاعیه"></textarea>
+
+
+<button onclick="addNotice()">
+➕ افزودن اطلاعیه
+</button>
+
 
 <hr>
+
 
 <div id="noticeList">
 در حال دریافت...
 </div>
 
+
 </div>
+
+
+
+
+
+<div class="card">
+
+<h2>⚙️ تنظیمات سایت</h2>
+
+
+<input id="siteTitle" placeholder="عنوان سایت">
+
+
+<input id="phone" placeholder="شماره تماس">
+
+
+<input id="address" placeholder="آدرس">
+
+
+<textarea id="about" placeholder="درباره سایت"></textarea>
+
+
+<button onclick="saveSettings()">
+💾 ذخیره تنظیمات
+</button>
+
+
+
+</div>
+
+
+
+</div>
+
+
 
 
 <script type="module">
 
-import { createClient } 
+
+import { createClient }
+
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
 
-const supabaseUrl = "https://ezrvqpnxswpzaygbjeio.supabase.co/rest/v1/";
-const supabaseKey = "sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246";
 
-const supabase = createClient(
+const supabaseUrl="sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246";
+
+const supabaseKey="https://ezrvqpnxswpzaygbjeio.supabase.co/rest/v1/";
+
+
+
+const supabase=createClient(
 supabaseUrl,
 supabaseKey
 );
 
 
-const list = document.getElementById("noticeList");
 
 
-// نمایش اطلاعیه‌ها
+
+// اطلاعیه ها
+
 
 async function loadNotices(){
 
+
 const {data,error}=await supabase
+
 .from("notices")
+
 .select("*")
+
 .order("id",{ascending:false});
 
 
+
 if(error){
-list.innerHTML="خطا در دریافت";
+
+noticeList.innerHTML="خطا در دریافت";
+
 return;
+
 }
 
 
-list.innerHTML="";
+
+noticeList.innerHTML="";
+
 
 
 data.forEach(n=>{
 
-list.innerHTML += `
 
-<div>
+noticeList.innerHTML+=`
 
-<b>${n.title}</b>
+<div class="notice">
+
+<b>📌 ${n.title}</b>
 
 <p>${n.content}</p>
 
+
 <button onclick="deleteNotice(${n.id})">
+
 🗑 حذف
+
 </button>
 
-<hr>
 
 </div>
 
 `;
+
 
 });
 
@@ -143,50 +258,141 @@ list.innerHTML += `
 }
 
 
-window.addNotice = async function(){
 
-let title=document.getElementById("title").value;
-let content=document.getElementById("content").value;
+window.addNotice=async function(){
 
 
 await supabase
+
 .from("notices")
-.insert([
-{
-title:title,
-content:content
-}
-]);
+
+.insert({
+
+title:noticeTitle.value,
+
+content:noticeContent.value
+
+});
 
 
-document.getElementById("title").value="";
-document.getElementById("content").value="";
+
+noticeTitle.value="";
+
+noticeContent.value="";
 
 
 loadNotices();
 
+
 }
 
 
 
-window.deleteNotice = async function(id){
+
+
+window.deleteNotice=async function(id){
+
 
 await supabase
+
 .from("notices")
+
 .delete()
+
 .eq("id",id);
 
 
+
 loadNotices();
+
 
 }
 
 
 
+
+
+
+
+// تنظیمات سایت
+
+
+
+async function loadSettings(){
+
+
+const {data}=await supabase
+
+.from("settings")
+
+.select("*")
+
+.eq("id",1)
+
+.single();
+
+
+
+if(data){
+
+siteTitle.value=data.title || "";
+
+phone.value=data.phone || "";
+
+address.value=data.address || "";
+
+about.value=data.about || "";
+
+}
+
+
+}
+
+
+
+
+window.saveSettings=async function(){
+
+
+
+await supabase
+
+.from("settings")
+
+.upsert({
+
+id:1,
+
+title:siteTitle.value,
+
+phone:phone.value,
+
+address:address.value,
+
+about:about.value
+
+});
+
+
+
+alert("تنظیمات ذخیره شد ✅");
+
+
+}
+
+
+
+
+
 loadNotices();
+
+loadSettings();
+
 
 
 </script>
 
+
 </body>
+
 </html>
