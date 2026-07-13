@@ -1,126 +1,209 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>کلاس‌های تابستانی مسجد المهدی (عج)</title>
+<title>Barayand Shop</title>
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap');
+
 *{
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Vazirmatn',sans-serif;
 }
 
 body{
-margin:0;
-font-family:tahoma;
-color:#fff;
-min-height:100vh;
 
-background:
-linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.9)),
-url("https://images.unsplash.com/photo-1519608487953-e999c86e7455");
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top right,#1d3557,transparent 35%),
+    radial-gradient(circle at bottom left,#b8860b,transparent 30%),
+    #07111f;
 
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+    color:white;
+    overflow-x:hidden;
 }
 
 
+/* ---------- Header ---------- */
+
 header{
-min-height:60vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:30px;
+
+    width:90%;
+    margin:30px auto;
+
+    padding:20px 35px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    border-radius:25px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.3);
+
 }
 
 
 .logo{
-width:190px;
-height:190px;
-border-radius:50%;
-border:4px solid white;
-box-shadow:0 0 40px #00ff99;
+
+    font-size:32px;
+    font-weight:900;
+
+    color:#ffd700;
+
+    letter-spacing:1px;
+
 }
 
 
-h1{
-text-shadow:0 0 20px #00ff99;
+nav a{
+
+    color:white;
+    text-decoration:none;
+
+    margin:0 15px;
+
+    font-size:16px;
+
+    transition:.3s;
+
 }
+
+
+nav a:hover{
+
+    color:#ffd700;
+
+}
+
+
+
+/* ---------- Glass Cards ---------- */
+
+
+.glass{
+
+    background:
+    rgba(255,255,255,.08);
+
+    backdrop-filter:blur(18px);
+
+    border:
+
+    1px solid rgba(255,255,255,.18);
+
+    border-radius:25px;
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.35);
+
+}
+
+
+
+/* ---------- Main ---------- */
 
 
 .container{
 
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:25px;
-padding:20px 30px 50px;
+    width:90%;
+
+    margin:auto;
 
 }
 
 
+.hero{
 
-.card{
+    margin-top:60px;
 
-width:280px;
+    padding:60px;
 
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(15px);
-
-border-radius:25px;
-
-padding:25px;
-
-text-align:center;
-
-box-shadow:0 0 25px rgba(0,255,150,.25);
+    text-align:center;
 
 }
 
+
+.hero h1{
+
+    font-size:50px;
+
+    font-weight:900;
+
+    color:#ffd700;
+
+}
+
+
+.hero p{
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    color:#ddd;
+
+}
+
+
+.gold{
+
+    color:#ffd700;
+
+}
 
 
 button{
 
-width:100%;
+    margin-top:35px;
 
-padding:14px;
+    padding:15px 40px;
 
-border:0;
+    border:none;
 
-border-radius:14px;
+    border-radius:50px;
 
-background:linear-gradient(90deg,#009b62,#00e899);
+    background:
 
-color:white;
+    linear-gradient(45deg,#ffd700,#b8860b);
 
-font-size:18px;
+    color:#111;
 
-cursor:pointer;
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+button:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 10px 30px #b8860b;
 
 }
 
-
-a{
-text-decoration:none;
-}
-
-
-
-footer{
-
-text-align:center;
-padding:25px;
-color:#ccc;
-
-}
 
 </style>
 
@@ -132,110 +215,1232 @@ color:#ccc;
 
 <header>
 
-<img class="logo" src="1780787289090%20(1).jpg">
+<div class="logo">
+Barayand Shop
+</div>
 
 
-<h1 id="siteTitle">
-کلاس‌های تابستانی مسجد المهدی (عج)
-</h1>
+<nav>
 
+<a href="#">خانه</a>
 
-<p id="about">
-به سامانه آنلاین کلاس‌ها و چت‌روم خوش آمدید
-</p>
+<a href="#">محصولات</a>
+
+<a href="#">درباره ما</a>
+
+<a href="#">تماس</a>
+
+</nav>
 
 
 </header>
 
 
 
-
 <div class="container">
 
 
-
-<div class="card">
-
-<h2>📢 اطلاعیه‌ها</h2>
-
-<div id="notices">
-در حال دریافت اطلاعیه‌ها...
-</div>
-
-</div>
+<section class="hero glass">
 
 
+<h1>
+فروشگاه حرفه‌ای تکنولوژی
+</h1>
 
-
-<div class="card">
-
-<h2>🎓 کلاس‌ها</h2>
-
-<a href="classes.html">
-
-<button>
-ورود به کلاس‌ها
-</button>
-
-</a>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<h2>💬 چت‌روم</h2>
-
-<a href="chat.html">
-
-<button>
-ورود به چت
-</button>
-
-</a>
-
-</div>
-
-
-
-
-
-<div class="card">
-
-<h2>👑 مدیریت</h2>
 
 <p>
-ورود مدیر سایت
+تجربه خرید محصولات دیجیتال با طراحی مدرن و لوکس
 </p>
 
-<a href="admin-login.html">
 
 <button>
-ورود ادمین
+مشاهده محصولات
 </button>
 
+
+</section>
+
+
+</div>
+
+<!-- ---------- Products Section ---------- -->
+
+
+<section class="container products">
+
+
+<h2>
+محصولات ویژه
+</h2>
+
+
+
+<div class="cards">
+
+
+
+<div class="product-card glass">
+
+<div class="icon">
+💻
+</div>
+
+<h3>
+لپ‌تاپ و کامپیوتر
+</h3>
+
+<p>
+جدیدترین سیستم‌های حرفه‌ای برای کار و بازی
+</p>
+
+<button>
+مشاهده
+</button>
+
+</div>
+
+
+
+
+<div class="product-card glass">
+
+<div class="icon">
+🎧
+</div>
+
+<h3>
+لوازم جانبی
+</h3>
+
+<p>
+هدفون، موس، کیبورد و تجهیزات گیمینگ
+</p>
+
+<button>
+مشاهده
+</button>
+
+</div>
+
+
+
+
+<div class="product-card glass">
+
+<div class="icon">
+📱
+</div>
+
+<h3>
+محصولات دیجیتال
+</h3>
+
+<p>
+تکنولوژی روز با بهترین کیفیت
+</p>
+
+<button>
+مشاهده
+</button>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<style>
+
+
+.products{
+
+    margin-top:80px;
+
+    padding-bottom:50px;
+
+}
+
+
+
+.products h2{
+
+    text-align:center;
+
+    font-size:40px;
+
+    color:#ffd700;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+}
+
+
+
+.product-card{
+
+    padding:35px;
+
+    text-align:center;
+
+    transition:.4s;
+
+    cursor:pointer;
+
+}
+
+
+
+.product-card:hover{
+
+    transform:translateY(-15px);
+
+    border-color:#ffd700;
+
+}
+
+
+
+.icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+
+
+.product-card h3{
+
+    font-size:25px;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.product-card p{
+
+    color:#ccc;
+
+    line-height:2;
+
+}
+
+
+
+.product-card button{
+
+    padding:12px 30px;
+
+    font-size:15px;
+
+}
+
+
+
+@media(max-width:900px){
+
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+
+.hero h1{
+
+font-size:35px;
+
+}
+
+
+nav{
+
+display:none;
+
+}
+
+
+}
+
+
+
+</style>
+
+<!-- ---------- Banner Section ---------- -->
+
+
+<section class="container banner glass">
+
+
+<div class="banner-text">
+
+
+<h2>
+تخفیف‌های ویژه تکنولوژی
+</h2>
+
+
+<p>
+بهترین محصولات دیجیتال با قیمت‌های رقابتی
+</p>
+
+
+<button>
+خرید فوری
+</button>
+
+
+</div>
+
+
+
+<div class="banner-shape">
+
+⚡
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- ---------- Discount Cards ---------- -->
+
+
+<section class="container discount">
+
+
+<div class="discount-card glass">
+
+<h3>
+ارسال سریع
+</h3>
+
+<p>
+تحویل مطمئن و سریع سفارش‌ها
+</p>
+
+</div>
+
+
+
+
+<div class="discount-card glass">
+
+<h3>
+ضمانت کیفیت
+</h3>
+
+<p>
+محصولات اصل با تضمین کیفیت
+</p>
+
+</div>
+
+
+
+
+<div class="discount-card glass">
+
+<h3>
+پشتیبانی حرفه‌ای
+</h3>
+
+<p>
+همیشه همراه شما هستیم
+</p>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<style>
+
+
+.banner{
+
+    margin-top:80px;
+
+    padding:50px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+
+
+.banner-text h2{
+
+    font-size:38px;
+
+    color:#ffd700;
+
+}
+
+
+
+.banner-text p{
+
+    margin-top:15px;
+
+    color:#ddd;
+
+    font-size:20px;
+
+}
+
+
+
+.banner-shape{
+
+    font-size:120px;
+
+    animation:float 3s infinite alternate;
+
+}
+
+
+
+@keyframes float{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-25px);
+
+}
+
+}
+
+
+
+.discount{
+
+    margin-top:40px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:
+
+<!-- ---------- Categories Section ---------- -->
+
+
+<section class="container categories">
+
+
+<h2>
+دسته‌بندی محصولات
+</h2>
+
+
+
+<div class="category-boxes">
+
+
+
+<div class="category glass">
+
+<span>🖥️</span>
+
+<h3>
+کامپیوتر
+</h3>
+
+<p>
+سیستم‌های حرفه‌ای و گیمینگ
+</p>
+
+</div>
+
+
+
+<div class="category glass">
+
+<span>🎮</span>
+
+<h3>
+گیمینگ
+</h3>
+
+<p>
+تجهیزات مخصوص گیمرها
+</p>
+
+</div>
+
+
+
+
+<div class="category glass">
+
+<span>⌨️</span>
+
+<h3>
+لوازم جانبی
+</h3>
+
+<p>
+موس، کیبورد، هدست و بیشتر
+</p>
+
+</div>
+
+
+
+
+<div class="category glass">
+
+<span>💾</span>
+
+<h3>
+ذخیره‌سازی
+</h3>
+
+<p>
+هارد، SSD و تجهیزات شبکه
+</p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<style>
+
+
+.categories{
+
+margin-top:80px;
+
+}
+
+
+
+.categories h2{
+
+text-align:center;
+
+font-size:40px;
+
+color:#ffd700;
+
+margin-bottom:45px;
+
+}
+
+
+
+.category-boxes{
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:25px;
+
+}
+
+
+
+.category{
+
+padding:35px 20px;
+
+text-align:center;
+
+transition:.4s;
+
+}
+
+
+
+.category:hover{
+
+transform:scale(1.05);
+
+background:rgba(255,215,0,.12);
+
+}
+
+
+
+.category span{
+
+font-size:55px;
+
+display:block;
+
+margin-bottom:20px;
+
+}
+
+
+
+.category h3{
+
+font-size:23px;
+
+margin-bottom:12px;
+
+}
+
+
+
+.category p{
+
+color:#ccc;
+
+line-height:2;
+
+}
+
+
+
+@media(max-width:1000px){
+
+.category-boxes{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+
+
+@media(max-width:600px){
+
+.category-boxes{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+
+</style>
+
+<!-- ---------- Statistics Section ---------- -->
+
+
+<section class="container stats">
+
+
+<div class="stat glass">
+
+<h2>
++۵۰۰۰
+</h2>
+
+<p>
+مشتری راضی
+</p>
+
+</div>
+
+
+
+
+<div class="stat glass">
+
+<h2>
++۱۰۰۰
+</h2>
+
+<p>
+محصول موجود
+</p>
+
+</div>
+
+
+
+
+<div class="stat glass">
+
+<h2>
++۵ سال
+</h2>
+
+<p>
+تجربه کاری
+</p>
+
+</div>
+
+
+
+
+<div class="stat glass">
+
+<h2>
+۲۴/۷
+</h2>
+
+<p>
+پشتیبانی
+</p>
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<!-- ---------- Customer Trust ---------- -->
+
+
+<section class="container trust glass">
+
+
+<h2>
+چرا Barayand Shop؟
+</h2>
+
+
+
+<div class="trust-items">
+
+
+<div>
+✅
+<br>
+تضمین اصالت کالا
+</div>
+
+
+
+<div>
+🚚
+<br>
+ارسال سریع
+</div>
+
+
+
+<div>
+🔒
+<br>
+پرداخت امن
+</div>
+
+
+
+<div>
+⭐
+<br>
+رضایت مشتریان
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<style>
+
+
+.stats{
+
+margin-top:70px;
+
+display:grid;
+
+grid-template-columns:repeat(4,1fr);
+
+gap:25px;
+
+}
+
+
+
+.stat{
+
+padding:35px 20px;
+
+text-align:center;
+
+}
+
+
+
+.stat h2{
+
+font-size:35px;
+
+color:#ffd700;
+
+margin-bottom:15px;
+
+}
+
+
+
+.stat p{
+
+color:#ddd;
+
+}
+
+
+
+.trust{
+
+margin-top:70px;
+
+padding:45px;
+
+text-align:center;
+
+}
+
+
+
+.trust h2{
+
+font-size:35
+
+<!-- ---------- Customer Reviews ---------- -->
+
+
+<section class="container reviews">
+
+
+<h2>
+نظر مشتریان
+</h2>
+
+
+
+<div class="review-grid">
+
+
+
+<div class="review glass">
+
+<div class="avatar">
+👤
+</div>
+
+<h3>
+علی رضایی
+</h3>
+
+<p>
+کیفیت محصولات عالی بود و ارسال خیلی سریع انجام شد.
+</p>
+
+
+<div class="stars">
+⭐⭐⭐⭐⭐
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="review glass">
+
+<div class="avatar">
+👤
+</div>
+
+<h3>
+محمد احمدی
+</h3>
+
+<p>
+پشتیبانی حرفه‌ای و خرید راحتی داشتم.
+</p>
+
+
+<div class="stars">
+⭐⭐⭐⭐⭐
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="review glass">
+
+<div class="avatar">
+👤
+</div>
+
+<h3>
+سارا کریمی
+</h3>
+
+<p>
+طراحی سایت و تنوع محصولات خیلی خوبه.
+</p>
+
+
+<div class="stars">
+⭐⭐⭐⭐⭐
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- ---------- Contact Section ---------- -->
+
+
+<section class="container contact glass">
+
+
+<h2>
+تماس با ما
+</h2>
+
+
+<form>
+
+
+<input type="text" placeholder="نام شما">
+
+
+<input type="email" placeholder="ایمیل">
+
+
+<textarea placeholder="پیام شما"></textarea>
+
+
+<button>
+ارسال پیام
+</button>
+
+
+</form>
+
+
+</section>
+
+
+
+
+
+
+<style>
+
+
+.reviews{
+
+margin-top:90px;
+
+}
+
+
+
+.reviews h2,
+.contact h2{
+
+text-align:center;
+
+font-size:40px;
+
+color:#ffd700;
+
+margin-bottom:45px;
+
+}
+
+
+
+.review-grid{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:30px;
+
+}
+
+
+
+.review{
+
+padding:35px;
+
+text-align:center;
+
+}
+
+
+
+.avatar{
+
+font-size:60px;
+
+margin-bottom:20px;
+
+}
+
+
+
+.review h3{
+
+margin-bottom:15px;
+
+}
+
+
+
+.review p{
+
+color:#ddd;
+
+line-height:2;
+
+}
+
+
+
+.stars{
+
+margin-top:20px;
+
+color:#ffd700;
+
+}
+
+
+
+.contact{
+
+margin-top:80px;
+
+padding:45px;
+
+}
+
+
+
+form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+max-width:600px;
+
+margin:auto;
+
+}
+
+
+
+input,
+textarea{
+
+
+padding:18px;
+
+border:none;
+
+outline:none;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+font-size:16px;
+
+
+}
+
+
+
+textarea{
+
+height:150px;
+
+resize:none;
+
+}
+
+
+
+@media(max-width:900px){
+
+
+.review-grid{
+
+grid-template-columns:1fr;
+
+}
+
+
+}
+
+
+
+</style>
+
+<!-- ---------- Footer ---------- -->
+
+
+<footer class="footer">
+
+
+<div class="footer-content">
+
+
+<div>
+
+<h3>
+Barayand Shop
+</h3>
+
+<p>
+فروشگاه تخصصی محصولات دیجیتال و تکنولوژی
+</p>
+
+</div>
+
+
+
+<div>
+
+<h3>
+دسترسی سریع
+</h3>
+
+<a href="#">
+خانه
+</a>
+
+<a href="#">
+محصولات
+</a>
+
+<a href="#">
+تماس با ما
 </a>
 
 </div>
 
 
 
+
+<div>
+
+<h3>
+ارتباط با ما
+</h3>
+
+<p>
+📞 ۰۲۱-xxxxxxx
+</p>
+
+<p>
+📍 تهران
+</p>
+
+</div>
+
+
+
 </div>
 
 
 
 
+<div class="copyright">
 
-<footer>
+© 2026 تمامی حقوق برای Barayand Shop محفوظ است
 
-<p id="contact"></p>
+</div>
 
-<p>
-کلاس‌های تابستانی مسجد المهدی (عج)
-</p>
+
 
 </footer>
 
@@ -244,90 +1449,785 @@ color:#ccc;
 
 
 
-<script type="module">
+<style>
 
 
-import { createClient }
+.footer{
 
-from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+margin-top:90px;
+
+padding:50px 8% 20px;
+
+background:rgba(0,0,0,.35);
+
+border-top:1px solid rgba(255,255,255,.15);
+
+}
 
 
 
-const supabase = createClient(
+.footer-content{
 
-"https://ezrvqpnxswpzaygbjeio.supabase.co",
+display:grid;
 
-"sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246"
+grid-template-columns:repeat(3,1fr);
 
+gap:40px;
+
+}
+
+
+
+.footer h3{
+
+color:#ffd700;
+
+font-size:25px;
+
+margin-bottom:20px;
+
+}
+
+
+
+.footer p{
+
+color:#ccc;
+
+line-height:2;
+
+}
+
+
+
+.footer a{
+
+display:block;
+
+color:#ddd;
+
+text-decoration:none;
+
+margin:10px 0;
+
+transition:.3s;
+
+}
+
+
+
+.footer a:hover{
+
+color:#ffd700;
+
+}
+
+
+
+.copyright{
+
+margin-top:40px;
+
+padding-top:20px;
+
+text-align:center;
+
+color:#aaa;
+
+border-top:1px solid rgba(255,255,255,.1);
+
+}
+
+
+
+@media(max-width:800px){
+
+
+.footer-content{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+
+}
+
+
+</style>
+
+
+
+
+
+<script>
+
+
+// افکت حرکت نرم هنگام اسکرول
+
+document.querySelectorAll('.glass').forEach(item=>{
+
+
+item.addEventListener('mousemove',e=>{
+
+
+let x=e.offsetX / item.offsetWidth;
+
+let y=e.offsetY / item.offsetHeight;
+
+
+item.style.transform=
+perspective(600px) rotateX(${(y-.5)*5}deg) rotateY(${(x-.5)*5}deg);
+
+
+});
+
+
+
+item.addEventListener('mouseleave',()=>{
+
+item.style.transform="";
+
+});
+
+
+});
+
+
+
+</script>
+
+<!-- ---------- Premium Header Logo ---------- -->
+
+
+<script>
+
+
+// تغییر متن لوگو به حالت حرفه‌ای
+
+const logo = document.querySelector(".logo");
+
+logo.innerHTML = 
+<span style="color:#ffd700">
+B
+</span>
+arayand
+<span style="color:#ffd700">
+SHOP
+</span>
+;
+
+
+
+// عملکرد دکمه‌های خرید
+
+document.querySelectorAll("button").forEach(btn=>{
+
+
+btn.addEventListener("click",()=>{
+
+
+alert("محصول به سبد خرید اضافه شد");
+
+
+});
+
+
+});
+
+
+
+</script>
+
+
+
+
+
+<!-- ---------- Premium Banner ---------- -->
+
+
+<section class="container premium-banner glass">
+
+
+<div class="premium-text">
+
+
+<h1>
+نسل جدید خرید تکنولوژی
+</h1>
+
+
+<p>
+محصولات اصل، قیمت مناسب، تجربه خرید متفاوت
+</p>
+
+
+<div class="badges">
+
+
+<span>
+🔥 تخفیف ویژه
+</span>
+
+
+<span>
+🚀 ارسال سریع
+</span>
+
+
+<span>
+🛡 ضمانت کالا
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<div class="premium-logo">
+
+
+<div class="circle">
+
+B
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+<style>
+
+
+.premium-banner{
+
+margin-top:60px;
+
+padding:45px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+
+
+.premium-text h1{
+
+font-size:45px;
+
+color:#ffd700;
+
+}
+
+
+
+.premium-text p{
+
+margin:20px 0;
+
+font-size:20px;
+
+color:#ddd;
+
+}
+
+
+
+.badges{
+
+display:flex;
+
+<!-- ---------- Chat Section ---------- -->
+
+
+<section class="container chat-section">
+
+
+<div class="chat-box glass">
+
+
+<h2>
+💬 گفتگوی آنلاین
+</h2>
+
+
+<p class="chat-info">
+با کاربران و مدیر سایت در ارتباط باشید
+</p>
+
+
+
+<div class="messages" id="messages">
+
+
+<div class="message admin">
+
+مدیر:
+سلام، خوش آمدید 🌟
+
+</div>
+
+
+<div class="message">
+
+کاربر:
+سلام، سوالی داشتم
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="chat-input">
+
+
+<input 
+id="messageInput"
+type="text"
+placeholder="پیام خود را بنویسید..."
+>
+
+
+<button onclick="sendMessage()">
+ارسال
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<style>
+
+
+.chat-section{
+
+margin-top:80px;
+
+padding-bottom:60px;
+
+}
+
+
+
+.chat-box{
+
+padding:35px;
+
+max-width:850px;
+
+margin:auto;
+
+}
+
+
+
+.chat-box h2{
+
+text-align:center;
+
+font-size:35px;
+
+color:#ffd700;
+
+}
+
+
+
+.chat-info{
+
+text-align:center;
+
+color:#ccc;
+
+margin:15px 0 30px;
+
+}
+
+
+
+.messages{
+
+height:350px;
+
+overflow-y:auto;
+
+padding:20px;
+
+background:rgba(0,0,0,.2);
+
+border-radius:20px;
+
+}
+
+
+
+.message{
+
+background:rgba(255,255,255,.1);
+
+padding:15px;
+
+margin:10px 0;
+
+border-radius:15px;
+
+}
+
+
+
+.message.admin{
+
+border-right:4px solid #ffd700;
+
+}
+
+
+
+.chat-input{
+
+display:flex;
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+
+
+.chat-input input{
+
+flex:1;
+
+padding:15px;
+
+border:none;
+
+outline:none;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+}
+
+
+
+.chat-input button{
+
+margin:0;
+
+padding:12px 30px;
+
+}
+
+
+
+@media(max-width:600px){
+
+.chat-input{
+
+flex-direction:column;
+
+}
+
+}
+
+
+
+</style>
+
+
+
+
+
+<script>
+
+
+function sendMessage(){
+
+
+let input=document.getElementById("messageInput");
+
+let text=input.value.trim();
+
+
+if(text==="") return;
+
+
+
+let box=document.getElementById("messages");
+
+
+let msg=document.createElement("div");
+
+msg.className="message";
+
+msg.innerHTML="شما: "+text;
+
+
+box.appendChild(msg);
+
+
+input.value="";
+
+
+box.scrollTop=box.scrollHeight;
+
+
+}
+
+
+</script>
+
+<!-- ---------- Advanced Chat Features ---------- -->
+
+
+<div class="container online-panel glass">
+
+
+<div class="online-status">
+
+<span class="dot"></span>
+
+کاربران آنلاین
+
+</div>
+
+
+<input 
+id="username"
+placeholder="نام شما"
+>
+
+
+</div>
+
+
+
+
+
+<style>
+
+
+.online-panel{
+
+margin-top:30px;
+
+padding:25px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+
+
+.online-status{
+
+color:#ddd;
+
+font-size:18px;
+
+}
+
+
+
+.dot{
+
+display:inline-block;
+
+width:12px;
+
+height:12px;
+
+background:#00ff88;
+
+border-radius:50%;
+
+margin-left:10px;
+
+box-shadow:0 0 15px #00ff88;
+
+}
+
+
+
+.online-panel input{
+
+padding:15px 20px;
+
+border-radius:20px;
+
+border:none;
+
+outline:none;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+}
+
+
+
+</style>
+
+
+
+
+
+<script>
+
+
+let oldSendMessage = sendMessage;
+
+
+sendMessage = function(){
+
+
+let name=document.getElementById("username").value.trim();
+
+
+let input=document.getElementById("messageInput");
+
+
+let text=input.value.trim();
+
+
+
+if(text==="") return;
+
+
+
+let box=document.getElementById("messages");
+
+
+let msg=document.createElement("div");
+
+
+msg.className="message";
+
+
+msg.innerHTML=
+(name ? name : "کاربر")
++
+": "
++
+text;
+
+
+
+box.appendChild(msg);
+
+
+input.value="";
+
+
+box.scrollTop=box.scrollHeight;
+
+
+};
+
+
+
+</script>
+
+<!-- ---------- Supabase Chat Setup ---------- -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+
+// اطلاعات Supabase خودت را اینجا قرار بده
+
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+
+const SUPABASE_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+
+// ساخت اتصال
+
+const supabaseClient = supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
 
 
-// اطلاعیه‌ها
+
+// ارسال پیام به دیتابیس
 
 
-const box=document.getElementById("notices");
+async function saveMessage(username,text){
 
 
+const {error}=await supabaseClient
 
-async function loadNotices(){
+.from("messages")
 
+.insert([
 
-const {data,error}=await supabase
+{
 
-.from("notices")
+username:username,
 
-.select("*")
+message:text
 
-.order("id",{ascending:false})
+}
 
-.limit(5);
+]);
 
 
 
 if(error){
 
-box.innerHTML="خطا در دریافت اطلاعیه‌ها";
-
-return;
+console.log(error);
 
 }
-
-
-box.innerHTML="";
-
-
-if(!data || data.length===0){
-
-box.innerHTML="اطلاعیه‌ای وجود ندارد";
-
-return;
-
-}
-
-
-
-data.forEach(n=>{
-
-
-box.innerHTML += `
-
-<p>
-
-<b>📌 ${n.title}</b>
-
-<br><br>
-
-${n.content}
-
-</p>
-
-<hr>
-
-`;
-
-});
 
 
 }
@@ -335,21 +2235,21 @@ ${n.content}
 
 
 
-// تنظیمات سایت
 
 
-async function loadSettings(){
+// دریافت پیام‌ها
 
 
-const {data,error}=await supabase
+async function loadMessages(){
 
-.from("settings")
+
+const {data,error}=await supabaseClient
+
+.from("messages")
 
 .select("*")
 
-.eq("id",1)
-
-.single();
+.order("id",{ascending:true});
 
 
 
@@ -363,38 +2263,48 @@ return;
 
 
 
-if(data){
+const box=document.getElementById("messages");
 
 
-document.getElementById("siteTitle").innerText =
-data.title || "کلاس‌های تابستانی مسجد المهدی (عج)";
+box.innerHTML="";
 
 
-document.getElementById("about").innerText =
-data.about || "";
+
+data.forEach(item=>{
 
 
-document.getElementById("contact").innerHTML =
+let msg=document.createElement("div");
 
-"📞 "+(data.phone || "")+
-"<br>📍 "+(data.address || "");
+
+msg.className="message";
+
+
+msg.innerHTML=
+item.username+
+": "+
+item.message;
+
+
+
+box.appendChild(msg);
+
+
+});
 
 
 }
 
 
-}
 
 
 
-loadNotices();
+// هر چند ثانیه پیام‌های جدید را بگیر
 
-loadSettings();
+setInterval(loadMessages,3000);
+
+
+loadMessages();
+
 
 
 </script>
-
-
-</body>
-
-</html>
