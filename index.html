@@ -490,3 +490,455 @@ grid-template-columns:1fr;
 
 
 </style>
+
+<!-- ---------- ورود مدیر ---------- -->
+
+
+<section class="container admin-login glass">
+
+
+<h2>
+🔐 ورود مدیر مسجد
+</h2>
+
+
+
+<input 
+id="adminUser"
+placeholder="نام کاربری مدیر"
+>
+
+
+
+<input 
+id="adminPass"
+type="password"
+placeholder="رمز عبور"
+>
+
+
+
+<button onclick="adminLogin()">
+ورود
+</button>
+
+
+
+<p id="loginResult"></p>
+
+
+</section>
+
+
+
+
+
+<!-- ---------- پنل مدیریت ---------- -->
+
+
+<section 
+id="adminPanel" 
+class="container admin-panel glass"
+style="display:none;"
+>
+
+
+<h2>
+پنل مدیریت مسجد
+</h2>
+
+
+
+<textarea 
+id="newNotice"
+placeholder="متن اطلاعیه جدید..."
+></textarea>
+
+
+
+<button onclick="addNotice()">
+ثبت اطلاعیه
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+<style>
+
+
+.admin-login,
+.admin-panel{
+
+margin-top:70px;
+
+padding:40px;
+
+text-align:center;
+
+}
+
+
+
+.admin-login h2,
+.admin-panel h2{
+
+color:#ffd700;
+
+font-size:35px;
+
+margin-bottom:30px;
+
+}
+
+
+
+.admin-login input,
+.admin-panel textarea{
+
+width:100%;
+
+padding:15px;
+
+margin:10px 0;
+
+border:none;
+
+outline:none;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+}
+
+
+
+.admin-panel textarea{
+
+height:150px;
+
+resize:none;
+
+}
+
+
+
+.admin-login button,
+.admin-panel button{
+
+padding:14px 35px;
+
+border:none;
+
+border-radius:25px;
+
+background:#ffd700;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+
+
+#loginResult{
+
+margin-top:15px;
+
+color:#ffd700;
+
+}
+
+
+</style>
+
+
+
+
+
+<script>
+
+
+function adminLogin(){
+
+
+
+let user=document.getElementById("adminUser").value;
+
+let pass=document.getElementById("adminPass").value;
+
+
+
+// فعلا آزمایشی - بعداً با Supabase Auth جایگزین می‌شود
+
+
+if(user==="admin" && pass==="1234"){
+
+
+document.getElementById("adminPanel").
+
+<!-- ---------- چت مسجد ---------- -->
+
+
+<section id="chat" class="container chat-section">
+
+
+<h2>
+💬 گفتگوی اعضای مسجد
+</h2>
+
+
+
+<div class="chat-box glass">
+
+
+<div id="messages">
+
+
+<div class="message admin">
+مدیر مسجد: سلام، خوش آمدید 🌿
+</div>
+
+
+</div>
+
+
+
+
+<div class="chat-input">
+
+
+<input 
+id="chatName"
+placeholder="نام شما"
+>
+
+
+
+<input 
+id="chatText"
+placeholder="پیام خود را بنویسید..."
+>
+
+
+
+<button onclick="sendChat()">
+ارسال
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<style>
+
+
+.chat-section{
+
+margin-top:80px;
+
+}
+
+
+
+.chat-section h2{
+
+text-align:center;
+
+color:#ffd700;
+
+font-size:40px;
+
+margin-bottom:35px;
+
+}
+
+
+
+.chat-box{
+
+padding:30px;
+
+}
+
+
+
+#messages{
+
+height:350px;
+
+overflow:auto;
+
+padding:20px;
+
+background:rgba(0,0,0,.2);
+
+border-radius:20px;
+
+}
+
+
+
+.message{
+
+padding:15px;
+
+background:rgba(255,255,255,.1);
+
+border-radius:15px;
+
+margin:10px 0;
+
+}
+
+
+
+.message.admin{
+
+border-right:4px solid #ffd700;
+
+}
+
+
+
+.chat-input{
+
+display:flex;
+
+gap:15px;
+
+margin-top:20px;
+
+}
+
+
+
+.chat-input input{
+
+flex:1;
+
+padding:15px;
+
+border:none;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+outline:none;
+
+}
+
+
+
+.chat-input button{
+
+padding:15px 30px;
+
+border:none;
+
+border-radius:20px;
+
+background:#ffd700;
+
+cursor:pointer;
+
+}
+
+
+
+@media(max-width:700px){
+
+
+.chat-input{
+
+flex-direction:column;
+
+}
+
+
+}
+
+
+
+</style>
+
+
+
+
+
+
+
+<script>
+
+
+function sendChat(){
+
+
+let name =
+document.getElementById("chatName").value || "کاربر";
+
+
+let text =
+document.getElementById("chatText").value;
+
+
+
+if(text.trim()=="") return;
+
+
+
+let box=document.getElementById("messages");
+
+
+
+let msg=document.createElement("div");
+
+
+msg.className="message";
+
+
+msg.innerHTML=
+name+" : "+text;
+
+
+
+box.appendChild(msg);
+
+
+
+document.getElementById("chatText").value="";
+
+
+box.scrollTop=box.scrollHeight;
+
+
+}
+
+
+
+</script>
