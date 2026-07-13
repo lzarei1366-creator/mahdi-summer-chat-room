@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>مسجد المهدی (عج)</title>
@@ -12,7 +12,7 @@
 
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
 
 
 *{
@@ -23,29 +23,23 @@ font-family:Vazirmatn,sans-serif;
 }
 
 
-
 body{
 
-min-height:100vh;
-
 background:
-radial-gradient(circle at top right,#14532d,transparent 35%),
-radial-gradient(circle at bottom left,#b8860b,transparent 30%),
-#071421;
+linear-gradient(135deg,#061a1a,#102a43);
 
 color:white;
+
+min-height:100vh;
 
 }
 
 
-
-/* قالب کلی */
-
 .container{
 
-width:90%;
+width:92%;
 
-max-width:1200px;
+max-width:1100px;
 
 margin:auto;
 
@@ -53,33 +47,25 @@ margin:auto;
 
 
 
-/* کارت شیشه‌ای */
-
 .glass{
 
-background:rgba(255,255,255,.08);
+background:rgba(255,255,255,.1);
 
-backdrop-filter:blur(18px);
+backdrop-filter:blur(15px);
 
-border:1px solid rgba(255,255,255,.15);
+border:1px solid rgba(255,255,255,.2);
 
 border-radius:25px;
-
-box-shadow:0 20px 50px rgba(0,0,0,.3);
 
 }
 
 
 
-
-/* هدر */
-
-
 header{
 
-margin-top:25px;
+margin-top:20px;
 
-padding:20px 30px;
+padding:20px;
 
 display:flex;
 
@@ -93,7 +79,7 @@ align-items:center;
 
 .logo{
 
-font-size:30px;
+font-size:28px;
 
 font-weight:900;
 
@@ -103,28 +89,88 @@ color:#ffd700;
 
 
 
-
 nav a{
 
 color:white;
 
 text-decoration:none;
 
-margin:0 12px;
-
-transition:.3s;
+margin:0 8px;
 
 }
 
 
 
-nav a:hover{
+.hero{
+
+margin-top:40px;
+
+padding:45px 20px;
+
+text-align:center;
+
+}
+
+
+
+.hero h1{
+
+font-size:40px;
 
 color:#ffd700;
 
 }
 
 
+
+.hero p{
+
+margin-top:20px;
+
+font-size:18px;
+
+line-height:2;
+
+}
+
+
+
+button{
+
+background:#ffd700;
+
+border:none;
+
+padding:14px 30px;
+
+border-radius:25px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+
+input,textarea{
+
+width:100%;
+
+padding:15px;
+
+margin:10px 0;
+
+border:none;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.15);
+
+color:white;
+
+outline:none;
+
+}
 
 
 </style>
@@ -136,37 +182,21 @@ color:#ffd700;
 <body>
 
 
-
 <header class="container glass">
 
-
 <div class="logo">
-
 🕌 مسجد المهدی (عج)
-
 </div>
-
 
 
 <nav>
 
-<a href="#">
-خانه
+<a href="#admin">
+مدیر
 </a>
-
-
-<a href="#news">
-اطلاعیه‌ها
-</a>
-
 
 <a href="#chat">
 چت
-</a>
-
-
-<a href="#contact">
-ارتباط
 </a>
 
 
@@ -175,7 +205,6 @@ color:#ffd700;
 
 </header>
 
-<!-- ---------- صفحه اصلی ---------- -->
 
 
 <section class="container hero glass">
@@ -187,314 +216,16 @@ color:#ffd700;
 
 
 <p>
-محلی برای اطلاع‌رسانی، ارتباط با اعضا و گفتگوی آنلاین
+اطلاع‌رسانی و ارتباط آنلاین با اعضای مسجد
 </p>
-
-
-<div class="buttons">
-
-
-<button>
-📢 اطلاعیه‌ها
-</button>
-
-
-<button>
-💬 ورود به چت
-</button>
-
-
-</div>
 
 
 </section>
-
-
-
-
-
-
-<style>
-
-
-.hero{
-
-margin-top:60px;
-
-padding:60px 30px;
-
-text-align:center;
-
-}
-
-
-
-.hero h1{
-
-font-size:45px;
-
-color:#ffd700;
-
-font-weight:900;
-
-}
-
-
-
-.hero p{
-
-margin-top:25px;
-
-font-size:20px;
-
-color:#ddd;
-
-line-height:2;
-
-}
-
-
-
-.buttons{
-
-margin-top:35px;
-
-display:flex;
-
-justify-content:center;
-
-gap:20px;
-
-}
-
-
-
-.buttons button{
-
-padding:15px 35px;
-
-border:none;
-
-border-radius:30px;
-
-background:linear-gradient(45deg,#ffd700,#b8860b);
-
-font-size:17px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-}
-
-
-
-.buttons button:hover{
-
-transform:translateY(-5px);
-
-}
-
-
-
-@media(max-width:700px){
-
-
-.hero h1{
-
-font-size:32px;
-
-}
-
-
-
-.buttons{
-
-flex-direction:column;
-
-}
-
-
-}
-
-
-</style>
-
-<!-- ---------- اطلاعیه‌ها ---------- -->
-
-
-<section id="news" class="container news">
-
-
-<h2>
-📢 اطلاعیه‌های مسجد
-</h2>
-
-
-
-<div class="news-cards">
-
-
-
-<div class="news-card glass">
-
-
-<h3>
-اطلاعیه مهم
-</h3>
-
-
-<p>
-آخرین اخبار و اطلاعیه‌های مسجد در این بخش قرار می‌گیرد.
-</p>
-
-
-</div>
-
-
-
-
-<div class="news-card glass">
-
-
-<h3>
-برنامه‌های فرهنگی
-</h3>
-
-
-<p>
-اعلام مراسم‌ها و برنامه‌های فرهنگی مسجد.
-</p>
-
-
-</div>
-
-
-
-
-<div class="news-card glass">
-
-
-<h3>
-پیام مدیریت
-</h3>
-
-
-<p>
-پیام‌ها و اطلاعیه‌های مدیر مسجد اینجا نمایش داده می‌شود.
-</p>
-
-
-</div>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-<style>
-
-
-.news{
-
-margin-top:80px;
-
-}
-
-
-
-.news h2{
-
-text-align:center;
-
-font-size:40px;
-
-color:#ffd700;
-
-margin-bottom:40px;
-
-}
-
-
-
-.news-cards{
-
-display:grid;
-
-grid-template-columns:repeat(3,1fr);
-
-gap:25px;
-
-}
-
-
-
-.news-card{
-
-padding:35px;
-
-transition:.3s;
-
-}
-
-
-
-.news-card:hover{
-
-transform:translateY(-10px);
-
-}
-
-
-
-.news-card h3{
-
-font-size:25px;
-
-color:#ffd700;
-
-margin-bottom:15px;
-
-}
-
-
-
-.news-card p{
-
-color:#ddd;
-
-line-height:2;
-
-}
-
-
-
-@media(max-width:800px){
-
-.news-cards{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
-
-
-</style>
 
 <!-- ---------- ورود مدیر ---------- -->
 
 
-<section class="container admin-login glass">
+<section id="admin" class="container glass admin">
 
 
 <h2>
@@ -505,7 +236,8 @@ grid-template-columns:1fr;
 
 <input 
 id="adminUser"
-placeholder="نام کاربری مدیر"
+type="text"
+placeholder="نام کاربری"
 >
 
 
@@ -518,13 +250,13 @@ placeholder="رمز عبور"
 
 
 
-<button onclick="adminLogin()">
+<button id="loginBtn">
 ورود
 </button>
 
 
 
-<p id="loginResult"></p>
+<p id="loginMsg"></p>
 
 
 </section>
@@ -533,37 +265,39 @@ placeholder="رمز عبور"
 
 
 
-<!-- ---------- پنل مدیریت ---------- -->
+<!-- ---------- پنل مدیر ---------- -->
 
 
 <section 
-id="adminPanel" 
-class="container admin-panel glass"
+id="panel"
+class="container glass panel"
 style="display:none;"
 >
 
 
 <h2>
-پنل مدیریت مسجد
+پنل مدیریت
 </h2>
 
 
 
 <textarea 
-id="newNotice"
-placeholder="متن اطلاعیه جدید..."
+id="noticeText"
+placeholder="متن اطلاعیه..."
 ></textarea>
 
 
 
-<button onclick="addNotice()">
+<button id="noticeBtn">
 ثبت اطلاعیه
 </button>
 
 
 
-</section>
+<p id="noticeResult"></p>
 
+
+</section>
 
 
 
@@ -572,12 +306,12 @@ placeholder="متن اطلاعیه جدید..."
 <style>
 
 
-.admin-login,
-.admin-panel{
+.admin,
+.panel{
 
-margin-top:70px;
+margin-top:50px;
 
-padding:40px;
+padding:35px;
 
 text-align:center;
 
@@ -585,43 +319,20 @@ text-align:center;
 
 
 
-.admin-login h2,
-.admin-panel h2{
+.admin h2,
+.panel h2{
 
 color:#ffd700;
 
-font-size:35px;
+margin-bottom:25px;
 
-margin-bottom:30px;
-
-}
-
-
-
-.admin-login input,
-.admin-panel textarea{
-
-width:100%;
-
-padding:15px;
-
-margin:10px 0;
-
-border:none;
-
-outline:none;
-
-border-radius:15px;
-
-background:rgba(255,255,255,.12);
-
-color:white;
+font-size:30px;
 
 }
 
 
 
-.admin-panel textarea{
+.panel textarea{
 
 height:150px;
 
@@ -631,26 +342,8 @@ resize:none;
 
 
 
-.admin-login button,
-.admin-panel button{
-
-padding:14px 35px;
-
-border:none;
-
-border-radius:25px;
-
-background:#ffd700;
-
-cursor:pointer;
-
-font-weight:bold;
-
-}
-
-
-
-#loginResult{
+#loginMsg,
+#noticeResult{
 
 margin-top:15px;
 
@@ -659,37 +352,39 @@ color:#ffd700;
 }
 
 
+
+@media(max-width:600px){
+
+.logo{
+
+font-size:22px;
+
+}
+
+
+nav a{
+
+font-size:14px;
+
+}
+
+
+.hero h1{
+
+font-size:28px;
+
+}
+
+
+}
+
+
 </style>
-
-
-
-
-
-<script>
-
-
-function adminLogin(){
-
-
-
-let user=document.getElementById("adminUser").value;
-
-let pass=document.getElementById("adminPass").value;
-
-
-
-// فعلا آزمایشی - بعداً با Supabase Auth جایگزین می‌شود
-
-
-if(user==="admin" && pass==="1234"){
-
-
-document.getElementById("adminPanel").
 
 <!-- ---------- چت مسجد ---------- -->
 
 
-<section id="chat" class="container chat-section">
+<section id="chat" class="container glass chat">
 
 
 <h2>
@@ -698,13 +393,10 @@ document.getElementById("adminPanel").
 
 
 
-<div class="chat-box glass">
-
-
 <div id="messages">
 
 
-<div class="message admin">
+<div class="msg">
 مدیر مسجد: سلام، خوش آمدید 🌿
 </div>
 
@@ -712,9 +404,6 @@ document.getElementById("adminPanel").
 </div>
 
 
-
-
-<div class="chat-input">
 
 
 <input 
@@ -726,21 +415,15 @@ placeholder="نام شما"
 
 <input 
 id="chatText"
-placeholder="پیام خود را بنویسید..."
+placeholder="پیام شما"
 >
 
 
 
-<button onclick="sendChat()">
-ارسال
+<button id="sendBtn">
+ارسال پیام
 </button>
 
-
-
-</div>
-
-
-</div>
 
 
 </section>
@@ -749,37 +432,26 @@ placeholder="پیام خود را بنویسید..."
 
 
 
-
-
-
 <style>
 
 
-.chat-section{
+.chat{
 
-margin-top:80px;
+margin-top:50px;
+
+padding:35px;
 
 }
 
 
 
-.chat-section h2{
+.chat h2{
 
 text-align:center;
 
 color:#ffd700;
 
-font-size:40px;
-
-margin-bottom:35px;
-
-}
-
-
-
-.chat-box{
-
-padding:30px;
+margin-bottom:25px;
 
 }
 
@@ -787,99 +459,39 @@ padding:30px;
 
 #messages{
 
-height:350px;
+height:300px;
 
-overflow:auto;
-
-padding:20px;
+overflow-y:auto;
 
 background:rgba(0,0,0,.2);
 
 border-radius:20px;
 
+padding:15px;
+
+margin-bottom:20px;
+
 }
 
 
 
-.message{
-
-padding:15px;
+.msg{
 
 background:rgba(255,255,255,.1);
 
-border-radius:15px;
+padding:12px;
 
 margin:10px 0;
 
-}
-
-
-
-.message.admin{
-
-border-right:4px solid #ffd700;
+border-radius:15px;
 
 }
 
 
 
-.chat-input{
+#sendBtn{
 
-display:flex;
-
-gap:15px;
-
-margin-top:20px;
-
-}
-
-
-
-.chat-input input{
-
-flex:1;
-
-padding:15px;
-
-border:none;
-
-border-radius:20px;
-
-background:rgba(255,255,255,.12);
-
-color:white;
-
-outline:none;
-
-}
-
-
-
-.chat-input button{
-
-padding:15px 30px;
-
-border:none;
-
-border-radius:20px;
-
-background:#ffd700;
-
-cursor:pointer;
-
-}
-
-
-
-@media(max-width:700px){
-
-
-.chat-input{
-
-flex-direction:column;
-
-}
-
+width:100%;
 
 }
 
@@ -891,24 +503,26 @@ flex-direction:column;
 
 
 
-
-
 <script>
 
 
-function sendChat(){
+document.getElementById("sendBtn").addEventListener("click",function(){
+
 
 
 let name =
-document.getElementById("chatName").value || "کاربر";
+document.getElementById("chatName").value.trim()
+|| "کاربر";
+
 
 
 let text =
-document.getElementById("chatText").value;
+document.getElementById("chatText").value.trim();
 
 
 
-if(text.trim()=="") return;
+if(text==="") return;
+
 
 
 
@@ -916,29 +530,33 @@ let box=document.getElementById("messages");
 
 
 
-let msg=document.createElement("div");
+let div=document.createElement("div");
 
 
-msg.className="message";
+div.className="msg";
 
 
-msg.innerHTML=
+div.innerHTML=
 name+" : "+text;
 
 
 
-box.appendChild(msg);
+box.appendChild(div);
 
 
 
 document.getElementById("chatText").value="";
 
 
+
 box.scrollTop=box.scrollHeight;
 
 
-}
+
+});
 
 
 
 </script>
+
+
