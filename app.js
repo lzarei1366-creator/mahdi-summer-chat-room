@@ -76,9 +76,13 @@ async function loginUser() {
 // ارسال پیام
 // ================================
 
-document.getElementById("sendBtn")
+const sendBtn = document.getElementById("sendBtn");
 
-.addEventListener("click",sendMessage);
+if(sendBtn){
+
+    sendBtn.addEventListener("click",sendMessage);
+
+}
 
 async function sendMessage(){
 
