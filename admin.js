@@ -2,7 +2,7 @@
 // اتصال به Supabase
 // ==========================
 
-const SUPABASE_URL = "https://ezrvqpnxswpzaygbjeio.supabase.co/rest/v1/"
+const SUPABASE_URL = "https://ezrvqpnxswpzaygbjeio.supabase.co"
 const SUPABASE_KEY = "sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246";
 
 const supabase = window.supabase.createClient(
