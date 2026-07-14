@@ -315,13 +315,14 @@ const result = await supabase
 
 .select("*")
 
-.eq("username", username)
 
-.maybeSingle();
+const result = await supabase
 
+.from("users")
+
+.select("*");
 
 console.log(result);
-
 
 if(result.error || !result.data){
 
