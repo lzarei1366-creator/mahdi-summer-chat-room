@@ -306,14 +306,10 @@ const {data,error}= await supabase
 
 .from("users")
 
-.select("*")
+.select("*");
 
-.eq("username",username)
-
-.eq("password",password)
-
-.maybeSingle();
-
+console.log("تمام کاربران:", data);
+console.log("خطا:", error);
 
 
 console.log(data);
