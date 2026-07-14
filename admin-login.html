@@ -321,11 +321,16 @@ alert(JSON.stringify(data));
 
 if(error || !data){
 
-alert("نام کاربری یا رمز عبور اشتباه است");
+console.log("DATA:", data);
+console.log("ERROR:", error);
+
+alert("کاربر پیدا نشد");
 
 return;
 
 }
+
+alert("ورود موفق");
 
 
 
