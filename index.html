@@ -4,12 +4,15 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>سامانه مسجد المهدی (عج)</title>
+<title>مسجد المهدی (عج)</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
@@ -18,23 +21,27 @@
 
 <body>
 
-<header>
+<header class="header">
 
-<div class="container nav">
+<div class="container">
 
 <div class="logo">
+
 🕌 مسجد المهدی (عج)
+
 </div>
 
 <nav>
 
 <a href="#home">خانه</a>
 
-<a href="#chat">چت</a>
-
 <a href="#notice">اطلاعیه‌ها</a>
 
-<a href="#login">ورود</a>
+<a href="#chat">چت</a>
+
+<a href="#login">ورود کاربران</a>
+
+<a href="admin.html">ورود مدیر</a>
 
 </nav>
 
@@ -46,7 +53,11 @@
 
 <div class="container">
 
-<h1>به سامانه مسجد المهدی (عج) خوش آمدید</h1>
+<h1>
+
+به سامانه مسجد المهدی (عج) خوش آمدید
+
+</h1>
 
 <p>
 
@@ -54,47 +65,103 @@
 
 </p>
 
+<button onclick="location.href='#login'">
+
+ورود به سامانه
+
+</button>
+
 </div>
 
 </section>
 
-<section id="login" class="login-box">
+<!-- ================= ورود کاربران ================= -->
 
-<div class="container card">
+<section id="login" class="section">
 
-<h2>ورود کاربران</h2>
+<div class="container">
+
+<div class="card">
+
+<h2>👤 ورود کاربران</h2>
+
+<p class="subtitle">
+
+برای ورود به سامانه مسجد، نام کاربری و رمز عبور خود را وارد کنید.
+
+</p>
 
 <input
-type="text"
 id="username"
+type="text"
 placeholder="نام کاربری">
 
 <input
-type="password"
 id="password"
+type="password"
 placeholder="رمز عبور">
 
 <button id="loginBtn">
+
 ورود
+
 </button>
 
 <p id="loginResult"></p>
 
 </div>
 
+</div>
+
 </section>
 
-<section id="chat" class="chat">
 
-<div class="container card">
 
-<h2>چت مسجد</h2>
+<!-- ================= اطلاعیه‌ها ================= -->
 
-<div id="messages"></div>
+<section id="notice" class="section">
+
+<div class="container">
+
+<div class="card">
+
+<h2>📢 اطلاعیه‌های مسجد</h2>
+
+<div id="noticeList">
+
+<div class="msg">
+
+در حال دریافت اطلاعیه‌ها...
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ================= چت اعضا ================= -->
+
+<section id="chat" class="section">
+
+<div class="container">
+
+<div class="card">
+
+<h2>💬 گفتگوی اعضای مسجد</h2>
+
+<div id="messages">
+
+</div>
 
 <input
-type="text"
 id="chatText"
+type="text"
 placeholder="پیام خود را بنویسید...">
 
 <button id="sendBtn">
@@ -105,13 +172,38 @@ placeholder="پیام خود را بنویسید...">
 
 </div>
 
+</div>
+
 </section>
 
+  <!-- ================= فوتر ================= -->
+
+<footer class="footer">
+
+<div class="container">
+
+<p>
+🕌 مسجد المهدی (عج)
+</p>
+
+<p>
+تمامی حقوق محفوظ است © 2026
+</p>
+
+</div>
+
+</footer>
+
+
+<!-- ================= کتابخانه Supabase ================= -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!-- ================= فایل جاوااسکریپت ================= -->
 
 <script src="app.js"></script>
 
 </body>
 
 </html>
-
