@@ -2797,3 +2797,27 @@ color:#d4af37;
 cursor:pointer;
 
 }
+
+/* =========================
+   پس زمینه چت
+========================= */
+
+.chat-container{
+
+    background:
+
+    linear-gradient(
+        rgba(5,15,30,.75),
+        rgba(5,15,30,.85)
+    ),
+
+    url("chat-bg.jpg");
+
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+}
