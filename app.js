@@ -5,7 +5,7 @@
 const SUPABASE_URL = "https://ezrvqpnxswpzaygbjeio.supabase.co";
 const SUPABASE_KEY = "sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246";
 
-const supabase = window.supabase.createClient(
+const supabase = window.supabaseClient.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
@@ -36,7 +36,7 @@ async function loginUser() {
 
     }
 
-    const { data,error } = await supabase
+    const { data,error } = await supabaseClient
 
     .from("users")
 
@@ -98,7 +98,7 @@ async function sendMessage(){
 
     if(message==="") return;
 
-    const { error } = await supabase
+    const { error } = await supabaseClient
 
     .from("messages")
 
