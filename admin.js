@@ -169,3 +169,16 @@ document.getElementById("saveNotice").addEventListener("click",async()=>{
     document.getElementById("notice").value="";
 
 });
+
+const adminBtn = document.getElementById("adminLoginBtn");
+
+if(adminBtn){
+
+    adminBtn.addEventListener("click",()=>{
+
+        document.getElementById("adminResult").innerHTML =
+        "دکمه ورود مدیر فعال شد ✅";
+
+    });
+
+}
