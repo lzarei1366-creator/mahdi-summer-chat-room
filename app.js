@@ -63,10 +63,16 @@ async function loginUser() {
 
     localStorage.setItem("status",data.status);
 
-    document.getElementById("loginResult").innerHTML=
-    "✅ ورود موفق";
+   document.getElementById("loginResult").innerHTML=
+"✅ ورود موفق";
 
-    loadMessages();
+
+setTimeout(()=>{
+
+    window.location.href="chat.html";
+
+},1000);
+
 
 }
 
