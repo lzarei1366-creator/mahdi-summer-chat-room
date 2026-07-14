@@ -288,7 +288,7 @@ const supabase = createClient(
 "https://ezrvqpnxswpzaygbjeio.supabase.co",
 
 
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6cnZxcG54c3dwemF5Z2JqZWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2MjE4NDcsImV4cCI6MjA5OTE5Nzg0N30.w13RkRJ9_uxCIHRb8cvShmtrmXGskuUYRlfZ8w8OQIs"
+"sb_publishable_Jr0xXzuVDA9QzEFize_dvA_ueYO-246"
 
 
 );
@@ -298,7 +298,7 @@ const supabase = createClient(
 
 
 
-document.getElementById("login").onclick = async()=>{
+document.getElementById("adminLoginBtn").onclick = async()=>{
 
 
 
@@ -326,8 +326,8 @@ return;
 
 const {data,error}=await supabase
 
-.from("admins")
-
+.from("users")
+  
 .select("*")
 
 .eq("username",username)
