@@ -189,3 +189,13 @@ async function loadMessages(){
 setInterval(loadMessages,2000);
 
 loadMessages();
+
+// ================================
+// ورود مدیر مسجد
+// ================================
+
+function openAdminLogin(){
+
+    window.location.href = "admin-login.html";
+
+}
