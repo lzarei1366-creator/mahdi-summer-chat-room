@@ -45,7 +45,7 @@ document.getElementById("save").onclick = async () => {
 
     // بررسی تکراری نبودن نام کاربری
     const { data: user } = await supabase
-        .from("admins")
+        .from("users")
         .select("id")
         .eq("username", username)
         .maybeSingle();
