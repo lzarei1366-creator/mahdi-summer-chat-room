@@ -328,11 +328,7 @@ const {data,error}=await supabase
 
 .eq("password",password)
 
-.single();
-
-
-
-
+.maybeSingle();
 
 if(error || !data){
 
