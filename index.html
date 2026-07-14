@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
@@ -7,556 +6,112 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>مسجد المهدی (عج)</title>
+<title>سامانه مسجد المهدی (عج)</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700;900&display=swap');
-
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Vazirmatn,sans-serif;
-}
-
-
-body{
-
-background:
-linear-gradient(135deg,#061a1a,#102a43);
-
-color:white;
-
-min-height:100vh;
-
-}
-
-
-.container{
-
-width:92%;
-
-max-width:1100px;
-
-margin:auto;
-
-}
-
-
-
-.glass{
-
-background:rgba(255,255,255,.1);
-
-backdrop-filter:blur(15px);
-
-border:1px solid rgba(255,255,255,.2);
-
-border-radius:25px;
-
-}
-
-
-
-header{
-
-margin-top:20px;
-
-padding:20px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-}
-
-
-
-.logo{
-
-font-size:28px;
-
-font-weight:900;
-
-color:#ffd700;
-
-}
-
-
-
-nav a{
-
-color:white;
-
-text-decoration:none;
-
-margin:0 8px;
-
-}
-
-
-
-.hero{
-
-margin-top:40px;
-
-padding:45px 20px;
-
-text-align:center;
-
-}
-
-
-
-.hero h1{
-
-font-size:40px;
-
-color:#ffd700;
-
-}
-
-
-
-.hero p{
-
-margin-top:20px;
-
-font-size:18px;
-
-line-height:2;
-
-}
-
-
-
-button{
-
-background:#ffd700;
-
-border:none;
-
-padding:14px 30px;
-
-border-radius:25px;
-
-cursor:pointer;
-
-font-weight:bold;
-
-}
-
-
-input,textarea{
-
-width:100%;
-
-padding:15px;
-
-margin:10px 0;
-
-border:none;
-
-border-radius:15px;
-
-background:rgba(255,255,255,.15);
-
-color:white;
-
-outline:none;
-
-}
-
-
-</style>
-
+<link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
+<header>
 
-<header class="container glass">
+<div class="container nav">
 
 <div class="logo">
 🕌 مسجد المهدی (عج)
 </div>
 
-
 <nav>
 
-<a href="#admin">
-مدیر
-</a>
+<a href="#home">خانه</a>
 
-<a href="#chat">
-چت
-</a>
+<a href="#chat">چت</a>
 
+<a href="#notice">اطلاعیه‌ها</a>
+
+<a href="#login">ورود</a>
 
 </nav>
 
+</div>
 
 </header>
 
+<section id="home" class="hero">
 
+<div class="container">
 
-<section class="container hero glass">
-
-
-<h1>
-به سایت مسجد المهدی (عج) خوش آمدید
-</h1>
-
+<h1>به سامانه مسجد المهدی (عج) خوش آمدید</h1>
 
 <p>
-اطلاع‌رسانی و ارتباط آنلاین با اعضای مسجد
+
+سامانه ارتباط آنلاین اعضای مسجد، اطلاعیه‌ها و گفتگوی کاربران
+
 </p>
 
+</div>
 
 </section>
 
-<!-- ---------- ورود مدیر ---------- -->
+<section id="login" class="login-box">
 
+<div class="container card">
 
-<section id="admin" class="container glass admin">
+<h2>ورود کاربران</h2>
 
-
-<h2>
-🔐 ورود مدیر مسجد
-</h2>
-
-
-
-<input 
-id="adminUser"
+<input
 type="text"
-placeholder="نام کاربری"
->
+id="username"
+placeholder="نام کاربری">
 
-
-
-<input 
-id="adminPass"
+<input
 type="password"
-placeholder="رمز عبور"
->
-
-
+id="password"
+placeholder="رمز عبور">
 
 <button id="loginBtn">
 ورود
 </button>
 
-
-
-<p id="loginMsg"></p>
-
-
-</section>
-
-
-
-
-
-<!-- ---------- پنل مدیر ---------- -->
-
-
-<section 
-id="panel"
-class="container glass panel"
-style="display:none;"
->
-
-
-<h2>
-پنل مدیریت
-</h2>
-
-
-
-<textarea 
-id="noticeText"
-placeholder="متن اطلاعیه..."
-></textarea>
-
-
-
-<button id="noticeBtn">
-ثبت اطلاعیه
-</button>
-
-
-
-<p id="noticeResult"></p>
-
-
-</section>
-
-
-
-
-
-<style>
-
-
-.admin,
-.panel{
-
-margin-top:50px;
-
-padding:35px;
-
-text-align:center;
-
-}
-
-
-
-.admin h2,
-.panel h2{
-
-color:#ffd700;
-
-margin-bottom:25px;
-
-font-size:30px;
-
-}
-
-
-
-.panel textarea{
-
-height:150px;
-
-resize:none;
-
-}
-
-
-
-#loginMsg,
-#noticeResult{
-
-margin-top:15px;
-
-color:#ffd700;
-
-}
-
-
-
-@media(max-width:600px){
-
-.logo{
-
-font-size:22px;
-
-}
-
-
-nav a{
-
-font-size:14px;
-
-}
-
-
-.hero h1{
-
-font-size:28px;
-
-}
-
-
-}
-
-
-</style>
-
-<!-- ---------- چت مسجد ---------- -->
-
-
-<section id="chat" class="container glass chat">
-
-
-<h2>
-💬 گفتگوی اعضای مسجد
-</h2>
-
-
-
-<div id="messages">
-
-
-<div class="msg">
-مدیر مسجد: سلام، خوش آمدید 🌿
-</div>
-
+<p id="loginResult"></p>
 
 </div>
 
+</section>
 
+<section id="chat" class="chat">
 
+<div class="container card">
 
-<input 
-id="chatName"
-placeholder="نام شما"
->
+<h2>چت مسجد</h2>
 
+<div id="messages"></div>
 
-
-<input 
+<input
+type="text"
 id="chatText"
-placeholder="پیام شما"
->
-
-
+placeholder="پیام خود را بنویسید...">
 
 <button id="sendBtn">
+
 ارسال پیام
+
 </button>
 
-
+</div>
 
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+<script src="app.js"></script>
 
+</body>
 
-
-<style>
-
-
-.chat{
-
-margin-top:50px;
-
-padding:35px;
-
-}
-
-
-
-.chat h2{
-
-text-align:center;
-
-color:#ffd700;
-
-margin-bottom:25px;
-
-}
-
-
-
-#messages{
-
-height:300px;
-
-overflow-y:auto;
-
-background:rgba(0,0,0,.2);
-
-border-radius:20px;
-
-padding:15px;
-
-margin-bottom:20px;
-
-}
-
-
-
-.msg{
-
-background:rgba(255,255,255,.1);
-
-padding:12px;
-
-margin:10px 0;
-
-border-radius:15px;
-
-}
-
-
-
-#sendBtn{
-
-width:100%;
-
-}
-
-
-
-</style>
-
-
-
-
-
-<script>
-
-
-document.getElementById("sendBtn").addEventListener("click",function(){
-
-
-
-let name =
-document.getElementById("chatName").value.trim()
-|| "کاربر";
-
-
-
-let text =
-document.getElementById("chatText").value.trim();
-
-
-
-if(text==="") return;
-
-
-
-
-let box=document.getElementById("messages");
-
-
-
-let div=document.createElement("div");
-
-
-div.className="msg";
-
-
-div.innerHTML=
-name+" : "+text;
-
-
-
-box.appendChild(div);
-
-
-
-document.getElementById("chatText").value="";
-
-
-
-box.scrollTop=box.scrollHeight;
-
-
-
-});
-
-
-
-</script>
-
+</html>
 
