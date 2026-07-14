@@ -67,6 +67,9 @@ const { error } = await supabase
     role: role,
     status: "active"
 });
+    console.log(error);
+alert(JSON.stringify(error));
+alert("بعد از insert");
     
     if (error) {
         msg.innerHTML = "❌ " + error.message;
