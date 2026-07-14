@@ -55,14 +55,16 @@ document.getElementById("save").onclick = async () => {
         return;
     }
 
-    const { error } = await supabase
-        .from("admins")
-        .insert({
-            username,
-            password,
-            role
-        });
-
+const { error } = await supabase
+.from("users")
+.insert({
+    name: username,
+    username: username,
+    password: password,
+    role: role,
+    status: "active"
+});
+    
     if (error) {
         msg.innerHTML = "❌ " + error.message;
         return;
