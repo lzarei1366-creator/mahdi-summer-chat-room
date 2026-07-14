@@ -5,237 +5,360 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>مسجد المهدی (عج)</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
-
 <header class="header">
 
 <div class="container">
 
-<div class="logo">
+<nav class="navbar">
 
-🕌 مسجد المهدی (عج)
+<a href="#" class="logo">
+
+<img src="images/logo.png">
+
+<div>
+
+<h2>مسجد المهدی (عج)</h2>
+
+<p>سامانه هوشمند مسجد</p>
 
 </div>
 
-<nav>
+</a>
 
-<a href="#home">خانه</a>
+<ul>
 
-<a href="#notice">اطلاعیه‌ها</a>
+<li><a class="active" href="#">خانه</a></li>
 
-<a href="#chat">چت</a>
+<li><a href="chat.html">چت روم</a></li>
 
-<a href="#login">ورود کاربران</a>
+<li><a href="classes.html">کلاس‌ها</a></li>
 
-<a href="admin.html">ورود مدیر</a>
+<li><a href="notices.html">اطلاعیه‌ها</a></li>
+
+<li><a href="#">درباره ما</a></li>
+
+<li><a href="#">تماس با ما</a></li>
+
+</ul>
+
+<div class="actions">
+
+<button id="themeBtn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+<a href="login.html"
+class="login-btn">
+
+ورود
+
+</a>
+
+</div>
 
 </nav>
 
 </div>
 
 </header>
+<section class="hero">
 
-<section id="home" class="hero">
+<div class="hero-overlay"></div>
 
-<div class="container">
+<div class="container hero-container">
+
+<div class="hero-content">
+
+<span class="badge">
+✨ سامانه هوشمند مسجد
+</span>
 
 <h1>
 
-به سامانه مسجد المهدی (عج) خوش آمدید
+مسجد المهدی (عج)
+
+<br>
+
+مرکز فرهنگی، آموزشی و معنوی
 
 </h1>
 
 <p>
 
-سامانه ارتباط آنلاین اعضای مسجد، اطلاعیه‌ها و گفتگوی کاربران
+به سامانه جامع مسجد خوش آمدید.
+چت روم، کلاس‌ها، اطلاعیه‌ها، برنامه‌های هفتگی و خدمات مسجد را در یک محیط مدرن دنبال کنید.
 
 </p>
 
-<button onclick="location.href='#login'">
+<div class="hero-buttons">
 
-ورود به سامانه
+<a href="chat.html" class="btn-primary">
 
-</button>
+💬 ورود به چت روم
+
+</a>
+
+<a href="classes.html" class="btn-secondary">
+
+📚 مشاهده کلاس‌ها
+
+</a>
+
+</div>
+
+</div>
+
+<div class="hero-card">
+
+<div class="card-icon">
+
+🕌
+
+</div>
+
+<h3>
+
+امروز در مسجد
+
+</h3>
+
+<p>
+
+نماز جماعت
+
+بعد از اذان مغرب
+
+</p>
+
+<hr>
+
+<p>
+
+کلاس قرآن
+
+ساعت ۱۸:۰۰
+
+</p>
+
+<hr>
+
+<p>
+
+جلسه فرهنگی
+
+ساعت ۲۰:۰۰
+
+</p>
+
+</div>
 
 </div>
 
 </section>
+  <section class="stats">
 
-<!-- ================= ورود کاربران ================= -->
-<section class="login-section">
+<div class="container">
 
-<div class="login-card">
+<div class="stats-grid">
 
-<div class="login-logo">
+<div class="stat-card">
+
+<div class="stat-icon">👥</div>
+
+<h2>۱۲۵۰+</h2>
+
+<p>اعضای فعال</p>
+
+</div>
+
+<div class="stat-card">
+
+<div class="stat-icon">📚</div>
+
+<h2>۳۵</h2>
+
+<p>کلاس آموزشی</p>
+
+</div>
+
+<div class="stat-card">
+
+<div class="stat-icon">📢</div>
+
+<h2>۱۸۰</h2>
+
+<p>اطلاعیه منتشر شده</p>
+
+</div>
+
+<div class="stat-card">
+
+<div class="stat-icon">🕌</div>
+
+<h2>۲۴</h2>
+
+<p>برنامه هفتگی</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section class="services">
+
+<div class="container">
+
+<div class="section-title">
+
+<span>خدمات</span>
+
+<h2>خدمات مسجد المهدی (عج)</h2>
+
+<p>
+تمام امکانات مسجد در یک سامانه هوشمند
+</p>
+
+</div>
+
+<div class="services-grid">
+
+<div class="service-card">
+
+<div class="service-icon">
+💬
+</div>
+
+<h3>چت روم</h3>
+
+<p>
+گفتگو بین اعضای مسجد و مدیریت
+</p>
+
+<a href="chat.html">
+ورود →
+</a>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">
+📚
+</div>
+
+<h3>کلاس‌های آموزشی</h3>
+
+<p>
+ثبت نام کلاس‌های قرآن، احکام و فرهنگی
+</p>
+
+<a href="classes.html">
+مشاهده →
+</a>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">
+📢
+</div>
+
+<h3>اطلاعیه‌ها</h3>
+
+<p>
+مشاهده اطلاعیه‌های جدید مسجد
+</p>
+
+<a href="notices.html">
+مطالعه →
+</a>
+
+</div>
+
+<div class="service-card">
+
+<div class="service-icon">
 🕌
 </div>
 
-<h2>ورود اعضای مسجد</h2>
+<h3>برنامه نماز</h3>
 
 <p>
-برای دسترسی به امکانات سامانه وارد حساب خود شوید
+برنامه نماز جماعت و مراسم‌ها
 </p>
 
-
-<div class="input-box">
-
-<span>👤</span>
-
-<input 
-id="username"
-type="text" 
-placeholder="شماره موبایل یا نام کاربری">
-  
-</div>
-  
-<div class="input-box">
-
-<span>🔒</span>
-
-<input 
-id="password"
-type="password" 
-placeholder="رمز عبور">
-
-</div>
-
-
-<button 
-id="loginBtn"
-class="login-button">
-
-ورود به حساب
-
-</button>
-
-
-<div id="loginResult"></div>
-
-
-<div class="login-options">
-
-<a>
-رمز عبور را فراموش کردم؟
-</a>
-
-<a>
-ثبت نام عضو جدید
+<a href="#">
+مشاهده →
 </a>
 
 </div>
 
+<div class="service-card">
 
-<div class="admin-login" onclick="openAdminLogin()">
-
-🛡 ورود مدیر مسجد
-
+<div class="service-icon">
+🎓
 </div>
 
-</div>
-
-</section>
-<!-- ================= اطلاعیه‌ها ================= -->
-
-<section id="notice" class="section">
-
-<div class="container">
-
-<div class="card">
-
-<h2>📢 اطلاعیه‌های مسجد</h2>
-
-<div id="noticeList">
-
-<div class="msg">
-
-در حال دریافت اطلاعیه‌ها...
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- ================= چت اعضا ================= -->
-
-<section id="chat" class="section">
-
-<div class="container">
-
-<div class="card">
-
-<h2>💬 گفتگوی اعضای مسجد</h2>
-
-<div id="messages">
-
-</div>
-  
-<input 
-type="text" 
-id="message" 
-placeholder="برای ارسال پیام ابتدا وارد شوید"
-disabled
->
-
-
-<button id="sendMessage" disabled>
-ارسال
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-  <!-- ================= فوتر ================= -->
-
-<footer class="footer">
-
-<div class="container">
+<h3>ثبت نام</h3>
 
 <p>
-🕌 مسجد المهدی (عج)
+عضویت در کلاس‌های تابستانی
 </p>
 
-<p>
-تمامی حقوق محفوظ است © 2026
-</p>
+<a href="register.html">
+ثبت نام →
+</a>
 
 </div>
 
-</footer>
+<div class="service-card">
 
+<div class="service-icon">
+📅
+</div>
 
-<!-- ================= کتابخانه Supabase ================= -->
+<h3>برنامه هفتگی</h3>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<p>
+برنامه کامل مراسم و جلسات
+</p>
 
+<a href="#">
+مشاهده →
+</a>
 
-<!-- ================= فایل جاوااسکریپت ================= -->
+</div>
 
-<script src="app.js"></script>
+</div>
 
-</body>
+</div>
 
-</html>
+</section>
