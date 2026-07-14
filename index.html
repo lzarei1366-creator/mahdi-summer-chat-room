@@ -4,23 +4,18 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>مسجد المهدی (عج)</title>
 
+<meta name="theme-color" content="#07162D">
+
 <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap"
-rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -28,27 +23,31 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </head>
 
 <body>
+
+<div class="bg-stars"></div>
+<div class="bg-gradient"></div>
+
 <header class="header">
 
 <div class="container">
 
 <nav class="navbar">
 
-<a href="#" class="logo">
+<a href="index.html" class="logo">
 
-<img src="images/logo.png">
+<img src="images/logo.png" alt="logo">
 
 <div>
 
 <h2>مسجد المهدی (عج)</h2>
 
-<p>سامانه هوشمند مسجد</p>
+<p>منطقه خود را وارد کنید</p>
 
 </div>
 
 </a>
 
-<ul>
+<ul class="menu">
 
 <li><a class="active" href="#">خانه</a></li>
 
@@ -58,13 +57,13 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <li><a href="notices.html">اطلاعیه‌ها</a></li>
 
-<li><a href="#">درباره ما</a></li>
+<li><a href="about.html">درباره مسجد</a></li>
 
-<li><a href="#">تماس با ما</a></li>
+<li><a href="contact.html">تماس با ما</a></li>
 
 </ul>
 
-<div class="actions">
+<div class="nav-actions">
 
 <button id="themeBtn">
 
@@ -72,10 +71,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </button>
 
-<a href="login.html"
-class="login-btn">
+<a href="admin-login.html" class="admin-btn">
 
-ورود
+<i class="fa-regular fa-user"></i>
+
+ورود ادمین
 
 </a>
 
@@ -84,227 +84,99 @@ class="login-btn">
 </nav>
 
 </div>
-  
-</header>
 
+</header>
 <section class="hero">
 
-<div class="hero-overlay"></div>
+<div class="container hero-grid">
 
-<div class="container hero-container">
+<div class="hero-right">
 
-<div class="hero-content">
+<span class="hero-tag">
 
-<span class="badge">
-✨ سامانه هوشمند مسجد
+به سامانه رسمی
+
 </span>
 
-...
+<h1>
+
+مسجد المهدی (عج)
+
+</h1>
+
+<p>
+
+ارتباطی صمیمی، محیطی امن و آموزشی مفید
+برای همه اعضای مسجد
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="chat.html" class="gold-btn">
+
+<i class="fa-regular fa-comments"></i>
+
+به چت روم بروید
+
+</a>
 
 </div>
 
-<div class="hero-card">
-
-...
-
 </div>
 
-</div>
+<div class="hero-left">
 
-<div class="hero-shapes">
-
-<span></span>
-
-<span></span>
-
-<span></span>
-
-<span></span>
+<img src="images/mosque.png" class="mosque-image">
 
 </div>
-
-<div class="scroll-down">
-
-<i class="fa-solid fa-angles-down"></i>
 
 </div>
 
 </section>
-
-  <section class="stats">
+<section class="stats">
 
 <div class="container">
 
 <div class="stats-grid">
 
-<div class="stat-card">
+<div class="stat purple">
 
-<div class="stat-icon">👥</div>
+<i class="fa-solid fa-comments"></i>
 
-<h2>۱۲۵۰+</h2>
+<h2>12,548</h2>
 
-<p>اعضای فعال</p>
-
-</div>
-
-<div class="stat-card">
-
-<div class="stat-icon">📚</div>
-
-<h2>۳۵</h2>
-
-<p>کلاس آموزشی</p>
+<p>پیام ارسال شده</p>
 
 </div>
 
-<div class="stat-card">
+<div class="stat blue">
 
-<div class="stat-icon">📢</div>
+<i class="fa-solid fa-users"></i>
 
-<h2>۱۸۰</h2>
+<h2>1,236</h2>
 
-<p>اطلاعیه منتشر شده</p>
-
-</div>
-
-<div class="stat-card">
-
-<div class="stat-icon">🕌</div>
-
-<h2>۲۴</h2>
-
-<p>برنامه هفتگی</p>
+<p>کاربران عضو</p>
 
 </div>
 
-</div>
+<div class="stat gold">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+<h2>48</h2>
+
+<p>اطلاعیه‌ها</p>
 
 </div>
 
-</section>
-<section class="services">
+<div class="stat green">
 
-<div class="container">
+<i class="fa-solid fa-graduation-cap"></i>
 
-<div class="section-title">
+<h2>24</h2>
 
-<span>خدمات</span>
-
-<h2>خدمات مسجد المهدی (عج)</h2>
-
-<p>
-تمام امکانات مسجد در یک سامانه هوشمند
-</p>
-
-</div>
-
-<div class="services-grid">
-
-<div class="service-card">
-
-<div class="service-icon">
-💬
-</div>
-
-<h3>چت روم</h3>
-
-<p>
-گفتگو بین اعضای مسجد و مدیریت
-</p>
-
-<a href="chat.html">
-ورود →
-</a>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-📚
-</div>
-
-<h3>کلاس‌های آموزشی</h3>
-
-<p>
-ثبت نام کلاس‌های قرآن، احکام و فرهنگی
-</p>
-
-<a href="classes.html">
-مشاهده →
-</a>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-📢
-</div>
-
-<h3>اطلاعیه‌ها</h3>
-
-<p>
-مشاهده اطلاعیه‌های جدید مسجد
-</p>
-
-<a href="notices.html">
-مطالعه →
-</a>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-🕌
-</div>
-
-<h3>برنامه نماز</h3>
-
-<p>
-برنامه نماز جماعت و مراسم‌ها
-</p>
-
-<a href="#">
-مشاهده →
-</a>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-🎓
-</div>
-
-<h3>ثبت نام</h3>
-
-<p>
-عضویت در کلاس‌های تابستانی
-</p>
-
-<a href="register.html">
-ثبت نام →
-</a>
-
-</div>
-
-<div class="service-card">
-
-<div class="service-icon">
-📅
-</div>
-
-<h3>برنامه هفتگی</h3>
-
-<p>
-برنامه کامل مراسم و جلسات
-</p>
-
-<a href="#">
-مشاهده →
-</a>
+<p>کلاس‌های فعال</p>
 
 </div>
 
@@ -313,158 +185,3 @@ class="login-btn">
 </div>
 
 </section>
-<section class="news">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>اطلاعیه‌ها</span>
-
-<h2>آخرین اخبار مسجد</h2>
-
-<p>
-از برنامه‌ها و رویدادهای مسجد مطلع شوید
-</p>
-
-</div>
-
-<div class="news-grid">
-
-<div class="news-card">
-
-<img src="images/news1.jpg">
-
-<div class="news-body">
-
-<span class="date">
-📅 ۱۴ تیر ۱۴۰۵
-</span>
-
-<h3>
-ثبت نام کلاس‌های تابستانی
-</h3>
-
-<p>
-ثبت نام کلاس‌های قرآن، احکام، زبان و کامپیوتر آغاز شد.
-</p>
-
-<a href="#">
-ادامه مطلب
-</a>
-
-</div>
-
-</div>
-
-<div class="news-card">
-
-<img src="images/news2.jpg">
-
-<div class="news-body">
-
-<span class="date">
-📅 ۱۲ تیر ۱۴۰۵
-</span>
-
-<h3>
-مراسم شب جمعه
-</h3>
-
-<p>
-دعای کمیل همراه با سخنرانی و پذیرایی برگزار می‌شود.
-</p>
-
-<a href="#">
-ادامه مطلب
-</a>
-
-</div>
-
-</div>
-
-<div class="news-card">
-
-<img src="images/news3.jpg">
-
-<div class="news-body">
-
-<span class="date">
-📅 ۱۰ تیر ۱۴۰۵
-</span>
-
-<h3>
-مسابقات فرهنگی
-</h3>
-
-<p>
-ثبت نام مسابقات کتابخوانی و حفظ قرآن آغاز شد.
-</p>
-
-<a href="#">
-ادامه مطلب
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-<section class="gallery">
-
-<div class="container">
-
-<div class="section-title">
-
-<span>گالری تصاویر</span>
-
-<h2>لحظه‌هایی از مسجد المهدی (عج)</h2>
-
-<p>
-
-گوشه‌ای از فعالیت‌های فرهنگی، مذهبی و آموزشی مسجد
-
-</p>
-
-</div>
-
-<div class="gallery-grid">
-
-<div class="gallery-item">
-<img src="images/gallery1.jpg" alt="">
-</div>
-
-<div class="gallery-item tall">
-<img src="images/gallery2.jpg" alt="">
-</div>
-
-<div class="gallery-item">
-<img src="images/gallery3.jpg" alt="">
-</div>
-
-<div class="gallery-item">
-<img src="images/gallery4.jpg" alt="">
-</div>
-
-<div class="gallery-item wide">
-<img src="images/gallery5.jpg" alt="">
-</div>
-
-<div class="gallery-item">
-<img src="images/gallery6.jpg" alt="">
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-  <script src="app.js"></script>
-
-</body>
-</html>
